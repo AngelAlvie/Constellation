@@ -1,2 +1,51 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- Zooming is disabled to make the webapp feel more like native app -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  <title>Constellation</title>
+  <!-- bootstrap CSS -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <!-- CSS for this document -->
+  <link rel="stylesheet" type="text/css" href="../stylesheets/style.css">
+  <!-- INCLUDE OTHER CSS DOCUMENTS BELOW -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <!-- INCLUDE OTHER SCRIPTS BELOW -->
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div class = "row">
+    <div class = "col-md-3 col-xs-0">
+    </div>
+    <div class = "col-md-6 col-xs-12">
+
+      <h1>Constellation</h1>
+      <form name="search" method="post" action="/search">
+        <div class="input-group input-group-lg">
+          <div class="input-group-btn">
+            <button class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+          </div>
+          <div class="input-group-btn">
+            <button class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+          </div>
+          <input type="text" class="form-control" placeholder="discover" id="searchbar">
+          <div class="input-group-btn">
+            <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+          </div>
+        </div>
+      </form>
+      <div class="btn-group" role="group" aria-label="...">
+      </div>
+    </div>
+  <div class = "col-md-3 col-xs-0">
+  </div>
+</div>
+</div>
+</body>
+</html>

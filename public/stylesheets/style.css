@@ -1,8 +1,37 @@
+/*Here are some theme colors:
+* Writing: #F5F5F5
+* Secondary: #212121
+* Background: #263238
+*
+*Currently experimenting with different fonts
+*Might Import Fonts from Google Fonts.
+*Current Contender:
+* Dosis
+* Roboto support?
+*
+*
+*/
+
+@import url('https://fonts.googleapis.com/css?family=Dosis');
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
 body {
+  background-color: #263238;
+  color:#F5F5F5;
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: "Dosis", Helvetica, Arial, sans-serif;
+}
+div {
+    margin:center;
 }
 
-a {
-  color: #00B7FF;
+
+body p {
+  margin:center;
+  font-family: "Roboto", Helvetica, Arial, sans-serif;
+}
+
+#searchbar {
+  color:#212121;
+  border:none;
 }
