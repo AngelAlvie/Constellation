@@ -17,21 +17,38 @@
 
 body {
   background-color: #263238;
-  color:#F5F5F5;
-  padding: 50px;
+  color:#212121;
   font-family: "Dosis", Helvetica, Arial, sans-serif;
 }
-div {
-    margin:center;
-}
 
 
-body p {
-  margin:center;
+p,
+button,
+input {
   font-family: "Roboto", Helvetica, Arial, sans-serif;
 }
 
-#searchbar {
+
+button,
+input {
   color:#212121;
-  border:none;
+  font-weight: 500;
+  border:1px solid #212121 !important;
+}
+
+
+input:hover,
+input:active,
+input:focus,
+button:focus,
+button:active,
+button:hover,
+.btn:active,
+.btn.active
+{
+    border:1px solid #212121 !important;
+    outline:0px !important;
+    box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
 }

@@ -19,33 +19,37 @@
 </head>
 
 <body>
-  <div class="container-fluid">
+  <div class="container">
     <div class = "row">
-    <div class = "col-md-3 col-xs-0">
-    </div>
-    <div class = "col-md-6 col-xs-12">
-
-      <h1>Constellation</h1>
-      <form name="search" method="post" action="/search">
-        <div class="input-group input-group-lg">
-          <div class="input-group-btn">
-            <button class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+      <div class = "col-sm-6 col-xs-12 col-sm-offset-3 bg-danger">
+        <form name="search" method="post" action="/search">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="discover">
+            <span class="input-group-btn">
+              <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+            </span>
           </div>
-          <div class="input-group-btn">
-            <button class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-          </div>
-          <input type="text" class="form-control" placeholder="discover" id="searchbar">
-          <div class="input-group-btn">
-            <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-          </div>
-        </div>
-      </form>
-      <div class="btn-group" role="group" aria-label="...">
+        </form>
       </div>
     </div>
-  <div class = "col-md-3 col-xs-0">
+    <div class = "row">
+      <div class = "col-sm-6 col-xs-12 col-sm-offset-3 bg-info text-center">
+        <div class="btn-group">
+          <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+          <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+        </div>
+      </div>
+    </div>
+    <div class = "row">
+      <div class = "col-sm-6 col-xs-12 col-sm-offset-3 bg-info text-center">
+        <button type="button" class="btn btn-default">Sign In</button>
+      </div>
+    </div>
+    <div class = "row">
+      <div class = "col-sm-6 col-xs-12 col-sm-offset-3 bg-info text-center">
+        <button type="button" class="btn btn-default">Sign Up</button>
+      </div>
+    </div>
   </div>
-</div>
-</div>
 </body>
 </html>
