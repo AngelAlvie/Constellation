@@ -15,40 +15,70 @@
 @import url('https://fonts.googleapis.com/css?family=Dosis');
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
+html {
+  height: 100%;
+}
+
 body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
   background-color: #263238;
   color:#212121;
   font-family: "Dosis", Helvetica, Arial, sans-serif;
+  display:flex;
+  justify-content: center;
+  align-items: center;
 }
 
+.hidden {
+  opacity: 1;
+  background-color: #F5F5F5;
+  overflow: hidden;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 p,
 button,
 input {
   font-family: "Roboto", Helvetica, Arial, sans-serif;
+  opacity: 1;
+  border:none;
+  padding: 0px;
 }
 
+input:focus {
+  border:none;
+  -webkit-appearance: none;
+  -moz-appearance:    none;
+  appearance:         none;
+  border-radius: 15px 0px 0px 15px;
+}
 
-button,
 input {
-  color:#212121;
-  font-weight: 500;
-  border:1px solid #212121 !important;
+  outline:0;
+  height:30px;
+  width: calc(100% - 35px);
+  -webkit-appearance: none;
+  -moz-appearance:    none;
+  appearance:         none;
+
+  border-radius: 15px 0px 0px 15px;
+}
+button {
+
+    outline:0;
+    height:30px;
+    width:30px;
+    border-radius: 0px 15px 15px 0px;
+    overflow: hidden;
 }
 
-
-input:hover,
-input:active,
-input:focus,
-button:focus,
-button:active,
-button:hover,
-.btn:active,
-.btn.active
-{
-    border:1px solid #212121 !important;
-    outline:0px !important;
-    box-shadow: none !important;
-    -moz-box-shadow: none !important;
-    -webkit-box-shadow: none !important;
+form {
+  width:80%;
+  opacity: 1;
+  background-color: #263238;
 }
