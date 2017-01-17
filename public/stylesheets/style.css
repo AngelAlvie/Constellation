@@ -32,7 +32,6 @@ body {
 }
 
 .hidden {
-  opacity: 1;
   background-color: #F5F5F5;
   overflow: hidden;
   border-radius: 10px;
@@ -45,40 +44,43 @@ p,
 button,
 input {
   font-family: "Roboto", Helvetica, Arial, sans-serif;
-  opacity: 1;
   border:none;
   padding: 0px;
-}
-
-input:focus {
-  border:none;
-  -webkit-appearance: none;
-  -moz-appearance:    none;
-  appearance:         none;
-  border-radius: 15px 0px 0px 15px;
+  padding-left: 1px;
 }
 
 input {
   outline:0;
-  height:30px;
   width: calc(100% - 35px);
   -webkit-appearance: none;
   -moz-appearance:    none;
   appearance:         none;
-
-  border-radius: 15px 0px 0px 15px;
+  margin:0px;
 }
-button {
 
-    outline:0;
-    height:30px;
-    width:30px;
-    border-radius: 0px 15px 15px 0px;
-    overflow: hidden;
+button {
+  background-image: url(../images/Test.svg);
+  outline:0;
+  width:30px;
+  overflow: hidden;
+  margin:0px;
+}
+button:hover {
+  background-image: url(../images/Test.svg);
 }
 
 form {
   width:80%;
-  opacity: 1;
+  padding: 0px;
   background-color: #263238;
+}
+
+.rightCircle {
+  border-radius: 0px 15px 15px 0px;
+  height:30px;
+}
+
+.leftCircle {
+  border-radius: 15px 0px 0px 15px;
+  height:30px;
 }
