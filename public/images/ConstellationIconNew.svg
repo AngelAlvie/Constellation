@@ -15,7 +15,7 @@
    version="1.1"
    id="SVGRoot"
    inkscape:version="0.92.0 r15299"
-   sodipodi:docname="Constellation Grey.svg">
+   sodipodi:docname="ConstellationIconNew.svg">
   <sodipodi:namedview
      id="base"
      pagecolor="#ffffff"
@@ -24,11 +24,11 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="5.6568543"
-     inkscape:cx="0.76177813"
-     inkscape:cy="41.768974"
+     inkscape:cx="21.356263"
+     inkscape:cy="42.652857"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
-     showgrid="false"
+     showgrid="true"
      inkscape:window-width="1920"
      inkscape:window-height="1017"
      inkscape:window-x="-8"
@@ -56,42 +56,6 @@
      id="layer1"
      inkscape:groupmode="layer"
      inkscape:label="Layer 1">
-    <rect
-       style="fill:#78909c;fill-opacity:1;stroke:#78909c;stroke-width:0.37795276;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-       id="rect5046"
-       width="85"
-       height="100"
-       x="0"
-       y="0" />
-    <rect
-       style="fill:#78909c;fill-opacity:1;stroke:#78909c;stroke-width:0.37795276;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-       id="rect5048"
-       width="15"
-       height="70"
-       x="85"
-       y="15" />
-    <path
-       style="fill:#78909c;fill-opacity:1;stroke:#78909c;stroke-width:0.37795275;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-       id="path5050"
-       sodipodi:type="arc"
-       sodipodi:cx="85"
-       sodipodi:cy="15"
-       sodipodi:rx="15"
-       sodipodi:ry="15"
-       sodipodi:start="3.8395566"
-       sodipodi:end="0.75860901"
-       d="M 73.507716,5.3601136 A 15,15 0 0 1 87.90032,0.28306608 15,15 0 0 1 99.290468,10.441215 15,15 0 0 1 95.886904,25.318688 L 85,15 Z" />
-    <path
-       style="fill:#78909c;fill-opacity:1;stroke:#78909c;stroke-width:0.37795275;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-       id="path5052"
-       sodipodi:type="arc"
-       sodipodi:cx="85"
-       sodipodi:cy="85"
-       sodipodi:rx="15"
-       sodipodi:ry="15"
-       sodipodi:start="5.3317439"
-       sodipodi:end="2.5824312"
-       d="M 93.70765,72.786203 A 15,15 0 0 1 99.616821,88.36876 15,15 0 0 1 87.483353,99.793004 15,15 0 0 1 72.284496,92.957133 L 85,85 Z" />
     <path
        style="fill:#f5f5f5;fill-opacity:1;stroke:#f5f5f5;stroke-width:0.37795275;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="path4489"
