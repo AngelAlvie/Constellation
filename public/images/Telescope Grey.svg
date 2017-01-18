@@ -14,13 +14,8 @@
    viewBox="0 0 100 100"
    version="1.1"
    id="SVGRoot"
-<<<<<<< HEAD
-   sodipodi:docname="Telescope Grey.svg"
-   inkscape:version="0.92.0 r15299">
-=======
    inkscape:version="0.92.0 r15299"
    sodipodi:docname="Telescope Grey.svg">
->>>>>>> master
   <sodipodi:namedview
      id="base"
      pagecolor="#ffffff"
@@ -29,13 +24,8 @@
      inkscape:pageopacity="1.0"
      inkscape:pageshadow="0"
      inkscape:zoom="5.12"
-<<<<<<< HEAD
-     inkscape:cx="7.7376465"
-     inkscape:cy="46.052351"
-=======
      inkscape:cx="-39.527978"
      inkscape:cy="38.825789"
->>>>>>> master
      inkscape:document-units="px"
      inkscape:current-layer="layer2"
      showgrid="false"
@@ -58,11 +48,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-<<<<<<< HEAD
-        <dc:title></dc:title>
-=======
         <dc:title />
->>>>>>> master
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -72,17 +58,6 @@
      inkscape:label="Layer 2"
      style="display:inline">
     <rect
-<<<<<<< HEAD
-       style="fill:#78909c;fill-opacity:1;stroke:#f5f5f5;stroke-width:0.1;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-       id="rect6960"
-       width="20"
-       height="100"
-       x="0"
-       y="0"
-       rx="0" />
-    <rect
-=======
->>>>>>> master
        style="fill:#78909c;fill-opacity:1;stroke:#fffffa;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect6342"
        width="100"
@@ -94,19 +69,11 @@
     <g
        id="g6392"
        transform="matrix(1.0510415,0,0,1.0510415,-1.9603123,-3.9942546)"
-<<<<<<< HEAD
-       style="stroke-width:0.09514372;stroke-miterlimit:4;stroke-dasharray:none;stroke:#f5f5f5;stroke-opacity:1">
-      <g
-         transform="translate(-0.390625,-6.8359375)"
-         id="g6380"
-         style="stroke-width:0.09514372;stroke-miterlimit:4;stroke-dasharray:none;stroke:#f5f5f5;stroke-opacity:1">
-=======
        style="stroke:#f5f5f5;stroke-opacity:1;stroke-width:0.09514372;stroke-miterlimit:4;stroke-dasharray:none">
       <g
          transform="translate(-0.390625,-6.8359375)"
          id="g6380"
          style="stroke:#f5f5f5;stroke-opacity:1;stroke-width:0.09514372;stroke-miterlimit:4;stroke-dasharray:none">
->>>>>>> master
         <g
            id="g6364"
            transform="rotate(-15,82.470757,50.536835)"
