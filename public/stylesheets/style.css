@@ -8,9 +8,17 @@
 *Current Contender:
 * Dosis
 * Roboto support?
-*
-*
+* Current feature size: 30px
+* Maybe increase by to 40px
+* also put blank SVG assets without background
 */
+/* Some Citations for some of the css:
+* Flexbox: https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+* Fixing form apperance: https://css-tricks.com/almanac/properties/a/appearance/
+* Fixing outline: http://stackoverflow.com/questions/20340138/remove-blue-border-from-css-custom-styled-button-in-chrome
+* Changing Placeholder text properties: https://css-tricks.com/almanac/selectors/p/placeholder/
+*/
+
 
 @import url('https://fonts.googleapis.com/css?family=Dosis');
 @import url('https://fonts.googleapis.com/css?family=Roboto');
@@ -24,20 +32,38 @@ body {
   padding: 0;
   min-height: 100%;
   background-color: #263238;
-  color:#212121;
+  background-image: url(../images/Backdrop1.svg);
+  background-position: left 85% ;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color:#F5F5F5;
   font-family: "Dosis", Helvetica, Arial, sans-serif;
   display:flex;
   justify-content: center;
   align-items: center;
 }
 
-.hidden {
-  background-color: #F5F5F5;
+#formContainer {
+  width: 100%;
+  height:30px;
   overflow: hidden;
   border-radius: 10px;
   display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
+  z-index: 1;
+  margin: 10px;
+}
+
+.hidden {
+  overflow: hidden;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255,255,255,.4);
 }
 
 p,
@@ -46,41 +72,84 @@ input {
   font-family: "Roboto", Helvetica, Arial, sans-serif;
   border:none;
   padding: 0px;
-  padding-left: 1px;
+  vertical-align: middle;
+}
+
+canvas {
+  position: fixed;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
 }
 
 input {
+  background-color: #263238;
+  color:#F5F5F5;
   outline:0;
-  width: calc(100% - 35px);
+  width: 100%;
+  height:30px;
+  font-size: 1.3em;
   -webkit-appearance: none;
   -moz-appearance:    none;
   appearance:         none;
   margin:0px;
+  padding-left: 10px;
+}
+img {
+  vertical-align: middle;
+  width: 30px;
+  height: 30px;
 }
 
 button {
-  background-image: url(../images/Test.svg);
+  -webkit-appearance: none;
+  -moz-appearance:    none;
+  appearance:         none;
   outline:0;
-  width:30px;
-  overflow: hidden;
-  margin:0px;
-}
-button:hover {
-  background-image: url(../images/Test.svg);
+  height: 30px;
+  background-color: #263238;
+  color:#F5F5F5;
+  -webkit-transition: background-color 0.4s;
+  transition: background-color 0.4s;
 }
 
+button:hover {
+  background-color: #78909c;
+}
 form {
   width:80%;
   padding: 0px;
-  background-color: #263238;
 }
+
 
 .rightCircle {
   border-radius: 0px 15px 15px 0px;
   height:30px;
 }
 
+.button {
+  border-radius: 15px 15px 15px 15px;
+  width: 100px;
+  margin: 10px;
+  font-size: 1.3em;
+  border:none;
+}
+
 .leftCircle {
   border-radius: 15px 0px 0px 15px;
   height:30px;
+}
+
+::-webkit-input-placeholder {
+  color: #F5F5F5;
+  font-size: 1 em;
+}
+::-moz-placeholder {
+  color: #F5F5F5;
+}
+:-ms-input-placeholder {
+  color: #F5F5F5;
+}
+:-moz-placeholder {
+  color: #F5F5F5;
 }

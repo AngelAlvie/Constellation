@@ -1,25 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <!-- Zooming is disabled to make the webapp feel more like native app -->
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <title>Constellation</title>
-  <!-- CSS for this document -->
-  <link rel="stylesheet" type="text/css" href="../stylesheets/style.css">
-  <!-- INCLUDE OTHER CSS DOCUMENTS BELOW -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <!-- INCLUDE OTHER SCRIPTS BELOW -->
-  <script src="../javascripts/main.js"></script>
-</head>
-<body>
+<canvas id="interactiveCanvas">
+</canvas>
   <div class="hidden">
+    <div id="formContainer">
+    <button class="leftCircle" id="star"><img src="../images/Star1 Blue.svg" class="leftCircle"></button>
+    <button id="constellation"><img src="../images/Constellation Blue.svg"></button>
     <form method="post" name="search" action="/search">
-      <input type="text" class="leftCircle" placeholder="Discover something new..."/>
-      <button type="submit" class="rightCircle">submit</button>
+      <input type="text" placeholder="Discover something new..."/>
     </form>
+    <button class="rightCircle" id="telescope"><img src="../images/Telescope Blue.svg" class="rightCircle" ></button>
   </div>
-</body>
-</html>
+
+  <button class="button"> Sign In </button>
+  <button class="button"> Sign Up </button>
+  <!-- INCLUDE SCRIPTS BELOW -->
+  <script src="../javascripts/main.js"></script>
+  <script src="../javascripts/main_canvas.js"></script>
+</div>
