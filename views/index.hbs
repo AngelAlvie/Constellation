@@ -1,51 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <!-- Zooming is disabled to make the webapp feel more like native app -->
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-
-  <title>Constellation</title>
-  <!-- bootstrap CSS -->
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <!-- CSS for this document -->
-  <link rel="stylesheet" type="text/css" href="../stylesheets/style.css">
-  <!-- INCLUDE OTHER CSS DOCUMENTS BELOW -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-  <!-- INCLUDE OTHER SCRIPTS BELOW -->
-</head>
-
-<body>
-  <div class="container-fluid">
-    <div class = "row">
-    <div class = "col-md-3 col-xs-0">
-    </div>
-    <div class = "col-md-6 col-xs-12">
-
-      <h1>Constellation</h1>
-      <form name="search" method="post" action="/search">
-        <div class="input-group input-group-lg">
-          <div class="input-group-btn">
-            <button class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-          </div>
-          <div class="input-group-btn">
-            <button class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-          </div>
-          <input type="text" class="form-control" placeholder="discover" id="searchbar">
-          <div class="input-group-btn">
-            <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-          </div>
-        </div>
-      </form>
-      <div class="btn-group" role="group" aria-label="...">
-      </div>
-    </div>
-  <div class = "col-md-3 col-xs-0">
+<canvas id="interactiveCanvas">
+</canvas>
+  <div class="hidden">
+    <div id="formContainer">
+    <button class="leftCircle" id="star"><img src="../images/Star1 Blue.svg" class="leftCircle"></button>
+    <button id="constellation"><img src="../images/Constellation Blue.svg"></button>
+    <form method="post" name="search" action="/search">
+      <input type="text" placeholder="Discover something new..."/>
+    </form>
+    <button class="rightCircle" id="telescope"><img src="../images/Telescope Blue.svg" class="rightCircle" ></button>
   </div>
+
+  <button class="button"> Sign In </button>
+  <button class="button"> Sign Up </button>
+  <!-- INCLUDE SCRIPTS BELOW -->
+  <script src="../javascripts/main.js"></script>
+  <script src="../javascripts/main_canvas.js"></script>
 </div>
-</div>
-</body>
-</html>
