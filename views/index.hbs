@@ -2,16 +2,16 @@
 </canvas>
   <div class="hidden">
     <div id="formContainer">
-    <button class="leftCircle" id="star"><img src="../images/StarNew.svg" class="leftCircle"></button>
-    <button id="constellation"><img src="../images/ConstellationIconNew.svg"></button>
+    <button class="leftCircle" id="star" onclick="starClicked()"><img src="../images/StarNew.svg" class="leftCircle"></button>
+    <button id="constellation" onclick="constellationClicked()"><img src="../images/ConstellationIconNew.svg"></button>
     <form method="post" name="search" action="/search">
       <input type="text" placeholder="Discover something new..."/>
     </form>
-    <button class="rightCircle" id="telescope"><img src="../images/TelescopeNew.svg" class="rightCircle" ></button>
+    <button class="rightCircle" id="telescope" onclick="telescopeClicked()"><img src="../images/TelescopeNew.svg" class="rightCircle" ></button>
   </div>
 
-  <button class="button"> Sign In </button>
-  <button class="button"> Sign Up </button>
+  <button class="button" onclick="signInClicked()"> Sign In </button>
+  <button class="button" onclick="signUpClicked()"> Sign Up </button>
   <!-- INCLUDE SCRIPTS BELOW -->
   <script src="../javascripts/main.js"></script>
   <script src="../javascripts/main_canvas.js"></script>

@@ -1,3 +1,5 @@
+//rendering for the page
+
 var resize = function() {
   var screenWidth = $(window).width();
   var screenHeight = $(window).height();
@@ -29,3 +31,60 @@ $( window ).resize(function() {
   var tmp = resize();
   $(".hidden").stop(true).animate({width: tmp[0], height: tmp[1]}, 200);
 });
+
+//various click handlers for when the user clicks buttons
+var constellationIsClicked = false;
+var starIsClicked = false;
+
+var telescopeClicked= function() {
+  $( "form" ).submit();
+};
+
+var renderClickedButtons = function() {
+  if (constellationIsClicked) {
+    $("#constellation").css("background-color", '#78909c');
+  } else {
+    $("#constellation").css("background-color", '#263238');
+  }
+  if (starIsClicked) {
+    $("#star").css("background-color", '#78909c');
+  } else {
+    $("#star").css("background-color", '#263238');
+  }
+}
+
+var constellationClicked = function() {
+  if (constellationIsClicked) {
+    constellationIsClicked = false;
+  } else {
+    if (starIsClicked) {
+      starIsClicked = false;
+      constellationIsClicked = true;
+    } else {
+      constellationIsClicked = true;
+    }
+  }
+  renderClickedButtons();
+};
+
+var starClicked = function() {
+  if (starIsClicked) {
+    starIsClicked = false;
+  } else {
+    if (constellationIsClicked) {
+      constellationIsClicked = false;
+      starIsClicked = true;
+    } else {
+      starIsClicked = true;
+    }
+  }
+  renderClickedButtons();
+};
+
+var signInClicked = function() {
+  console.log("sing in clicked");
+};
+
+var signUpClicked = function() {
+  console.log("sign up clicked");
+};
