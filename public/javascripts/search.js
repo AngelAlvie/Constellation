@@ -40,7 +40,7 @@ $(document).ready(function() {
   var tmp = resize();
   $(".hidden").css("width",  tmp[0]);
   $(".hidden").css("height", 0);
-  $(".hidden").animate({height: 200}, 600);
+  $(".hidden").animate({height: 500}, 600);
   renderClickedButtons();
 });
 $( window ).resize(function() {
@@ -86,10 +86,6 @@ var starClicked = function() {
   renderClickedButtons();
 };
 
-var signInClicked = function() {
-  console.log("sing in clicked");
-};
-
-var signUpClicked = function() {
-  console.log("sign up clicked");
-};
+var profileClicked = function(){
+  console.log("Profile Clicked yay")
+}
