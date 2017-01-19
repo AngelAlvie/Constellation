@@ -8,6 +8,12 @@ router.get('/', function(req, res, next) {
 
 router.post('/search', function(req, res, next) {
   res.render('search', { title: 'Constellation' });
-})
+});
+
+router.get('/signIn', function(req, res, next) {
+  res.render('signIn', { title: 'Constellation' });
+});
+
+
 
 module.exports = router;

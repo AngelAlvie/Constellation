@@ -91,7 +91,7 @@ var starClicked = function() {
 };
 
 var signInClicked = function() {
-  console.log("sing in clicked");
+  window.location.assign('/signIn');
 };
 
 var signUpClicked = function() {

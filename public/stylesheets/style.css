@@ -1,6 +1,5 @@
 /*Here are some theme colors:
 * Writing: #F5F5F5
-* Secondary: #212121
 * Background: #263238
 *
 *Currently experimenting with different fonts
@@ -121,14 +120,25 @@ form {
   flex-shrink: 0;
 }
 
+#verticalForm {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
 /* Styling for classes*/
+
+.formElement {
+  margin: 10px;
+}
 
 .results {
   overflow-y: scroll;
-  width: 95%;
-  height: 50%;
+  width: 98%;
+  height: 70%;
   background-color: rgba(255,255,255,.3);
   border-radius: 20px;
+
 }
 
 .searchResult {
@@ -150,6 +160,16 @@ form {
   height:40px;
 }
 
+.onlyRightRadius {
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px
+}
+
+.onlyLeftRadius {
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
 .button {
   border-radius: 20px 20px 20px 20px;
   width: 100px;
@@ -164,8 +184,21 @@ form {
   height:40px;
 }
 
+.fullcircle {
+  border-radius: 20px;
+  height:40px;
+  width:40px;
+}
 
 /* Styling for psuedo-classes */
+
+::-webkit-scrollbar {
+  width:20px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #263238;
+  border-radius: 0px 20px 20px 0px;
+}
 
 ::-webkit-input-placeholder {
   color: #F5F5F5;
