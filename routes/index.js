@@ -14,6 +14,9 @@ router.get('/signIn', function(req, res, next) {
   res.render('signIn', { title: 'Constellation' });
 });
 
+router.get('/signUp', function(req, res, next) {
+  res.render('signUp', { title: 'Constellation' });
+});
 
 
 module.exports = router;
