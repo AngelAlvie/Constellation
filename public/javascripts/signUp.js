@@ -40,3 +40,13 @@ $( window ).resize(function() {
 var back = function() {
   window.location.assign('/');
 }
+
+var back2 = function() {
+  window.location.assign('/signUp');
+}
+var noThanks = function() {
+  window.location.assign('/');
+}
+var yesPlease = function() {
+  window.location.assign('/constellation');
+}
