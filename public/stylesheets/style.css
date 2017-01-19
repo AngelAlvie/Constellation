@@ -1,6 +1,5 @@
 /*Here are some theme colors:
 * Writing: #F5F5F5
-* Secondary: #212121
 * Background: #263238
 *
 *Currently experimenting with different fonts
@@ -125,8 +124,8 @@ form {
 
 .results {
   overflow-y: scroll;
-  width: 95%;
-  height: 50%;
+  width: 98%;
+  height: 70%;
   background-color: rgba(255,255,255,.3);
   border-radius: 20px;
 }
@@ -143,6 +142,7 @@ form {
   justify-content: center;
   align-items: center;
   background-color: rgba(255,255,255,.4);
+  flex-shrink: 0;
 }
 
 .rightCircle {
@@ -165,6 +165,15 @@ form {
 }
 
 /* Styling for psuedo-classes */
+
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #263238;
+  border-radius: 0px 20px 20px 0px;
+}
 
 ::-webkit-input-placeholder {
   color: #F5F5F5;
