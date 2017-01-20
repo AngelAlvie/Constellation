@@ -1,5 +1,9 @@
 var express = require('express');
 var router = express.Router();
+var User = require('./user.js');
+var Star = require('./star.js');
+var Constellation = require('./constellation.js');
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Constellation - Welcome' });
