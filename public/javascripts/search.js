@@ -91,5 +91,5 @@ var starClicked = function() {
 };
 
 var profileClicked = function(){
-  console.log("Profile Clicked yay")
-}
+  console.log("Profile;;;; Clic;;;;ke;d yay;;;;;;");
+};
