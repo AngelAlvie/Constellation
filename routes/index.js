@@ -1,19 +1,36 @@
 var express = require('express');
 var router = express.Router();
+var User = require('./user.js');
+var Star = require('./star.js');
+var Constellation = require('./constellation.js');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Constellation' });
+  res.render('index', { title: 'Constellation - Welcome' });
 });
 
 router.post('/search', function(req, res, next) {
-  res.render('search', { title: 'Constellation' });
+  res.render('search', { title: 'Constellation - Search' });
 });
 
 router.get('/signIn', function(req, res, next) {
-  res.render('signIn', { title: 'Constellation' });
+  res.render('signIn', { title: 'Constellation - Sign In' });
 });
 
-
+router.get('/signUp', function(req, res, next) {
+  res.render('signUp', { title: 'Constellation - Sign Up' });
+});
+router.post('/signUp2', function(req, res, next) {
+  res.render('signUp2', { title: 'Constellation - Sign Up' });
+});
+router.post('/signUp3', function(req, res, next) {
+  res.render('signUp3', { title: 'Constellation - Sign Up' });
+});
+router.get('/constellation', function(req, res, next) {
+  res.render('constellation', {title: 'Constellation - Browsing'});
+});
+router.get('/star', function(req, res, next) {
+  res.render('star', {title: 'Constellation - Browsing'});
+});
 
 module.exports = router;

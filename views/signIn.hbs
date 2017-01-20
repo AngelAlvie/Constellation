@@ -1,16 +1,16 @@
 <canvas id="interactiveCanvas">
 </canvas>
   <div class="hidden">
+    <h1>Sign In</h1>
     <form id="verticalForm" method="post" name="search" action="/search">
       <input class= "formElement onlyLeftRadius onlyRightRadius" type="text" placeholder="Username">
       <input class="formElement onlyLeftRadius onlyRightRadius" type="password" placeholder="Password">
-      <button class="button formElement" type="submit">Submit</button>
+      <div class="formContainer">
+        <button class="button formElement" type="button" onClick="back()" >Back</button>
+        <button class="button formElement" type="submit">Submit</button>
+      </div>
     </form>
-
-
-
-
-  <!-- INCLUDE SCRIPTS BELOW -->
-  <script src="../javascripts/main.js"></script>
-  <script src="../javascripts/main_canvas.js"></script>
-</div>
+  </div>
+<!-- INCLUDE SCRIPTS BELOW -->
+<script src="../javascripts/signIn.js"></script>
+<script src="../javascripts/main_canvas.js"></script>

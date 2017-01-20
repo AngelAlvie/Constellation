@@ -36,3 +36,15 @@ We want to promote users to explore the website and discover new stuff.
 Both the discoverer and the creator will be rewarded when their content gets used a lot.
 
 #### We hope to push your know how and appreciation for the world *beyond the horizon*!
+
+## DEVELOPMENT TASK LIST
+ * Connect application to the database
+ * Impliment authentication/ figure out how authentication will interact with database
+ * Create Schemas for Users, Constellations, Stars
+ * Decide on and or impliment Handlebars templating or Angular templating
+ * Reroute things impliment authentication naively
+ * Decide on a search algorithm
+ * Decide on constellation viewing
+ * finish constellation
+ * implement parallax scrolling (if using angular)
+ * finish pages/templates for stars and constellations

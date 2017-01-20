@@ -1,21 +1,3 @@
-/* Global variables */
-
-var constellationIsClicked = false;
-var starIsClicked = true;
-
-var renderClickedButtons = function() {
-  if (constellationIsClicked) {
-    $("#constellation").css("background-color", '#78909c');
-  } else {
-    $("#constellation").css("background-color", '#263238');
-  }
-  if (starIsClicked) {
-    $("#star").css("background-color", '#78909c');
-  } else {
-    $("#star").css("background-color", '#263238');
-  }
-}
-
 /* Rendering for the page */
 
 var resize = function() {
@@ -49,41 +31,22 @@ $(document).ready(function() {
 });
 
 $( window ).resize(function() {
-
   var tmp = resize();
   $(".hidden").stop(true).animate({width: tmp[0], height: tmp[1]}, 200);
 });
 
 /* Event handlers */
 
-var telescopeClicked= function() {
-  $( "form" ).submit();
-};
+var back = function() {
+  window.location.assign('/');
+}
 
-var constellationClicked = function() {
-  if (starIsClicked) {
-    starIsClicked = false;
-    constellationIsClicked = true;
-  } else {
-    constellationIsClicked = true;
-  }
-  renderClickedButtons();
-};
-
-var starClicked = function() {
-  if (constellationIsClicked) {
-    constellationIsClicked = false;
-    starIsClicked = true;
-  } else {
-    starIsClicked = true;
-  }
-  renderClickedButtons();
-};
-
-var signInClicked = function() {
-  window.location.assign('/signIn');
-};
-
-var signUpClicked = function() {
+var back2 = function() {
   window.location.assign('/signUp');
-};
+}
+var noThanks = function() {
+  window.location.assign('/');
+}
+var yesPlease = function() {
+  window.location.assign('/constellation');
+}
