@@ -119,12 +119,32 @@ form {
 
 #Title {
   width: 70%;
-  height: 16%;
+  height: 16%
   margin-bottom: 5%;
     z-index: 0;
 }
 
 /* Styling for classes*/
+.sideBar{
+  overflow-y: scroll;
+  position: absolute;
+  left: 25%;
+  padding: 10px;
+  margin: 10px;
+  width: 20%;
+  height: 40%;
+  background-color: rgba(38,50,56,0.6);
+  border-radius: 20px;
+}
+
+.fill{
+  color: #F5F5F5;
+  height: 40px;
+  padding-left: 10px;
+  background-color: #263238;
+  padding-right: 10px;
+}
+
 .wide{
   width: 80px;
 }
