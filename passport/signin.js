@@ -3,7 +3,7 @@ var User = require('../models/user');
 var bCrypt = require('bcrypt-nodejs');
 var LocalStrategy   = require('passport-local').Strategy;
 // local passport strategy
-module.exports = function(passport) {passport.use('login', new LocalStrategy({
+module.exports = function(passport) {passport.use('signin', new LocalStrategy({
     passReqToCallback : true
   },
   function(req, username, password, done) {
