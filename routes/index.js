@@ -18,7 +18,7 @@ router.post('/signIn', passport.authenticate('login', {
     successRedirect: '/search',
     failureRedirect: '/signIn',
     failureFlash : true
-});
+}));
 /* GET the signin page */
 router.get('/signIn',function(req, res, next) {
   res.render('signIn', {title: 'Constellation - Sign Up'});

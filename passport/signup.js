@@ -34,7 +34,7 @@ module.exports = function(passport) {
               newUser.Username = username;
               newUser.Password = createHash(password);
               newUser.Email = req.param('email');
-
+              newUser.ConstellationFavorites = [];
               newUser.save(function(err) {
                 if (err) {
                   console.log("error saving user");
