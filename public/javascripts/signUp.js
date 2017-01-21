@@ -35,18 +35,6 @@ $( window ).resize(function() {
   $(".hidden").stop(true).animate({width: tmp[0], height: tmp[1]}, 200);
 });
 
-/* Event handlers */
-
 var back = function() {
-  window.location.assign('/');
-}
-
-var back2 = function() {
-  window.location.assign('/signUp');
-}
-var noThanks = function() {
-  window.location.assign('/');
-}
-var yesPlease = function() {
-  window.location.assign('/constellation');
+  window.location.href = '/';
 }

@@ -2,10 +2,11 @@
 </canvas>
   <div class="hidden">
     <h1>Sign Up</h1>
-    <form id="verticalForm" method="post" name="signUp" action="/signUp">
-      <input class= "formElement onlyLeftRadius onlyRightRadius" type="text" placeholder="Choose a Username">
-      <input class="formElement onlyLeftRadius onlyRightRadius" type="password" placeholder="Choose a Password">
-      <input class= "formElement onlyLeftRadius onlyRightRadius" type="text" placeholder="Email (Optional)">
+    <form id="verticalForm" method="post" action="/signUp">
+      <input class= "formElement onlyLeftRadius onlyRightRadius" name="username" type="text" placeholder="Choose a Username">
+      <input class="formElement onlyLeftRadius onlyRightRadius" name="password" type="password" placeholder="Choose a Password">
+      <input class= "formElement onlyLeftRadius onlyRightRadius" name="email" type="text" placeholder="Email (Optional)">
+      <input class="formElement onlyLeftRadius onlyRightRadius" name="passwordConfirm" type="password" placeholder="Confirm Password">
     <div class="formContainer">
         <button class="button formElement" type="button" onClick="back()">Back</button>
         <button class="button formElement" type="submit">Submit</button>

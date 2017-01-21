@@ -78,9 +78,17 @@ var starClicked = function() {
   }
   renderClickedButtons();
 };
-var profileClicked = function() {
+
+var signInClicked = function() {
+  window.location.href = '/signin'
 };
 
-var back = function() {
-  window.location.assign('/');
+var signUpClicked = function() {
+  window.location.href = '/signUp';
+};
+var profileClicked = function() {
+  window.location.href = '/profile';
+};
+var signOutClicked = function() {
+  window.location.href = '/signOut';
 }

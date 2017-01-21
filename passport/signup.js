@@ -3,13 +3,13 @@ var User = require('../models/user');
 var bCrypt = require('bcrypt-nodejs');
 var LocalStrategy   = require('passport-local').Strategy;
 
-var createHash = function(password){
- return bCrypt.hashSync(password, bCrypt.genSaltSync(10), null);
-};
-
 module.exports = function(passport) {
-  passport.use('signup', new LocalStrategy({passReqToCallback:true},
-    function(req, username, password, done) {
+  passport.use('signup', new LocalStrategy({
+    passReqToCallback : true
+    }, function(req, username, password, done) {
+    console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
+      var findOrCreateUser = function() {
+
       User.findOne({'Username' : username}, function(err, user) {
         if(err) {
           console.log('Error on signup: ' + err);
@@ -21,36 +21,41 @@ module.exports = function(passport) {
           return done(null, false, {message: 'Username already taken'});
         } else {
           //check for email here
-          User.findOne({'Email' : req.param('email')}, function(err, email) {
+          User.findOne({'Email' : req.body.email}, function(err, email) {
             if(err) {
               console.log('Error on signup: ' + err);
               return done(err);
             }
             if (email) {
               console.log("Email already in use");
-              return done(null, false, {message: 'Email already in use'})
+              return done(null, false, {message: 'Email already in use'});
             }
             if (!email) {
-              var newUser = new User();
-              newUser.Username = username;
-              newUser.Password = createHash(password);
-              newUser.Email = req.param('email');
-              newUser.ConstellationFavorites = [];
-              newUser.StarFavorites = [];
-              newUser.StarCreated= [];
-              newuser.ConstellationCreated = [];
-              newUser.save(function(err) {
-                if (err) {
-                  console.log("error saving user");
-                  throw err;
+              if (password === req.body.passwordConfirm) {
+                var newUser = new User();
+                newUser.Username = username;
+                newUser.Password =  bCrypt.hashSync(password, bCrypt.genSaltSync(10), null);
+                newUser.Email = req.body.email;
+                newUser.ConstellationFavorites = [];
+                newUser.StarFavorites = [];
+                newUser.StarCreated= [];
+                newUser.ConstellationCreated = [];
+                newUser.save(function(err) {
+                  if (err) {
+                    console.log("error saving user");
+                    throw err;
+                  }
+                  console.log('New user created');
+                  return done(null, newUser);
+                  });
+                } else {
+                  return done(null,false, {message: 'Passwords do not match'});
                 }
-                console.log('New user created');
-                return done(null, newUser);
-              });
-            }
-          });
-        }
+              }
+            });
+          }
       });
+    };
   process.nextTick(findOrCreateUser);
   }));
 };

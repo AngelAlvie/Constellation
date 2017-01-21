@@ -28,7 +28,9 @@
 html {
   height: 100%;
 }
-
+form {
+  background-color: blue;
+}
 body {
   margin: 0;
   padding: 0;
@@ -103,11 +105,6 @@ button:hover {
   background-color: #78909c;
 }
 
-form {
-  width:80%;
-  padding: 0px;
-}
-
 /* Styling for IDs */
 
 #verticalForm {
@@ -116,7 +113,14 @@ form {
   flex-direction: column;
 }
 
-/* Styling for classes*/
+/* Styling for classes*/'
+
+
+.form {
+    width:80%;
+    padding: 0px;
+}
+
 .wide{
   width: 80px;
 }

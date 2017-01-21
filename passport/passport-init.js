@@ -15,6 +15,6 @@ passport.deserializeUser(function(id, done) {
   });
 });
 
-login(passport);
 signup(passport);
+login(passport);
 }
