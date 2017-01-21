@@ -81,9 +81,15 @@ var starClicked = function() {
 };
 
 var signInClicked = function() {
-  window.location.assign('/signIn');
+  window.location.href = '/signin'
 };
 
 var signUpClicked = function() {
-  window.location.assign('/signUp');
+  window.location.href = '/signUp';
 };
+var profileClicked = function() {
+  window.location.href = '/profile';
+};
+var signOutClicked = function() {
+  window.location.href = '/signOut';
+}

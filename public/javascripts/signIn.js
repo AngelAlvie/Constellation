@@ -35,8 +35,6 @@ $( window ).resize(function() {
   $(".hidden").stop(true).animate({width: tmp[0], height: tmp[1]}, 200);
 });
 
-/* Event handlers */
-
 var back = function() {
-  window.location.assign('/');
+  window.location.href = '/';
 }
