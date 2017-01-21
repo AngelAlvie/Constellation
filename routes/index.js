@@ -87,4 +87,8 @@ router.get('/star', function(req, res, next) {
   res.render('star', {title: 'Constellation - Browsing'});
 });
 
+router.get('/profile', function(req, res, next){
+  res.render('profile', {title:'Constellation - Profile'});
+});
+
 module.exports = router;

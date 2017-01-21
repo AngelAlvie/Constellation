@@ -19,14 +19,14 @@
    sodipodi:docname="Backdrop1.svg">
   <sodipodi:namedview
      id="base"
-     pagecolor="#ffffff"
+     pagecolor="#000000"
      bordercolor="#666666"
      borderopacity="1.0"
-     inkscape:pageopacity="0.0"
+     inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.8284271"
-     inkscape:cx="149.51867"
-     inkscape:cy="514.23455"
+     inkscape:zoom="1.4142136"
+     inkscape:cx="482.18391"
+     inkscape:cy="726.43712"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -34,7 +34,8 @@
      inkscape:window-height="1017"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
-     inkscape:window-maximized="1">
+     inkscape:window-maximized="1"
+     inkscape:pagecheckerboard="false">
     <inkscape:grid
        type="xygrid"
        id="grid5605" />
@@ -53,36 +54,6 @@
          offset="1"
          id="stop6379" />
     </linearGradient>
-    <linearGradient
-       inkscape:collect="always"
-       id="linearGradient6183">
-      <stop
-         style="stop-color:#263238;stop-opacity:1"
-         offset="0"
-         id="stop6179" />
-      <stop
-         style="stop-color:#212121;stop-opacity:1"
-         offset="1"
-         id="stop6181" />
-    </linearGradient>
-    <linearGradient
-       inkscape:collect="always"
-       xlink:href="#linearGradient6183"
-       id="linearGradient6185"
-       x1="520"
-       y1="2100"
-       x2="520"
-       y2="900"
-       gradientUnits="userSpaceOnUse" />
-    <linearGradient
-       inkscape:collect="always"
-       xlink:href="#linearGradient6183"
-       id="linearGradient6225"
-       x1="0"
-       y1="1500"
-       x2="1000"
-       y2="1500"
-       gradientUnits="userSpaceOnUse" />
     <linearGradient
        inkscape:collect="always"
        xlink:href="#linearGradient6381"
@@ -110,7 +81,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -118,13 +89,6 @@
      id="layer1"
      inkscape:groupmode="layer"
      inkscape:label="Layer 1">
-    <rect
-       style="fill:#263238;fill-opacity:1;stroke:none;stroke-width:1.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0"
-       id="rect5609"
-       width="1000"
-       height="450"
-       x="0"
-       y="2100" />
     <path
        style="fill:#78909c;fill-opacity:1;stroke:none;stroke-width:28628.41601563;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="path6235"
@@ -144,20 +108,6 @@
        height="450"
        x="0"
        y="2550" />
-    <rect
-       style="fill:url(#linearGradient6185);fill-opacity:1;stroke:url(#linearGradient6225);stroke-width:1.50047244;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0"
-       id="rect5611"
-       width="1000"
-       height="1200"
-       x="0"
-       y="900" />
-    <rect
-       style="fill:#212121;fill-opacity:1;stroke:none;stroke-width:18.8976378;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-       id="rect5616"
-       width="1000"
-       height="900"
-       x="0"
-       y="3.4106051e-013" />
     <g
        id="g6217"
        transform="matrix(1.95,0,0,1.95,-433.5,-2733.5639)">
