@@ -6,9 +6,13 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var index = require('./routes/index');
-
+var passport = require('passport');
+var expressSession = require('express-session');
+var initPassport = require('./passport/passport-init');
 
 var app = express();
+
+// connect to the database
 mongoose.connect(process.env.MOGOLAB_URI || 'mongodb://localhost/test');
 
 var connection = mongoose.connection;
@@ -17,6 +21,14 @@ connection.on('error', console.error.bind(console, 'database connection error:')
 connection.on('connected', function() {
   console.log("database connected!");
 });
+
+//initialize passport
+app.use(expressSession({secret: 'someSecretKey'})); //I'm not sure if this should be different
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+initPassport(passport)
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

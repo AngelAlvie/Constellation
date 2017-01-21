@@ -2,9 +2,9 @@
 </canvas>
   <div class="hidden">
     <h1>Sign In</h1>
-    <form id="verticalForm" method="post" name="search" action="/search">
-      <input class= "formElement onlyLeftRadius onlyRightRadius" type="text" placeholder="Username">
-      <input class="formElement onlyLeftRadius onlyRightRadius" type="password" placeholder="Password">
+    <form id="verticalForm" method="post" action="/verifySignIn">
+      <input class= "formElement onlyLeftRadius onlyRightRadius" type="text" name="username" placeholder="Username">
+      <input class="formElement onlyLeftRadius onlyRightRadius" type="password" name="password" placeholder="Password">
       <div class="formContainer">
         <button class="button formElement" type="button" onClick="back()" >Back</button>
         <button class="button formElement" type="submit">Submit</button>

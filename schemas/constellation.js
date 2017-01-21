@@ -10,4 +10,4 @@ var constellationSchema = mongoose.Schema({
 
 var Constellation = mongoose.model('Constellation', constellationSchema);
 
-module.exports(Constellation);
+module.exports = Constellation;
