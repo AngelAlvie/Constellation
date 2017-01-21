@@ -1,6 +1,7 @@
 var passport = require('passport');
-var User = require('../models/User');
+var User = require('../models/user');
 var bCrypt = require('bcrypt-nodejs');
+var LocalStrategy   = require('passport-local').Strategy;
 // local passport strategy
 module.exports = function(passport) {passport.use('login', new LocalStrategy({
     passReqToCallback : true
@@ -12,7 +13,7 @@ module.exports = function(passport) {passport.use('login', new LocalStrategy({
         //if err, then return using the done method
         if (err) {return done(err);}
         if (!user) {
-          console.log('Use not found with username ' + username);
+          console.log('User not found with username ' + username);
           return done(null, false, { message: 'User not found' });
         }
         //check if password is invalid

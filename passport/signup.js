@@ -1,6 +1,7 @@
 var passport = require('passport');
-var User = require('../models/User');
+var User = require('../models/user');
 var bCrypt = require('bcrypt-nodejs');
+var LocalStrategy   = require('passport-local').Strategy;
 
 var createHash = function(password){
  return bCrypt.hashSync(password, bCrypt.genSaltSync(10), null);
@@ -35,6 +36,9 @@ module.exports = function(passport) {
               newUser.Password = createHash(password);
               newUser.Email = req.param('email');
               newUser.ConstellationFavorites = [];
+              newUser.StarFavorites = [];
+              newUser.StarCreated= [];
+              newuser.ConstellationCreated = [];
               newUser.save(function(err) {
                 if (err) {
                   console.log("error saving user");
@@ -46,7 +50,7 @@ module.exports = function(passport) {
             }
           });
         }
-      }
+      });
   process.nextTick(findOrCreateUser);
-  }););
+  }));
 };

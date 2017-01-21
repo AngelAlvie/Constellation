@@ -17,17 +17,17 @@ router.post('/search', function(req, res, next) {
 router.post('/signIn', passport.authenticate('login', {
     successRedirect: '/search',
     failureRedirect: '/signIn',
-    failureFlash : true
+    failureFlash : false
 }));
 /* GET the signin page */
 router.get('/signIn',function(req, res, next) {
   res.render('signIn', {title: 'Constellation - Sign Up'});
 });
 /* sign up form */
-router.post('/signIn', passport.authenticate('signup', {
-    successRedirect: '/signIn2',
-    failureRedirect: '/signIn',
-    failureFlash : true
+router.post('/signUp', passport.authenticate('signup', {
+    successRedirect: '/',
+    failureRedirect: '/signUp',
+    failureFlash : false
   }));
 /* GET sign up page */
 router.get('/signUp', function(req, res, next) {
