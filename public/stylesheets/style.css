@@ -41,6 +41,7 @@ body {
   color:#F5F5F5;
   font-family: "Dosis", Helvetica, Arial, sans-serif;
   display:flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -114,6 +115,13 @@ form {
   display: flex;
   align-items: center;
   flex-direction: column;
+}
+
+#Title {
+  width: 70%;
+  height: 16%;
+  margin-bottom: 5%;
+    z-index: 0;
 }
 
 /* Styling for classes*/
