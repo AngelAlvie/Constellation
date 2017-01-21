@@ -79,9 +79,15 @@ var starClicked = function() {
   renderClickedButtons();
 };
 
+<<<<<<< HEAD
+var profileClicked = function(){
+  console.log("Profile;;;; Clic;;;;ke;d yay;;;;;;");
+};
+=======
 var profileClicked = function() {
 };
 
 var back = function() {
   window.location.assign('/');
 }
+>>>>>>> 744b69ce5e4c295a5c234f8d1321878450cc1f75
