@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
-var User = require('../schemas/user.js');
-var Star = require('../schemas/star.js');
-var Constellation = require('../schemas/constellation.js');
+var User = require('../models/user.js');
+var Star = require('../models/star.js');
+var Constellation = require('../models/constellation.js');
 var passport = require('passport');
 
 /* GET home page. */
@@ -18,7 +18,7 @@ router.post('/signIn', passport.authenticate('login', {
     successRedirect: '/search',
     failureRedirect: '/signIn',
     failureFlash : true
-});
+}));
 /* GET the signin page */
 router.get('/signIn',function(req, res, next) {
   res.render('signIn', {title: 'Constellation - Sign Up'});
