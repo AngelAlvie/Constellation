@@ -38,3 +38,7 @@ $( window ).resize(function() {
 var backClicked = function() {
   window.location.assign('/search');
 };
+
+var nebulaClicked = function() {
+  window.location.assign('/nebula');
+};

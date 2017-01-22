@@ -40,3 +40,11 @@ $( window ).resize(function() {
 var back = function() {
   window.location.href = '/';
 }
+
+var yesPlease = function() {
+  window.location.assign('/constellation');
+}
+
+var noThanks = function() {
+  window.location.assign('/');
+}

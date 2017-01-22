@@ -91,4 +91,7 @@ router.get('/profile', function(req, res, next){
   res.render('profile', {title:'Constellation - Profile'});
 });
 
+router.get('/nebula', function(req, res, next){
+  res.render('nebula',{title:'Constellation - Nebula'});
+});
 module.exports = router;

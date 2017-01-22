@@ -119,7 +119,6 @@ button:hover {
 
 
 
-/* Styling for classes*/'
 
 #Title {
 width: 70%;
@@ -129,8 +128,22 @@ margin-bottom: 7;
 margin-top: -7%;
 }
 
+#profileFill{
+  background-color: #263238;
+  height: 40px;
+  width: 40px;
+}
+
 
 /* Styling for classes*/
+.bigAssButton{
+  border-radius: 20px 20px 20px 20px;
+  width: 90%;
+  margin: 10px;
+  font-size: 1.3em;
+  border:none;
+  flex-shrink: 0;
+}
 
 .form {
     width:80%;
@@ -155,10 +168,7 @@ margin-top: -7%;
   padding-left: 10px;
   background-color: #263238;
   padding-right: 10px;
-<<<<<<< HEAD
 
-=======
->>>>>>> 63d5f972713fa2f8cd69a52084fbebba00e60b67
 }
 
 .wide{
