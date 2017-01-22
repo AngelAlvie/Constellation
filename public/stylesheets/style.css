@@ -117,6 +117,9 @@ button:hover {
   flex-direction: column;
 }
 
+
+
+
 #Title {
 width: 70%;
 height: 16%;
@@ -125,23 +128,30 @@ margin-bottom: 7;
 margin-top: -7%;
 }
 
+#profileFill{
+  background-color: #263238;
+  height: 40px;
+  width: 40px;
+}
+
+
 /* Styling for classes*/
+.center{
+  text-align:center;
+}
+
+.bigAssButton{
+  border-radius: 20px 20px 20px 20px;
+  width: 90%;
+  margin: 10px;
+  font-size: 1.3em;
+  border:none;
+  flex-shrink: 0;
+}
 
 .form {
     width:80%;
     padding: 0px;
-}
-
-.sideBar{
-  overflow-y: scroll;
-  position: absolute;
-  left: 25%;
-  padding: 10px;
-  margin: 10px;
-  width: 20%;
-  height: 40%;
-  background-color: rgba(38,50,56,0.6);
-  border-radius: 20px;
 }
 
 .fill{
@@ -150,6 +160,7 @@ margin-top: -7%;
   padding-left: 10px;
   background-color: #263238;
   padding-right: 10px;
+
 }
 
 .wide{

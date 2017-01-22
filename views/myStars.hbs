@@ -1,15 +1,9 @@
-
-
 <div class="hidden">
 <div class="formContainer">
-  <button class="leftCircle" id="star" onclick="starClicked()"><img src="../images/StarNew.svg" class="leftCircle"></button>
-  <button id="constellation" onclick="constellationClicked()"><img src="../images/ConstellationIconNew.svg"></button>
-  <form method="post" name="search" action="/search">
-    <input type="text" placeholder="Discover something new..."/>
-  </form>
-  <button class="rightCircle" id="telescope" onclick="telescopeClicked()"><img src="../images/TelescopeNew.svg" class="rightCircle" ></button>
+  <button class="leftCircle" id="back" onclick="backClicked()"><img src="../images/Back1.svg" class="leftCircle"></button>
+  <h2 class ="fill">My Stars</h2>
+  <div class="rightCircle" id="profileFill"></div>
 </div>
-{{{extra}}}
 <div class="results">
   <div class="searchResult">
       <h3>Result</h3>
@@ -34,4 +28,4 @@
   </div>
 </div>
 <!-- INCLUDE SCRIPTS BELOW  -->
-<script src="../javascripts/search.js"></script>
+<script src="../javascripts/profileStuffs.js"></script>

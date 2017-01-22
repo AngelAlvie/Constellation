@@ -104,4 +104,23 @@ router.get('/profile', function(req, res, next){
   res.render('profile', {title:'Constellation - Profile'});
 });
 
+router.get('/nebula', function(req, res, next){
+  res.render('nebula',{title:'Constellation - Nebula'});
+});
+
+router.get('/myConstellations', function(req, res, next){
+  res.render('myConstellations',{title:'Constellation - Profile'});
+});
+
+router.get('/myStars', function(req, res, next){
+  res.render('myStars',{title:'Constellation - Profile'});
+});
+
+router.get('/savedConstellations', function(req, res, next){
+  res.render('savedConstellations',{title:'Constellation - Profile'});
+});
+
+router.get('/savedStars', function(req, res, next){
+  res.render('savedStars',{title:'Constellation - Profile'});
+});
 module.exports = router;
