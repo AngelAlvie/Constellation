@@ -5,11 +5,24 @@ var Star = require('../models/star.js');
 var Constellation = require('../models/constellation.js');
 var passport = require('passport');
 
+// TODO: Implement Authentication for all subsequent pages
+// TODO: Implement search algorithm
+// TODO: Figure out how to modify the request body to make it possible to tell whether or not the user is searching for constellations or stars
+// TODO: Create new routes for the new pages Thad made
+// TODO: Upon post from nebula: store new constellation/star and link to the user
+// TODO: Allow user to "bookmark" a star or constellation using an AJAX request
+// TODO: handle search and profile using Handlebars
+
 //this was also taken from https://code.tutsplus.com/tutorials/authenticating-nodejs-applications-with-passport--cms-21619
 /* EXAMPLE:
 router.get('/home', isAuthenticated, function(req, res){
   res.render('home', { user: req.user });
 });
+
+this is how to get the count of some amount of documents
+userModel.count({}, function( err, count){
+    console.log( "Number of users:", count );
+})
 
 // As with any middleware it is quintessential to call next()
 // if the user is authenticated

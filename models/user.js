@@ -6,10 +6,11 @@ var UserSchema = new mongoose.Schema({
   Username: String,
   Password: String,
   Email: String,
-  StarFavorites: [String],
-  ConstellationFavorites: [String],
-  StarCreated: [String],
-  ConstellationCreated: [String]
+  Points: Number,
+  StarFavorites: [Number],
+  ConstellationFavorites: [Number],
+  StarCreated: [Number],
+  ConstellationCreated: [Number]
 });
 
 var User = mongoose.model('User', UserSchema);
