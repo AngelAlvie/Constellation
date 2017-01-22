@@ -37,7 +37,7 @@ Both the discoverer and the creator will be rewarded when their content gets use
 
 #### We hope to push your know how and appreciation for the world *beyond the horizon*!
 
-## How to use our
+## How to use our code
 Here is a list of steps if you want to use our code to create a local implementation of our website:
  1. First clone our repository.
  2. In your desired terminal of choice, navigate to the repository, then run `npm install` in the directory.

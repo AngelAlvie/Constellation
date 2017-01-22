@@ -1,8 +1,9 @@
 <canvas id="interactiveCanvas">
 </canvas>
-  <img src="../images/starryLogo.svg" id="Title">
-  <div class="hidden">
-    <div class="formContainer">
+<div id = "backdrop"></div>
+<img src="../images/starryLogo.svg" id="Title">
+<div class="hidden">
+  <div class="formContainer">
     <button class="leftCircle" id="star" onclick="starClicked()"><img src="../images/StarNew.svg" class="leftCircle"></button>
     <button id="constellation" onclick="constellationClicked()"><img src="../images/ConstellationIconNew.svg"></button>
     <form method="post" name="search" action="/search">
@@ -13,7 +14,6 @@
     </form>
   </div>
   {{{extra}}}
-</div>
 </div>
 <!-- INCLUDE SCRIPTS BELOW -->
 <script src="../javascripts/main.js"></script>
