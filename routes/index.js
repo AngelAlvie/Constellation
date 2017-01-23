@@ -9,6 +9,7 @@ var passport = require('passport');
 // TODO: Implement search algorithm
 // TODO: Figure out how to modify the request body to make it possible to tell whether or not the user is searching for constellations or stars
 // TODO: Create new routes for the new pages Thad made
+//      -Thad did this already lol
 // TODO: Upon post from nebula: store new constellation/star and link to the user
 // TODO: Allow user to "bookmark" a star or constellation using an AJAX request
 // TODO: handle search and profile using Handlebars
