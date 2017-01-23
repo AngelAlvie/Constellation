@@ -58,7 +58,7 @@ router.post('/search/:type', function(req, res, next) {
     if (req.isAuthenticated()) {
       res.render('search', {title: 'Constellation - Search', extra: signedInHtml, results : [testResult,testResult,testResult,testResult,testResult,testResult]});
     } else {
-      res.render('search', { title: 'Constellation - Search', extra: signedOutHtml, results : []});
+      res.render('search', { title: 'Constellation - Search', query: req.body.search, extra: signedOutHtml, results : []});
     }
   } else if(type === "constellation"){
     //this is where you would check the star model in the search algorithm
@@ -147,7 +147,11 @@ router.get('/star/:ID', function(req, res, next) {
 });
 
 router.get('/profile', function(req, res, next){
-  res.render('profile', {title:'Constellation - Profile'});
+  if(req.isAuthenticated) {
+    res.render('profile', {title:'Constellation - ' + req.user.Username, username : req.user.Username});
+  } else {
+    res.redirect('/search/star');
+  }
 });
 
 router.get('/nebula/:type', function(req, res, next){

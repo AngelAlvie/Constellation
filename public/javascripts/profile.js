@@ -36,7 +36,7 @@ $( window ).resize(function() {
 });
 
 var backClicked = function() {
-  window.location.assign('/search');
+  window.location.assign('/search/star');
 };
 
 var nebulaClicked = function() {
