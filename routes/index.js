@@ -157,9 +157,9 @@ router.get('/profile', function(req, res, next){
 router.get('/nebula/:type', function(req, res, next){
   var type = req.params.type;
   if (type === "star") {
-    res.render('nebula',{title:'Constellation - Nebula'});
+    res.render('nebulaStar',{title:'Constellation - Nebula'});
   } else if ( type === "constellation") {
-    res.render('nebula',{title:'Constellation - Nebula'});
+    res.render('nebulaConstellation',{title:'Constellation - Nebula'});
   } else {
     res.redirect('back');
   }
