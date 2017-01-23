@@ -165,6 +165,36 @@ router.get('/nebula/:type', function(req, res, next){
   }
 });
 
+router.post('/nebula/:type', function(req, res, next){
+  var type = req.params.type;
+  if (type === "star") {
+    var newStar = new Star();
+    newStar.Title = req.body.Title;
+    newStar.Description = req.body.Description;
+    newStar.Url = req.body.Url;
+    newStar.bookmarks = 0;
+
+    newStar.save(function(err) {
+    if (err) {
+      console.log("error saving star");
+      throw err;
+    }
+      console.log('New star created');
+    });
+
+    User.findOne({Username : req.user.Username}, function(err) {
+      StarCreated.push(newStar.id);
+    });
+
+
+    res.redirect('/profile');
+  } else if ( type === "constellation") {
+    res.redirect('/profile');
+  } else {
+    res.redirect('back');
+  }
+});
+
 router.get('/myConstellations', function(req, res, next){
   res.render('myConstellations',{title:'Constellation - Profile'});
 });
