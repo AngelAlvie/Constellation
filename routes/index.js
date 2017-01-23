@@ -7,29 +7,29 @@ var passport = require('passport');
 
 // CENTRALIZED TASKLIST
 // TODO: (CURRENT) call update to update the reference to the bookmark
-// TODO: (FIXED) clean up code and comments
+// TODO: [FIXED] clean up code and comments
 // TODO: Cleanup console.log() statements and add them where appropriate (severside events and errors)
 // TODO: make use of middleware (next) and error handling
-// TODO: (THAD) add optional message area for Handlebars to pages where errors might occur.
+// TODO: [FIXED](THAD) add optional message area for Handlebars to pages where errors might occur.
+// TODO: populate mesage area on error
 // TODO: (THAD) make the description input element a textbox (Don't worry about this until later)
-// TODO: (FIXED) Create route for bookmark
-// TODO: (FIXED) Back button has no functionality
+// TODO: [FIXED] Create route for bookmark
+// TODO: [FIXED] Back button has no functionality
 // TODO: Implement Authentication for all subsequent pages
 // TODO: Implement search algorithm
-// TODO: (FIXED) Allow user to "bookmark" a star or constellation using an AJAX request (clientside)
+// TODO: [FIXED] Allow user to "bookmark" a star or constellation using an AJAX request (clientside)
 // TODO: create form filter function which prevents XSS
-// TODO: (THAD) canvas not rendering on some pages, include the main_canvas.js script for those pages
-// TODO: (THAD) Make username tag wrap around username
+// TODO: [FIXED](THAD) canvas not rendering on some pages, include the main_canvas.js script for those pages
 // TODO: filter user input for bad stuff, or really long things for username/title
-// TODO: (THAD) render the background image for all the pages
-// TODO: create constellation/star editor
-// TODO: make post request which sends a graph structure
-// TODO: MAKE THIS SCHEMA HAVE A GRAPHSTRUCTURE BY REFERING TO THE OBJECT IDS OF starSchema
+// TODO: [FIXED] (THAD) render the background image for all the pages
+// TODO: **create constellation editor
+// TODO: *make post request which sends a graph structure
+// TODO: *MAKE THIS SCHEMA HAVE A GRAPHSTRUCTURE BY REFERING TO THE OBJECT IDS OF starSchema
 // TODO: look into the passport secret in the app.js (should it be somethiing else?)
 // TODO: create background gradient either with CSS or in the canvas
 // TODO: make canvas more interactive
-// TODO: (THAD) remove renderClickedButtons from pages that don't need them (pages without star and constellation buttons)
-// TODO: (THAD) remove new star button from saved stars
+// TODO: [FIXED] (THAD) remove renderClickedButtons from pages that don't need them (pages without star and constellation buttons)
+// TODO: [FIXED] (THAD) remove new star button from saved stars
 // TODO: Update the Readme
 // TODO: handle invalid bookmark AJAX requests, check to make sure that there is actually a star or constellation by that ID
 // TODO: handle errors involving saving properly
@@ -301,7 +301,7 @@ router.get('/savedStars', function(req, res, next){
         allResults.push(tmp);
       });
     }
-    res.render('myStars',{title:'Constellation - Stars', results: allResults});
+    res.render('savedStars',{title:'Constellation - Stars', results: allResults});
   } else {
     res.redirect('/');
   }

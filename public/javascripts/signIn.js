@@ -27,7 +27,6 @@ $(document).ready(function() {
   $(".hidden").css("width",  tmp[0]);
   $(".hidden").css("height", 0);
   $(".hidden").animate({height: tmp[1]}, 600);
-  renderClickedButtons();
 });
 
 $( window ).resize(function() {
