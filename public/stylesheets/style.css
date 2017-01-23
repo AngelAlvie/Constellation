@@ -152,6 +152,7 @@ margin-top: -7%;
   font-size: 1.3em;
   border:none;
   flex-shrink: 0;
+  font-family: "Dosis", Helvetica, Arial, sans-serif;
 }
 
 .form {
