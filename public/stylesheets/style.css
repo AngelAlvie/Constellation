@@ -111,7 +111,9 @@ button:hover {
 }
 
 
-
+#bottomMargin {
+  margin-bottom: 1%;
+}
 
 #Title {
 width: 70%;
@@ -211,6 +213,8 @@ margin-top: -7%;
   justify-content: center;
   align-items: center;
   background-color: rgba(255,255,255,.4);
+  margin-top: 1%;
+
 }
 
 .rightCircle {
