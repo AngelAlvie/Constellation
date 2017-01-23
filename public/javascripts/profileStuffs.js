@@ -40,9 +40,9 @@ var backClicked = function() {
 };
 
 var nebulaStarClicked = function() {
-  window.location.assign('/nebulaStar');
+  window.location.assign('/nebula/star');
 };
 
 var nebulaConstellationClicked = function(){
-  window.location.assign('/nebulaConstellation');
+  window.location.assign('/nebula/constellation');
 };
