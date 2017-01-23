@@ -111,9 +111,6 @@ button:hover {
 }
 
 
-#bottomMargin {
-  margin-bottom: 1%;
-}
 
 #Title {
 width: 70%;
@@ -129,8 +126,51 @@ margin-top: -7%;
   width: 40px;
 }
 
-
 /* Styling for classes*/
+
+.editorBody {
+    position: static;
+    z-index: 0;
+    width: 100%;
+    height: 80%;
+    margin: 0px;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.editorStyle{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100% !important;
+  height:10%;
+  border-radius: 0px 0px 20px 20px !important;
+  margin: 0px;
+  flex-shrink: 0;
+  font-size: 1.3em;
+  font-family: "Dosis", Helvetica, Arial, sans-serif;
+}
+.searchStyle{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+    width: 100% !important;
+    height:10%;
+    border-radius: 20px 20px 0px 0px !important;
+    margin: 0px;
+    flex-shrink: 0;
+    font-size: 1.3em;
+    font-family: "Dosis", Helvetica, Arial, sans-serif;
+}
+
+.bottomMargin {
+  margin-bottom: 1%;
+}
+
 .nebulaInput{
   width: 90%;
   margin: 10px;
@@ -214,6 +254,7 @@ margin-top: -7%;
   align-items: center;
   background-color: rgba(255,255,255,.4);
   margin-top: 1%;
+  padding: 0px;
 
 }
 

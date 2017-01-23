@@ -1,40 +1,44 @@
-<div class ="hidden">
-  <div class="formContainer">
-    <button class="leftCircle" id="back" onclick="backClicked()"><img src="../images/Back1.svg" class="leftCircle"></button>
-    <h2 class ="fill">New Constellation</h2>
-    <div class="rightCircle" id="profileFill">
-  </div>
-  <!-- add canvas here -->
-</div>
-<button class="bigAssButton" id="goto-editor" onClick="editorClicked()">Editor</button>
-</div>
-
-<div class ="hidden" id="bottomMargin">
-  <button class="bigAssButton" id="goto-search" onClick="searchClicked()">Search</button>
-  <div class="formContainer">
-    <div class="leftCircle"  id="profileFill"></div>
-
-    <form method="post"  action="/search" id="search">
-      <input type="text" name="search" value="{{query}}"/>
-    </form>
-    <button class="rightCircle" id="telescope" type="submit" form="search"><img src="../images/TelescopeNew.svg" class="rightCircle" ></button>
-  </div>
-  {{{extra}}}
-  <div class="results">
-    {{#each results}}
-      <a href={{this.Url}}>
-        <div class="searchResult">
-          <h3>{{this.Title}}</h3>
-          <p>{{this.Description}}</p>
-        </div>
-      </a>
-    {{else}}
-      <div class="searchResult">
-        <h3>Sorry, no results found.</h3>
-        <p>Perhaps try a less specific or search for something else.</p>
+<div class ="hidden" id="editor">
+  <div class="searchStyle">
+    <div class="formContainer">
+      <button class="leftCircle" id="back" onclick="back()"><img src="../images/Back1.svg" class="leftCircle"></button>
+      <h2 class ="fill">New Constellation</h2>
+      <div class="rightCircle" id="profileFill">
       </div>
-    {{/each}}
+    </div>
   </div>
+  <canvas class="editorBody"></canvas>
+  <button class="editorStyle goto-editor"  onClick="editorClicked()">Editor</button>
+</div>
+
+<div class ="hidden bottomMargin" id="search">
+  <button class="searchStyle goto-search"  onClick="searchClicked()">Search</button>
+  <div class="editorBody">
+    <div class="formContainer">
+      <div class="leftCircle"  id="profileFill"></div>
+      <form method="post"  action="/search" id="search">
+        <input type="text" name="search" value="{{query}}"/>
+      </form>
+      <button class="rightCircle" id="telescope" type="submit" form="search"><img src="../images/TelescopeNew.svg" class="rightCircle" ></button>
+    </div>
+    {{{extra}}}
+    <div class="results">
+      {{#each results}}
+        <a href={{this.Url}}>
+          <div class="searchResult">
+            <h3>{{this.Title}}</h3>
+            <p>{{this.Description}}</p>
+          </div>
+        </a>
+      {{else}}
+        <div class="searchResult">
+          <h3>Sorry, no results found.</h3>
+          <p>Perhaps try a less specific or search for something else.</p>
+        </div>
+      {{/each}}
+    </div>
+  </div>
+<div class="editorStyle"></div>
 </div>
 
 <script src="../javascripts/nebula.js"></script>

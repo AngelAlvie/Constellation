@@ -5,14 +5,14 @@ var searchIsClicked = false;
 
 var renderClickedButtons = function() {
   if (editorIsClicked) {
-    $("#search").css("background-color", '#78909c');
+    $(".goto-editor").css("background-color", '#78909c');
   } else {
-    $("#constellation").css("background-color", '#263238');
+    $(".goto-editor").css("background-color", '#263238');
   }
   if (searchIsClicked) {
-    $("#star").css("background-color", '#78909c');
+    $(".goto-search").css("background-color", '#78909c');
   } else {
-    $("#star").css("background-color", '#263238');
+    $(".goto-search").css("background-color", '#263238');
   }
 }
 
@@ -42,17 +42,19 @@ $(document).ready(function() {
   var $bodytag = $('html, body');
   var sections = ['editor', 'search'];
   sections.forEach(function (section) {
+    console.log("for happening");
       $('.goto-'+section).click(function (e) {
+        console.log("click events happening");
           $bodytag.animate({
               scrollTop: $('#'+section).offset().top
-          }, 400);
+          }, 300);
       });
   });
-
   var tmp = resize();
   $(".hidden").css("width",  tmp[0]);
   $(".hidden").css("height", 0);
   $(".hidden").animate({height: tmp[1]}, 600);
+
   renderClickedButtons();
 
 });
