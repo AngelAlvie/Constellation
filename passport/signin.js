@@ -28,7 +28,6 @@ module.exports = function(passport) {
           return done(null, false, { message: 'Incorrect password.' });
         }
         });
-        //If everything checks out
       });
 }));
 };

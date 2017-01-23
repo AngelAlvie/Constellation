@@ -1,3 +1,5 @@
+/* THIS IS THE CANVAS WHICH WILL BE RENDERED BEHIND EVERYTHING EXCEPT THE BACKGROUND */
+
 var canvas = document.getElementById('interactiveCanvas')
 var ctx = canvas.getContext( '2d' );
 

@@ -23,7 +23,7 @@ connection.on('connected', function() {
 });
 
 //initialize passport
-app.use(expressSession({secret: 'someSecretKey'})); //I'm not sure if this should be different
+app.use(expressSession({secret: 'someSecretKey'}));
 app.use(passport.initialize());
 app.use(passport.session());
 

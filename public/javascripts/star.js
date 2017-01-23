@@ -26,11 +26,27 @@ $(document).ready(function() {
   $(".hidden").css("width",  tmp[0]);
   $(".hidden").css("height", 0);
   $(".hidden").animate({height: tmp[1]}, 600);
-  renderClickedButtons();
 });
 
 $( window ).resize(function() {
-
   var tmp = resize();
   $(".hidden").stop(true).animate({width: tmp[0], height: tmp[1]}, 200);
 });
+
+/* Button Handlers */
+
+var back = function() {
+  window.location.href = '/search/star';
+};
+
+var bookmark = function() {
+  var currentUrl = window.location.href;
+  console.log(currentUrl);
+  var ID = currentUrl.slice(-24);
+  console.log(ID);
+  $.ajax({
+    method: "POST",
+    url: "/bookmarkStar",
+    data: { id:  ID}
+  });
+};

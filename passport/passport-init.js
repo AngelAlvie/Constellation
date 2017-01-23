@@ -2,8 +2,6 @@ var login = require('./signin');
 var signup = require('./signup');
 var User = require('../models/user');
 
-// configure passport taken from https://code.tutsplus.com/tutorials/authenticating-nodejs-applications-with-passport--cms-21619
-
 module.exports = function(passport) {
 
 passport.serializeUser(function(user, done) {
@@ -14,7 +12,6 @@ passport.deserializeUser(function(id, done) {
     done(err, user);
   });
 });
-
 signup(passport);
 login(passport);
 }

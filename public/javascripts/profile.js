@@ -35,6 +35,8 @@ $( window ).resize(function() {
   $(".hidden").stop(true).animate({width: tmp[0], height: tmp[1]}, 200);
 });
 
+/* Button Handlers */
+
 var backClicked = function() {
   window.location.assign('/search/star');
 };

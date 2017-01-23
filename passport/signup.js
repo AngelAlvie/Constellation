@@ -3,8 +3,6 @@ var User = require('../models/user');
 var bCrypt = require('bcrypt-nodejs');
 var LocalStrategy   = require('passport-local').Strategy;
 
-//TODO: fix the null email issue 
-
 module.exports = function(passport) {
   passport.use('signup', new LocalStrategy({
     passReqToCallback : true

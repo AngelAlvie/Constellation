@@ -1,24 +1,12 @@
 /*Here are some theme colors:
-* Writing: #F5F5F5
-* Background: #263238
-*
+* Writing: #F5F5F5 (White)
+* Background: #263238 (midnight blue)
 *Currently experimenting with different fonts
-*Might Import Fonts from Google Fonts.
-*Current Contender:
-* Dosis
-* Roboto support?
-* Current feature size: 30px
-* Maybe increase by to 40px
-* also put blank SVG assets without background
+*Importing Fonts from Google Fonts.
+  * Fancy Title Font: Dosis
+  * Readable Font: Roboto]
+*Current feature size: 40px
 */
-/* Some Citations for some of the css:
-* Flexbox: https://css-tricks.com/snippets/css/a-guide-to-flexbox/
-* Fixing form apperance: https://css-tricks.com/almanac/properties/a/appearance/
-* Fixing outline: http://stackoverflow.com/questions/20340138/remove-blue-border-from-css-custom-styled-button-in-chrome
-* Changing Placeholder text properties: https://css-tricks.com/almanac/selectors/p/placeholder/
-*/
-
-
 @import url('https://fonts.googleapis.com/css?family=Dosis');
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
@@ -141,7 +129,7 @@ margin-top: -7%;
 
 
 /* Styling for classes*/
-.nebulaImput{
+.nebulaInput{
   width: 90%;
   margin: 10px;
   border-radius: 20px 20px 20px 20px;
