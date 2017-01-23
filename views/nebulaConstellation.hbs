@@ -3,7 +3,7 @@
     <div class="formContainer">
       <button class="leftCircle" id="back" onclick="back()"><img src="../images/Back1.svg" class="leftCircle"></button>
       <h2 class ="fill">New Constellation</h2>
-      <div class="rightCircle" id="profileFill">
+      <div class="rightCircle profileFill">
       </div>
     </div>
   </div>
@@ -15,7 +15,7 @@
   <button class="searchStyle goto-search"  onClick="searchClicked()">Search</button>
   <div class="editorBody">
     <div class="formContainer">
-      <div class="leftCircle"  id="profileFill"></div>
+      <div class="leftCircle profileFill"></div>
       <form method="post"  action="/search" id="search">
         <input type="text" name="search" value="{{query}}"/>
       </form>

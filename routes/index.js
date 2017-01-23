@@ -35,7 +35,7 @@ var passport = require('passport');
 // TODO: handle errors involving saving properly
 // TODO: make sure to use handlebars to and routing to make bookmarking a togglable thing
 // TODO: implement bookmarking for constellations
-// TODO: (THAD) make the profileFill ID a class instead of an ID
+// TODO: [FIXED](THAD) make the profileFill ID a class instead of an ID
 // Sources:
 // configure passport taken from https://code.tutsplus.com/tutorials/authenticating-nodejs-applications-with-passport--cms-21619
 //this was also taken from https://code.tutsplus.com/tutorials/authenticating-nodejs-applications-with-passport--cms-21619

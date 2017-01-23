@@ -120,13 +120,13 @@ margin-bottom: 7;
 margin-top: -7%;
 }
 
-#profileFill{
+/* Styling for classes*/
+
+.profileFill{
   background-color: #263238;
   height: 40px;
   width: 40px;
 }
-
-/* Styling for classes*/
 
 .editorBody {
     position: static;
@@ -147,7 +147,7 @@ margin-top: -7%;
   align-items: center;
   width: 100% !important;
   height:10%;
-  border-radius: 0px 0px 20px 20px !important;
+  border-radius: 0px 0px 19px 19px !important;
   margin: 0px;
   flex-shrink: 0;
   font-size: 1.3em;
@@ -160,7 +160,7 @@ margin-top: -7%;
   align-items: center;
     width: 100% !important;
     height:10%;
-    border-radius: 20px 20px 0px 0px !important;
+    border-radius: 19px 19px 0px 0px !important;
     margin: 0px;
     flex-shrink: 0;
     font-size: 1.3em;
@@ -185,7 +185,7 @@ margin-top: -7%;
   border-radius: 20px 20px 20px 20px;
   width: 90%;
   margin: 10px;
-  font-size: 1.3em;
+  font-size: 1.7em;
   border:none;
   flex-shrink: 0;
   font-family: "Dosis", Helvetica, Arial, sans-serif;
