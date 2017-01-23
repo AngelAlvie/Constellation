@@ -38,3 +38,11 @@ $( window ).resize(function() {
 var backClicked = function() {
   window.location.assign('/profile');
 };
+
+var nebulaStarClicked = function() {
+  window.location.assign('/nebulaStar');
+};
+
+var nebulaConstellationClicked = function(){
+  window.location.assign('/nebulaConstellation');
+};
