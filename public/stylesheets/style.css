@@ -41,6 +41,11 @@ body {
   background-color: #263238;
 }
 
+a {
+   color: inherit;
+   text-decoration: none;
+ }
+
 p,
 button,
 input {

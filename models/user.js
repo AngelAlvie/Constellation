@@ -1,5 +1,3 @@
-/* This is a REALLY REALLY BAD SCHEMA RIGHT NOW, I want to use passport.js to handle security */
-
 var mongoose = require('mongoose');
 
 var UserSchema = new mongoose.Schema({

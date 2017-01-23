@@ -5,7 +5,7 @@ var mongoose = require('mongoose');
 var starSchema = mongoose.Schema({
   Title: String,
   Description: String,
-  ID : Number,
+  Url: String,
   Bookmarks : Number
 });
 

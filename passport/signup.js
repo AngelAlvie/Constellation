@@ -3,13 +3,12 @@ var User = require('../models/user');
 var bCrypt = require('bcrypt-nodejs');
 var LocalStrategy   = require('passport-local').Strategy;
 
-//TODO: fix the null email issue
+//TODO: fix the null email issue 
 
 module.exports = function(passport) {
   passport.use('signup', new LocalStrategy({
     passReqToCallback : true
     }, function(req, username, password, done) {
-    console.log('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
       var findOrCreateUser = function() {
 
       User.findOne({'Username' : username}, function(err, user) {
@@ -23,16 +22,17 @@ module.exports = function(passport) {
           return done(null, false, {message: 'Username already taken'});
         } else {
           //check for email here
-          User.findOne({'Email' : req.body.email}, function(err, email) {
+          User.findOne({'Email' : req.body.email}, function(err, invalid) {
             if(err) {
               console.log('Error on signup: ' + err);
               return done(err);
             }
-            if (email) {
+            if (invalid && invalid.email !== undefined) {
+              console.log(invalid.email);
               console.log("Email already in use");
               return done(null, false, {message: 'Email already in use'});
             }
-            if (!email) {
+            if (!invalid || invalid.email == undefined) {
               if (password === req.body.passwordConfirm) {
                 var newUser = new User();
                 newUser.Username = username;

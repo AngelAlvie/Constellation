@@ -8,7 +8,7 @@ var mongoose = require('mongoose');
 var constellationSchema = mongoose.Schema({
   Title: String,
   Description: String,
-  ID : Number,
+  Url: String,
   Bookmarks : Number,
   List: [Number]
 });
