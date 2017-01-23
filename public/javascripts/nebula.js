@@ -39,6 +39,16 @@ var resize = function() {
 };
 
 $(document).ready(function() {
+  var $bodytag = $('html, body');
+  var sections = ['editor', 'search'];
+  sections.forEach(function (section) {
+      $('.goto-'+section).click(function (e) {
+          $bodytag.animate({
+              scrollTop: $('#'+section).offset().top
+          }, 400);
+      });
+  });
+
   var tmp = resize();
   $(".hidden").css("width",  tmp[0]);
   $(".hidden").css("height", 0);
@@ -51,6 +61,7 @@ $( window ).resize(function() {
   var tmp = resize();
   $(".hidden").stop(true).animate({width: tmp[0], height: tmp[1]}, 200);
 });
+
 
 var editorClicked = function() {
   if (searchIsClicked) {
