@@ -7,16 +7,16 @@ var resize = function() {
   var hiddenHeight = 200;
   if ( screenWidth < breakpoints[0] ) {         // extra small screen
     hiddenWidth = screenWidth;
-    hiddenHeight = screenHeight;
+    hiddenHeight = screenHeight*0.9;
   } else if ( screenWidth < breakpoints[1] ) {  // small screen
     hiddenWidth = screenWidth * 0.9;
-    hiddenHeight = screenHeight*0.9;
+    hiddenHeight = screenHeight *0.9;
   } else if ( screenWidth < breakpoints[2] ) {  // medium
     hiddenWidth = screenWidth * 0.8;
-    hiddenHeight = screenHeight*0.8;
+    hiddenHeight = screenHeight*0.9;
   } else {                                      // large
     hiddenWidth = screenWidth * 0.7;
-    hiddenHeight = screenHeight*0.7;
+    hiddenHeight = screenHeight*0.9;
   }
   return [hiddenWidth, hiddenHeight];
 };

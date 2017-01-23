@@ -5,27 +5,20 @@
   <div class="rightCircle" id="profileFill"></div>
 </div>
 <div class="results">
-  <div class="searchResult">
-      <h3>Result</h3>
-      <p>Description lorem some extra description to mak15e91 5t9h159o1s5 91591591afahoif waf</p>
-    </div>
+  {{#each results}}
+    <a href={{this.Url}}>
+      <div class="searchResult">
+        <h3>{{this.Title}}</h3>
+        <p>{{this.Description}}</p>
+      </div>
+    </a>
+  {{else}}
     <div class="searchResult">
-      <h3>Result</h3>
-      <p>Description lorem some extra description to mak15e91 5t9h159o1s5 91591591afahoif waf</p>
+      <h3>Sorry, no results found.</h3>
+      <p>Perhaps try a less specific or search for something else.</p>
     </div>
-    <div class="searchResult">
-      <h3>Result</h3>
-      <p>Description lorem some extra description to mak15e91 5t9h159o1s5 91591591afahoif waf</p>
-    </div>
-    <div class="searchResult">
-      <h3>Result</h3>
-      <p>Description lorem some extra description to mak15e91 5t9h159o1s5 91591591afahoif waf</p>
-    </div>
-    <div class="searchResult">
-      <h3>Result</h3>
-      <p>Description lorem some extra description to mak15e91 5t9h159o1s5 91591591afahoif waf</p>
-    </div>
-  </div>
+  {{/each}}
+</div>
 </div>
 <!-- INCLUDE SCRIPTS BELOW  -->
 <script src="../javascripts/profileStuffs.js"></script>
