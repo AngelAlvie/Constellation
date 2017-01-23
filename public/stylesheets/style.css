@@ -141,6 +141,12 @@ margin-top: -7%;
 
 
 /* Styling for classes*/
+.nebulaImput{
+  width: 90%;
+  margin: 10px;
+  border-radius: 20px 20px 20px 20px;
+}
+
 .center{
   text-align:center;
 }
