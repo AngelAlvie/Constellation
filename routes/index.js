@@ -51,21 +51,41 @@ router.get('/', function(req, res, next) {
 });
 
 /* Perform a search -- implement search algorithm */
-router.post('/search', function(req, res, next) {
-  console.log(req.body.constellation);
-  console.log(req.body.star);
-  console.log(req.body.search);
-  if (req.isAuthenticated()) {
-    res.render('search', {title: 'Constellation - Search', extra: signedInHtml, results : [testResult,testResult,testResult,testResult,testResult,testResult]});
-  } else {
-    res.render('search', { title: 'Constellation - Search', extra: signedOutHtml, results : []});
+router.post('/search/:type', function(req, res, next) {
+  var type = req.params.type;
+  if (type === "star") {
+    //this is where you would check the star model in the search algorithm
+    if (req.isAuthenticated()) {
+      res.render('search', {title: 'Constellation - Search', extra: signedInHtml, results : [testResult,testResult,testResult,testResult,testResult,testResult]});
+    } else {
+      res.render('search', { title: 'Constellation - Search', extra: signedOutHtml, results : []});
+    }
+  } else if(type === "constellation"){
+    //this is where you would check the star model in the search algorithm
+    if (req.isAuthenticated()) {
+      res.render('search', {title: 'Constellation - Search', extra: signedInHtml, results : [testResult,testResult,testResult,testResult,testResult,testResult]});
+    } else {
+      res.render('search', { title: 'Constellation - Search', extra: signedOutHtml, results : []});
+    }
   }
 });
-router.get('/search', function(req, res, next) {
-  if (req.isAuthenticated()) {
-    res.render('search', {title: 'Constellation - Search', extra: signedInHtml});
-  } else {
-    res.render('search', { title: 'Constellation - Search', extra:signedOutHtml});
+
+router.get('/search/:type', function(req, res, next) {
+  var type = req.params.type;
+  if (type === "star") {
+    //this is where you would check the star model in the search algorithm
+    if (req.isAuthenticated()) {
+      res.render('search', {title: 'Constellation - Search', extra: signedInHtml, results : [testResult,testResult,testResult,testResult,testResult,testResult]});
+    } else {
+      res.render('search', { title: 'Constellation - Search', extra: signedOutHtml, results : []});
+    }
+  } else if(type === "constellation"){
+    //this is where you would check the star model in the search algorithm
+    if (req.isAuthenticated()) {
+      res.render('search', {title: 'Constellation - Search', extra: signedInHtml, results : [testResult,testResult,testResult,testResult,testResult,testResult]});
+    } else {
+      res.render('search', { title: 'Constellation - Search', extra: signedOutHtml, results : []});
+    }
   }
 });
 /* sign in using passport */
@@ -130,8 +150,15 @@ router.get('/profile', function(req, res, next){
   res.render('profile', {title:'Constellation - Profile'});
 });
 
-router.get('/nebula', function(req, res, next){
-  res.render('nebula',{title:'Constellation - Nebula'});
+router.get('/nebula/:type', function(req, res, next){
+  var type = req.params.type;
+  if (type === "star") {
+    res.render('nebula',{title:'Constellation - Nebula'});
+  } else if ( type === "constellation") {
+    res.render('nebula',{title:'Constellation - Nebula'});
+  } else {
+    res.redirect('back');
+  }
 });
 
 router.get('/myConstellations', function(req, res, next){

@@ -14,6 +14,11 @@ var renderClickedButtons = function() {
   } else {
     $("#star").css("background-color", '#263238');
   }
+  if (constellationIsClicked) {
+    $('form').attr('action', '/search/constellation');
+  } else {
+    $('form').attr('action', '/search/star');
+  }
 }
 
 /* Rendering for the page */
@@ -46,6 +51,7 @@ $(document).ready(function() {
   $(".hidden").css("height", 0);
   $(".hidden").animate({height: tmp[1]}, 600);
   renderClickedButtons();
+
 });
 
 $( window ).resize(function() {
