@@ -5,7 +5,8 @@ var constellationSchema = mongoose.Schema({
   Description: String,
   Url: String,
   Bookmarks : Number,
-  List: [Number]
+  Stars: [{String, Number, Number}],
+
 });
 
 

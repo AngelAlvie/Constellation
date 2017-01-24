@@ -66,42 +66,57 @@ function Constellation() {
   };
   this.deleteStar = function(star) {
     var index = this.stars.indexOf(star);
-    
-  }
-  this.setRootStar = function(star) {
-    var index = this.stars.indexOf(star);
-    //perform swap of star with current root node
-    var tmp = this.stars[0];
-    this.stars[0] = star;
-    this.stars[index] = tmp;
-    //perform swap of the links
-
+    if (index !== 0) {
+      console.log(index);
       for (var i = 0; i < this.links.length; i++) {
-        var linkContains0 = this.links[i].includes(0);
-        var linkContainsIndex =this.links[i].includes(index);
-        if (linkContainsIndex) {
-          this.links[i].splice(this.links[i].indexOf(index), 1);
-        }
-        if (linkContains0) {
-          this.links[i].splice(this.links[i].indexOf(0), 1);
-        }
-        if (linkContainsIndex) {
-          this.links[i].push(0)
-        }
-        if (linkContains0) {
-          this.links[i].push(index);
+        for (var j = 0 ; j < this.links[i].length; j++) {
+          if (this.links[i][j] === index) {
+            this.links[i].splice(j,1);
+          }
         }
       }
-
-    console.log("before swap " + this.links);
-    var tmp = this.links[0];
-    this.links[0] = this.links[index];
-    this.links[index] = tmp;
-    //swap link references such that they don't link to themselves if the two connections are already linked
-
-    console.log("after swap " + this.links);
+      this.swapStarsLinksAndReferences(star, this.stars[this.stars.length - 1]);
+      this.links.splice(this.links.length-1, 1);
+      this.stars.splice(this.stars.length-1, 1);
+    }
   };
 
+  this.setRootStar = function(star) {
+    this.swapStarsLinksAndReferences(star, this.stars[0]);
+  };
+  this.swapStarsLinksAndReferences = function(starA, starB) {
+    console.log(this.links);
+    var indexA = this.stars.indexOf(starA);
+    var indexB = this.stars.indexOf(starB);
+    //perform swap of star with current root node
+    var tmp = starB;
+    this.stars[indexB] = starA;
+    this.stars[indexA] = tmp;
+    // update references before swap
+    for (var i = 0; i < this.links.length; i++) {
+      var linkContainsA = this.links[i].includes(indexA);
+      var linkContainsB = this.links[i].includes(indexB);
+      if (linkContainsA) {
+        this.links[i].splice(this.links[i].indexOf(indexA), 1);
+      }
+      if (linkContainsB) {
+        this.links[i].splice(this.links[i].indexOf(indexB), 1);
+      }
+      if (linkContainsA) {
+        this.links[i].push(indexB)
+      }
+      if (linkContainsB) {
+        this.links[i].push(indexA);
+      }
+    }
+
+    //perform swap of the links
+      var tmp = this.links[indexB];
+      this.links[indexB] = this.links[indexA];
+      this.links[indexA] = tmp;
+
+    console.log(this.links);
+  };
 
   this.findFirstStars = function() {
     for (var i = 0; i < this.stars.length; i++) {
@@ -297,3 +312,44 @@ var run = function() {
 };
 
 var runTime = setInterval(run,30);
+
+//ALL THE CODE ABOVE IS SOLELY FOR MAKING THE EDITOR WORK, NOW TIME TO MAKE ALL THE ADDITIONAL FUNCTIONALITY (SAVING, SEARCHING, ADDING STARS)
+/*
+what the hbs template looks like
+<a href={{this.Url}}>
+  <div class="searchResult">
+    <h3>{{this.Title}}</h3>
+    <p>{{this.Description}}</p>
+  </div>
+</a>
+*/
+
+// will create new route search/stars instead of using search/star which will assume that the search query is an ajax request
+
+var fromDataHtml = function(data) {
+  var htmlString = "";
+  for (var i = 0; i < data.length; i++) {
+    console.log(data[i].Url);
+    console.log(data[i].Title);
+    console.log(data[i].Description);
+    htmlString = htmlString + "<a href ="+ data[i].Url+ "><div class = 'searchResult'><h3>" + data[i].Title + "</h3><p>" + data[i].Description + "</p></div></a>";
+  }
+  return htmlString;
+};
+
+$("#search").on('submit', function(event) {
+  event.preventDefault();
+  $.ajax({
+    url : "/search/stars",
+    data : $("input").val(),
+    method: "POST",
+    success : function( data ) {
+      console.log(data);
+      var inner = fromDataHtml(data);
+      $(".results").html(inner);
+    },
+    error : function() {}
+  });
+});
+
+$()

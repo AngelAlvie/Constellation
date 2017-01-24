@@ -38,6 +38,9 @@ var passport = require('passport');
 // TODO: [FIXED] (THAD) make the profileFill ID a class instead of an ID
 // TODO: [FIXED] (THAD) Add imput boxes (title, etc) to constellatio editor
 // TODO: [FIXED] (THAD) Add save button to constel, editor
+// TODO: figure out why the telescope on the nebula editor doesn't WORK
+// TODO: implement save functionality for Constellation
+// TODO make search and view work for constellations
 // Sources:
 // configure passport taken from https://code.tutsplus.com/tutorials/authenticating-nodejs-applications-with-passport--cms-21619
 //this was also taken from https://code.tutsplus.com/tutorials/authenticating-nodejs-applications-with-passport--cms-21619
@@ -54,6 +57,7 @@ var passport = require('passport');
 // Using Passport for authentication
 // Using mongoose to connect to a mongoDB database
 // Considering using angular for frontend
+// Using Jquery
 
 var signedInHtml = '<div class="formContainer"><button class="button" onclick="profileClicked()">Profile</button><button class="button" onclick="signOutClicked()">Sign Out</button></div>';
 var signedOutHtml ='<div class="formContainer"><button class="button" onclick="signInClicked()">Sign In</button><button class="button" onclick="signUpClicked()">Sign Up</button></div>';
@@ -88,14 +92,31 @@ router.post('/search/:type', function(req, res, next) {
         res.render('search', { title: 'Constellation - Search', query: req.body.search, extra: signedOutHtml, results : allResults});
       }
       });
-      } else if (type === "constellation"){
+  } else if (type === "constellation"){
       //this is where you would check the constellation model in the search algorithm
       if (req.isAuthenticated()) {
         res.render('search', {title: 'Constellation - Search', query: req.body.search, extra: signedInHtml, results : []});
       } else {
         res.render('search', { title: 'Constellation - Search',query: req.body.search, extra: signedOutHtml, results : []});
       }
-    }
+  } else if (type === 'stars') {
+    //this is where you would check the star model in the search algorithm
+    Star.find({}, function(err, stars) {
+      allResults = [];
+      for (var i = 0; i < stars.length; i++) {
+        var tmp = {};
+        tmp.Title = stars[i].Title;
+        tmp.Description = stars[i].Description;
+        tmp.Url = "/stars/" + stars[i].id;
+        allResults.push(tmp);
+      }
+      if (req.isAuthenticated()) {
+        res.send(allResults);
+      } else {
+        res.send(allResults);
+      }
+      });
+  }
 });
 
 router.get('/search/:type', function(req, res, next) {
