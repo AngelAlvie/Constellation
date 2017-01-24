@@ -1,3 +1,5 @@
+//THIS IS ALSO USED FOR THE CONSTELLATION PAGES
+
 //Page Resizing
 var resize = function() {
   var screenWidth = $(window).width();
@@ -39,7 +41,7 @@ var back = function() {
   window.location.href = '/search/star';
 };
 
-var bookmark = function() {
+var bookmarkStar = function() {
   var currentUrl = window.location.href;
   console.log(currentUrl);
   var ID = currentUrl.slice(-24);
@@ -50,3 +52,5 @@ var bookmark = function() {
     data: { id:  ID}
   });
 };
+
+//TODO, add bookmark function for constellation bookmarking!!!

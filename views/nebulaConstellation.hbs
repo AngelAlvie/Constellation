@@ -3,9 +3,14 @@
     <div class="formContainer">
       <button class="leftCircle" id="back" onclick="back()"><img src="../images/Back1.svg" class="leftCircle"></button>
       <h2 class ="fill">New Constellation</h2>
-      <div class="rightCircle profileFill">
-      </div>
+      <button class="rightCircle" id="save" type="submit" form="constellation"><img src="../images/SaveIcon.svg" class="rightCircle"></button>
     </div>
+  </div>
+  <div style ="editorTop">
+    <form method="post"  id="constellation" action="/nebula/constellation">
+      <input class ="nebulaInput" type="text" name="Title" placeholder="Title"/>
+      <input class ="nebulaInput" type="text" name="Description" placeholder="Description"/>
+    </form>
   </div>
   <canvas class="editorBody"></canvas>
   <button class="editorStyle goto-editor"  onClick="editorClicked()">Editor</button>
@@ -13,9 +18,9 @@
 
 <div class ="hidden bottomMargin" id="search">
   <button class="searchStyle goto-search"  onClick="searchClicked()">Search</button>
-  <div class="editorBody">
+  <div class="searchBody">
     <div class="formContainer">
-      <div class="leftCircle profileFill"></div>
+      <div class="leftCircle profileFill"><img src="../images/StarNew.svg" class="leftCircle"></div>
       <form method="post"  action="/search" id="search">
         <input type="text" name="search" value="{{query}}"/>
       </form>
@@ -39,7 +44,7 @@
     </div>
   </div>
 <div class="editorStyle"></div>
-</div>
+
 
 <script src="../javascripts/nebula.js"></script>
 <script src="../javascripts/nebula_editor.js"></script>
