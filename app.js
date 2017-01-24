@@ -22,10 +22,6 @@ connection.on('connected', function() {
   console.log("database connected!");
 });
 
-var mongoClient = require("mongodb").MongoClient;
-MongoClient.connect("mongodb://constellation-mit:lMpYHmqG8dr6g2LG9CyxeXYh4FUVw1nGiGm87cIhx9HFaobkbqIvYp1gWm7R0MiADOKqS1TdKKJCXEBictD6JQ==@constellation-mit.documents.azure.com:10250/?ssl=true", function (err, db) {
-  db.close();
-});
 
 //initialize passport
 app.use(expressSession({secret: 'someSecretKey'}));
