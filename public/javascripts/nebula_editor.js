@@ -22,7 +22,7 @@ function Star(ID, Title) {
   this.y = (Math.random()*screenHeight*.9) + screenHeight*.05;
   this.ID = ID;
   this.size = 10;
-  this.Title = Title
+  this.Title = Title;
   this.display = function(graphics) {
     graphics.beginPath();
     graphics.arc(this.x, this.y, this.size, 0, 2*Math.PI);
@@ -313,18 +313,6 @@ var run = function() {
 
 var runTime = setInterval(run,30);
 
-//ALL THE CODE ABOVE IS SOLELY FOR MAKING THE EDITOR WORK, NOW TIME TO MAKE ALL THE ADDITIONAL FUNCTIONALITY (SAVING, SEARCHING, ADDING STARS)
-/*
-what the hbs template looks like
-<a href={{this.Url}}>
-  <div class="searchResult">
-    <h3>{{this.Title}}</h3>
-    <p>{{this.Description}}</p>
-  </div>
-</a>
-*/
-
-// will create new route search/stars instead of using search/star which will assume that the search query is an ajax request
 
 var fromDataHtml = function(data) {
   var htmlString = "";
@@ -352,4 +340,13 @@ $("#search").on('submit', function(event) {
   });
 });
 
-$()
+$("#constellation").on('submit', function(event) {
+  event.preventDefault();
+  $.ajax({
+    url : "/nebula/constellation",
+    data : {Graph: c.exportGraphStructure(), Stars: c.exportStarArray(), Title: $("#titleField").val(), Description:$("#descriptionField").val()},
+    method: "POST",
+    success : function( data ) {},
+    error : function() {}
+  });
+});

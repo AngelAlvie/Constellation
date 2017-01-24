@@ -250,6 +250,26 @@ router.post('/nebula/:type', function(req, res, next){
     });
     res.redirect('/profile');
   } else if ( type === "constellation") {
+    var newConstellation = new Constellation();
+    newConstellation.Title = req.body.Title;
+    newConstellation.Description = req.body.Description;
+    newConstellation.Bookmarks = 0;
+    newConstellation.Stars = req.body.Stars;
+    newConstellation.Graph = req.body.Graph;
+    newStar.save(function(err) {
+    if (err) {
+      console.log("error saving constellation");
+      throw err;
+    }
+      console.log('New constellation created');
+    });
+    User.findByIdAndUpdate(
+    req.user.id,
+    {$push: {ConstellationCreated: newConstellation.id}},
+    {safe: true, upsert: true},
+    function(err, model) {
+        console.log(err);
+    });
     res.redirect('/profile');
   } else {
     res.redirect('back');
