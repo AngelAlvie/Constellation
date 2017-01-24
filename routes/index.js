@@ -41,6 +41,7 @@ var passport = require('passport');
 // TODO: figure out why the telescope on the nebula editor doesn't WORK
 // TODO: implement save functionality for Constellation
 // TODO make search and view work for constellations
+// TODO: Fix background image on Mozarella Firefox
 // Sources:
 // configure passport taken from https://code.tutsplus.com/tutorials/authenticating-nodejs-applications-with-passport--cms-21619
 //this was also taken from https://code.tutsplus.com/tutorials/authenticating-nodejs-applications-with-passport--cms-21619

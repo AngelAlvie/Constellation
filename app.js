@@ -13,13 +13,18 @@ var initPassport = require('./passport/passport-init');
 var app = express();
 
 // connect to the database
-mongoose.connect(process.env.MOGOLAB_URI || 'mongodb://localhost/test');
+mongoose.connect(process.env.MOGOLAB_URI || 'mongodb://constellation-mit:lMpYHmqG8dr6g2LG9CyxeXYh4FUVw1nGiGm87cIhx9HFaobkbqIvYp1gWm7R0MiADOKqS1TdKKJCXEBictD6JQ==@constellation-mit.documents.azure.com:10250/?ssl=true');
 
 var connection = mongoose.connection;
 
 connection.on('error', console.error.bind(console, 'database connection error:'));
 connection.on('connected', function() {
   console.log("database connected!");
+});
+
+var mongoClient = require("mongodb").MongoClient;
+MongoClient.connect("mongodb://constellation-mit:lMpYHmqG8dr6g2LG9CyxeXYh4FUVw1nGiGm87cIhx9HFaobkbqIvYp1gWm7R0MiADOKqS1TdKKJCXEBictD6JQ==@constellation-mit.documents.azure.com:10250/?ssl=true", function (err, db) {
+  db.close();
 });
 
 //initialize passport
