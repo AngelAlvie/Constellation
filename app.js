@@ -13,7 +13,7 @@ var initPassport = require('./passport/passport-init');
 var app = express();
 
 // connect to the database
-mongoose.connect(process.env.MOGOLAB_URI || 'mongodb://constellation-mit:lMpYHmqG8dr6g2LG9CyxeXYh4FUVw1nGiGm87cIhx9HFaobkbqIvYp1gWm7R0MiADOKqS1TdKKJCXEBictD6JQ==@constellation-mit.documents.azure.com:10250/?ssl=true');
+mongoose.connect('mongodb://constellation-mit:lMpYHmqG8dr6g2LG9CyxeXYh4FUVw1nGiGm87cIhx9HFaobkbqIvYp1gWm7R0MiADOKqS1TdKKJCXEBictD6JQ==@constellation-mit.documents.azure.com:10250/?ssl=true');
 
 var connection = mongoose.connection;
 
