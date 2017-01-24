@@ -66,7 +66,7 @@ function Constellation() {
   };
   this.deleteStar = function(star) {
     var index = this.stars.indexOf(star);
-    
+
   }
   this.setRootStar = function(star) {
     var index = this.stars.indexOf(star);

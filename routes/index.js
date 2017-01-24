@@ -38,6 +38,7 @@ var passport = require('passport');
 // TODO: [FIXED] (THAD) make the profileFill ID a class instead of an ID
 // TODO: [FIXED] (THAD) Add imput boxes (title, etc) to constellatio editor
 // TODO: [FIXED] (THAD) Add save button to constel, editor
+// TODO: Fix background image on Mozarella Firefox
 // Sources:
 // configure passport taken from https://code.tutsplus.com/tutorials/authenticating-nodejs-applications-with-passport--cms-21619
 //this was also taken from https://code.tutsplus.com/tutorials/authenticating-nodejs-applications-with-passport--cms-21619
