@@ -6,7 +6,7 @@ var Constellation = require('../models/constellation.js');
 var passport = require('passport');
 
 // CENTRALIZED TASKLIST
-// TODO: (CURRENT) call update to update the reference to the bookmark
+// TODO: [FIXED] (CURRENT) call update to update the reference to the bookmark
 // TODO: Clean up code and comments
 // TODO: Cleanup console.log() statements and add them where appropriate (severside events and errors)
 // TODO: make use of middleware (next) and error handling
@@ -74,7 +74,7 @@ router.get('/', function(req, res, next) {
 /* Perform a search -- implement search algorithm */
 router.post('/search/:type', function(req, res, next) {
   var type = req.params.type;
-  if (type === "star") {
+  if (type === 'star') {
     //this is where you would check the star model in the search algorithm
     Star.find({}, function(err, stars) {
       allResults = [];
@@ -82,7 +82,7 @@ router.post('/search/:type', function(req, res, next) {
         var tmp = {};
         tmp.Title = stars[i].Title;
         tmp.Description = stars[i].Description;
-        tmp.Url = "/stars/" + stars[i].id;
+        tmp.Url = '/stars/' + stars[i].id;
         allResults.push(tmp);
       }
       if (req.isAuthenticated()) {
@@ -106,7 +106,7 @@ router.post('/search/:type', function(req, res, next) {
         var tmp = {};
         tmp.Title = stars[i].Title;
         tmp.Description = stars[i].Description;
-        tmp.Url = "/stars/" + stars[i].id;
+        tmp.Url = '/stars/' + stars[i].id;
         allResults.push(tmp);
       }
       if (req.isAuthenticated()) {
@@ -120,7 +120,7 @@ router.post('/search/:type', function(req, res, next) {
 
 router.get('/search/:type', function(req, res, next) {
   var type = req.params.type;
-  if (type === "star") {
+  if (type === 'star') {
     //this is where you would check the star model in the search algorithm
     Star.find({}, function(err, stars) {
       allResults = [];
@@ -128,7 +128,7 @@ router.get('/search/:type', function(req, res, next) {
         var tmp = {}
         tmp.Title = stars[i].Title;
         tmp.Description = stars[i].Description;
-        tmp.Url = "/stars/" + stars[i].id;
+        tmp.Url = '/stars/' + stars[i].id;
         allResults.push(tmp);
       }
       if (req.isAuthenticated()) {
@@ -137,7 +137,7 @@ router.get('/search/:type', function(req, res, next) {
         res.render('search', { title: 'Constellation - Search', query: req.body.search, extra: signedOutHtml, results : allResults});
       }
       });
-      } else if (type === "constellation"){
+    } else if (type === 'constellation'){
       //this is where you would check the constellation model in the search algorithm
       if (req.isAuthenticated()) {
         res.render('search', {title: 'Constellation - Search', query: req.body.search, extra: signedInHtml, results : []});
@@ -192,12 +192,14 @@ router.get('/signOut', function(req, res) {
   res.redirect('back');
 });
 
+
+//authentication doesn't matter here b/c anyone can view the individual star/ constellation pages
 router.get('/constellations/:ID', function(req, res, next) {
   var ID = req.params.ID;
   Constellation.findById(ID, function(err, constellation) {
     if (err) {
       res.redirect('back');
-      console.log("database error finding constellation");
+      console.log('database error finding constellation');
     }
     if (!constellation) {
       res.redirect('back');
@@ -213,89 +215,102 @@ router.get('/stars/:ID', function(req, res, next) {
   Star.findById(ID, function(err, star) {
     if (err) {
       res.redirect('back');
-      console.log("database error finding star");
+      console.log('database error finding star');
     }
     if (!star) {
       res.redirect('back');
-      console.log("could not find star by ID: " + ID);
+      console.log('could not find star by ID: ' + ID);
     } else {
       res.render('star', {title: 'Constellation - Browsing', Title: star.Title , Description: star.Description, Url: star.Url });
     }
   });
 });
 
+// user must be autheticated for this to work
+/* profile page, currently its a menu */
 router.get('/profile', function(req, res, next){
   if(req.isAuthenticated()) {
     res.render('profile', {title:'Constellation - ' + req.user.Username, username : req.user.Username});
   } else {
-    res.redirect('/search/star');
+    res.redirect('back');
   }
 });
 
-//This route is perfectly fine, don't modify much, except maybe check for Authentication
+//nebula is the star and constellation editor, should be accessable only if signed in
 router.get('/nebula/:type', function(req, res, next){
-  var type = req.params.type;
-  if (type === "star") {
-    res.render('nebulaStar',{title:'Constellation - Nebula'});
-  } else if ( type === "constellation") {
-    res.render('nebulaConstellation',{title:'Constellation - Nebula'});
+  if (req.isAuthenticated()) {
+    var type = req.params.type;
+    if (type === "star") {
+      res.render('nebulaStar',{title:'Constellation - Nebula'});
+    } else if ( type === 'constellation') {
+      res.render('nebulaConstellation',{title:'Constellation - Nebula'});
+    } else {
+      res.redirect('back');
+    }
   } else {
     res.redirect('back');
   }
 });
-
+//handles saving stuff user submits to nebula
 router.post('/nebula/:type', function(req, res, next){
-  var type = req.params.type;
-  if (type === "star") {
-    var newStar = new Star();
-    newStar.Title = req.body.Title;
-    newStar.Description = req.body.Description;
-    newStar.Url = req.body.Url;
-    newStar.bookmarks = 0;
+  if (req.isAuthenticated()) {
+    var type = req.params.type;
+    if (type === "star") {
+      var newStar = new Star();
+      newStar.Title = req.body.Title;
+      newStar.Description = req.body.Description;
+      newStar.Url = req.body.Url;
+      newStar.bookmarks = 0;
+      newStar.save(function(err) {
+        if (err) {
+          console.log('error saving star');
+          throw err;
+        } else {
+          console.log('New star created');
+        }
+      });
 
-    newStar.save(function(err) {
-    if (err) {
-      console.log("error saving star");
-      throw err;
-    }
-      console.log('New star created');
-    });
+      User.findByIdAndUpdate(
+      req.user.id,
+      {$push: {StarCreated: newStar.id}},
+      {safe: true, upsert: true},
+      function(err, model) {
+        console.log(err);
+      });
+      res.redirect('/profile');
 
-    User.findByIdAndUpdate(
-    req.user.id,
-    {$push: {StarCreated: newStar.id}},
-    {safe: true, upsert: true},
-    function(err, model) {
+    } else if ( type === "constellation") {
+      var newConstellation = new Constellation();
+      newConstellation.Title = req.body.Title;
+      newConstellation.Description = req.body.Description;
+      newConstellation.Bookmarks = 0;
+      newConstellation.Stars = req.body.Stars;
+      newConstellation.Graph = req.body.Graph;
+      newStar.save(function(err) {
+      if (err) {
+        console.log('error saving constellation');
+        throw err;
+      } else {
+        console.log('New constellation created');
+      }
+      });
+      User.findByIdAndUpdate(
+      req.user.id,
+      {$push: {ConstellationCreated: newConstellation.id}},
+      {safe: true, upsert: true},
+      function(err, model) {
         console.log(err);
-    });
-    res.redirect('/profile');
-  } else if ( type === "constellation") {
-    var newConstellation = new Constellation();
-    newConstellation.Title = req.body.Title;
-    newConstellation.Description = req.body.Description;
-    newConstellation.Bookmarks = 0;
-    newConstellation.Stars = req.body.Stars;
-    newConstellation.Graph = req.body.Graph;
-    newStar.save(function(err) {
-    if (err) {
-      console.log("error saving constellation");
-      throw err;
+      });
+      res.redirect('/profile');
+    } else {
+      res.redirect('back');
     }
-      console.log('New constellation created');
-    });
-    User.findByIdAndUpdate(
-    req.user.id,
-    {$push: {ConstellationCreated: newConstellation.id}},
-    {safe: true, upsert: true},
-    function(err, model) {
-        console.log(err);
-    });
-    res.redirect('/profile');
   } else {
-    res.redirect('back');
+    res.redirect('/');
   }
 });
 
+/* Render the constellations a user has created */
 router.get('/myConstellations', function(req, res, next){
   if (req.isAuthenticated()) {
     var created = req.user.ConstellationCreated;
@@ -315,6 +330,7 @@ router.get('/myConstellations', function(req, res, next){
   }
 });
 
+/* Render the stars a user has created */
 router.get('/myStars', function(req, res, next){
   if (req.isAuthenticated()) {
     var created = req.user.StarCreated;
@@ -334,12 +350,13 @@ router.get('/myStars', function(req, res, next){
   }
 });
 
+/* Render all the constellations a user has created */
 router.get('/savedConstellations', function(req, res, next){
   if (req.isAuthenticated()) {
-    var created = req.user.ConstellationFavorites;
+    var bookmarks = req.user.ConstellationFavorites;
     var allResults = [];
     for (var i = 0; i < created.length; i++) {
-      Star.findById(created[i], function(err, constellation) {
+      Star.findById(bookmarks[i], function(err, constellation) {
         var tmp = {};
         tmp.Title = constellation.Title;
         tmp.Description = constellation.Description;
@@ -353,12 +370,13 @@ router.get('/savedConstellations', function(req, res, next){
   }
 });
 
+/* Render all the star pages a user has created */
 router.get('/savedStars', function(req, res, next){
   if (req.isAuthenticated()) {
-    var created = req.user.StarFavorites;
+    var bookmarks = req.user.StarFavorites;
     var allResults = [];
     for (var i = 0; i < created.length; i++) {
-      Star.findById(created[i], function(err, star) {
+      Star.findById(bookmarks[i], function(err, star) {
         var tmp = {};
         tmp.Title = star.Title;
         tmp.Description = star.Description;
@@ -372,23 +390,78 @@ router.get('/savedStars', function(req, res, next){
   }
 });
 
+/* AJAX request to bookmark a star, only possible if user is signed in */
 router.post('/bookmarkStar', function(req,res, next) {
-  console.log('bookmark request patched through');
-  console.log("body: " + req.body.id);
-  var ID = req.body.id;
-  console.log("ID of current request: " + ID);
-  console.log("ID of current user: " + req.user.id);
-  User.findByIdAndUpdate(
-  req.user.id,
-  {$push: {StarFavorites: ID}},
-  {safe: true, upsert: true},
-  function(err, model) {
-      console.log("Error updating bookmarks for " + model.Username + ": " + err);
-  });
-  console.log(req.user.StarFavorites);
+  if (req.isAuthenticated()) {
+    var ID = req.body.id;
+    User.findById(req.user.id, function(err, user) {
+      if (err) {
+        console.log('database error trying to find user while bookmarking');
+      }
+      if (!user) {
+        console.log('could not find user while bookmarking');
+      } else {
+        if (user.StarFavorites.includes(ID)) {
+          // if already bookmarked, then remove from bookmarks
+          User.findByIdAndUpdate(
+            req.user.id,
+            {$pull: {StarFavorites: ID}},
+            {safe: true, upsert: true},
+            function(err, model) {
+            console.log('Error removing bookmarks for ' + model.Username + ': ' + err);
+          });
+        } else {
+          // if not already bookmarked, then add to working list of bookmarks
+          User.findByIdAndUpdate(
+            req.user.id,
+            {$push: {StarFavorites: ID}},
+            {safe: true, upsert: true},
+            function(err, model) {
+            console.log('Error adding bookmarks for ' + model.Username + ': ' + err);
+          });
+        }
+      }
+    });
+  } else {
+    res.redirect('/');
+  }
 });
 
-
-
+/* AJAX request to bookmark a constellation, only possible if user is signed in */
+router.post('/bookmarkConstellation', function(req,res, next) {
+  if (req.isAuthenticated()) {
+    var ID = req.body.id;
+    User.findById(req.user.id, function(err, user) {
+      if (err) {
+        console.log('database error trying to find user while bookmarking');
+      }
+      if (!user) {
+        console.log('could not find user while bookmarking');
+      } else {
+        if (user.ConstellationFavorites.includes(ID)) {
+          // if already bookmarked, then remove from bookmarks
+          User.findByIdAndUpdate(
+            req.user.id,
+            {$pull: {ConstellationFavorites: ID}},
+            {safe: true, upsert: true},
+            function(err, model) {
+            console.log('Error removing bookmarks for ' + model.Username + ': ' + err);
+          });
+        } else {
+          // if not already bookmarked, then add to working list of bookmarks
+          User.findByIdAndUpdate(
+            req.user.id,
+            {$push: {ConstellationFavorites: ID}},
+            {safe: true, upsert: true},
+            function(err, model) {
+            console.log('Error adding bookmarks for ' + model.Username + ': ' + err);
+          });
+        }
+      }
+    });
+  } else {
+    res.redirect('/');
+  }
+});
 
 module.exports = router;

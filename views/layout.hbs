@@ -18,7 +18,10 @@
     <canvas id="interactiveCanvas">
     </canvas>
     <div id = "backdrop"></div>
-    {{{body}}}
+      {{{body}}}
+      {{#if message}}
+      <h1>{{message}}</h1>
+      {{/if}}
     <script src="../javascripts/main_canvas.js"></script>
   </body>
 </html>

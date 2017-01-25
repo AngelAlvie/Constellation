@@ -85,7 +85,6 @@ function Constellation() {
     this.swapStarsLinksAndReferences(star, this.stars[0]);
   };
   this.swapStarsLinksAndReferences = function(starA, starB) {
-    console.log(this.links);
     var indexA = this.stars.indexOf(starA);
     var indexB = this.stars.indexOf(starB);
     //perform swap of star with current root node
@@ -114,8 +113,6 @@ function Constellation() {
       var tmp = this.links[indexB];
       this.links[indexB] = this.links[indexA];
       this.links[indexA] = tmp;
-
-    console.log(this.links);
   };
 
   this.findFirstStars = function() {
@@ -317,9 +314,6 @@ var runTime = setInterval(run,30);
 var fromDataHtml = function(data) {
   var htmlString = "";
   for (var i = 0; i < data.length; i++) {
-    console.log(data[i].Url);
-    console.log(data[i].Title);
-    console.log(data[i].Description);
     htmlString = htmlString + "<a href ="+ data[i].Url+ "><div class = 'searchResult'><h3>" + data[i].Title + "</h3><p>" + data[i].Description + "</p></div></a>";
   }
   return htmlString;
@@ -332,7 +326,6 @@ $("#search").on('submit', function(event) {
     data : $("input").val(),
     method: "POST",
     success : function( data ) {
-      console.log(data);
       var inner = fromDataHtml(data);
       $(".results").html(inner);
     },
