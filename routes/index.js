@@ -40,6 +40,8 @@ var passport = require('passport');
 // TODO: implement save functionality for Constellation
 // TODO make search and view work for constellations
 // TODO: Fix background image on Mozarella Firefox
+// TODO: submit AJAX request to /constellationdata/:ID , then take that data and turn it into a viewable canvas object
+
 // Sources:
 // configure passport taken from https://code.tutsplus.com/tutorials/authenticating-nodejs-applications-with-passport--cms-21619
 //this was also taken from https://code.tutsplus.com/tutorials/authenticating-nodejs-applications-with-passport--cms-21619
