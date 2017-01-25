@@ -7,14 +7,12 @@ var passport = require('passport');
 
 // CENTRALIZED TASKLIST
 // TODO: (CURRENT) call update to update the reference to the bookmark
-// TODO: [FIXED] clean up code and comments
+// TODO: Clean up code and comments
 // TODO: Cleanup console.log() statements and add them where appropriate (severside events and errors)
 // TODO: make use of middleware (next) and error handling
 // TODO: [FIXED](THAD) add optional message area for Handlebars to pages where errors might occur.
 // TODO: populate mesage area on error
 // TODO: (THAD) make the description input element a textbox (Don't worry about this until later)
-// TODO: [FIXED] Create route for bookmark
-// TODO: [FIXED] Back button has no functionality
 // TODO: Implement Authentication for all subsequent pages
 // TODO: Implement search algorithm
 // TODO: [FIXED] Allow user to "bookmark" a star or constellation using an AJAX request (clientside)
@@ -159,7 +157,11 @@ router.post('/signIn', passport.authenticate('signin', {
 
 /* GET the signin page */
 router.get('/signIn',function(req, res, next) {
-  res.render('signIn', {title: 'Constellation - Sign Up'});
+  if (req.isAuthenticated()) {
+    res.redirect('/');
+  } else {
+    res.render('signIn', {title: 'Constellation - Sign Up'});
+  }
 });
 
 /* sign up form */
@@ -169,12 +171,19 @@ router.post('/signUp', passport.authenticate('signup', {
   }));
 /* GET sign up page */
 router.get('/signUp', function(req, res, next) {
-  res.render('signUp', { title: 'Constellation - Sign Up' });
+  if (req.isAuthenticated()) {
+    res.redirect('/');
+  } else {
+    res.render('signUp', { title: 'Constellation - Sign Up' });
+  }
 });
-/*sign up 2 never existed*/
-/* GET sign up page 3*/
+/* GET sign up page 2*/
 router.get('/signUp2', function(req, res, next) {
-  res.render('signUp2', { title: 'Constellation - Sign Up' });
+  if (req.isAuthenticated()) {
+    res.render('signUp2', { title: 'Constellation - Sign Up' });
+  } else {
+    res.redirect('signUp');
+  }
 });
 
 /* implement sign out*/
@@ -184,11 +193,16 @@ router.get('/signOut', function(req, res) {
 });
 
 router.get('/constellations/:ID', function(req, res, next) {
-  //req.params are parameters you set in the routes
   var ID = req.params.ID;
   Constellation.findById(ID, function(err, constellation) {
-    if (err) {res.redirect('back');console.log("is throwing error");}
-    if (!star) {res.redirect('back');console.log("sorry not happening");} else {
+    if (err) {
+      res.redirect('back');
+      console.log("database error finding constellation");
+    }
+    if (!constellation) {
+      res.redirect('back');
+      console.log("could not find constellation by ID: " + ID);
+    } else {
       res.render('constellation', {title: 'Constellation - Browsing', Title: constellation.Title , Description: constellation.Description, Url: constellation.Url });
     }
   });
@@ -197,8 +211,14 @@ router.get('/constellations/:ID', function(req, res, next) {
 router.get('/stars/:ID', function(req, res, next) {
   var ID = req.params.ID;
   Star.findById(ID, function(err, star) {
-    if (err) {res.redirect('back');console.log("is throwing error");}
-    if (!star) {res.redirect('back');console.log("sorry not happening");} else {
+    if (err) {
+      res.redirect('back');
+      console.log("database error finding star");
+    }
+    if (!star) {
+      res.redirect('back');
+      console.log("could not find star by ID: " + ID);
+    } else {
       res.render('star', {title: 'Constellation - Browsing', Title: star.Title , Description: star.Description, Url: star.Url });
     }
   });

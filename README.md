@@ -47,12 +47,51 @@ Here is a list of steps if you want to use our code to create a local implementa
   * If you are on windows run `cd C:\"Program Files"\mongoDB\Server\3.4\bin` then run `mongod --dbpath PATHTO\data`.
  5. now run `npm start`. connecting to localhost:3000 should now let you view the website
 
+## Sources for various snippets of code
+
+* configure passport taken from https://code.tutsplus.com/tutorials/authenticating-nodejs-applications-with-passport--cms-21619
+* this was also taken from https://code.tutsplus.com/tutorials/authenticating-nodejs-applications-with-passport--cms-21619
+* using update routing found in http://blog.ocliw.com/2012/11/25/mongoose-add-to-an-existing-array/
+* Some Citations for some of the css:
+* Flexbox: https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+* Fixing form apperance: https://css-tricks.com/almanac/properties/a/appearance/
+* Fixing outline: http://stackoverflow.com/questions/20340138/remove-blue-border-from-css-custom-styled-button-in-chrome
+* Changing Placeholder text properties: https://css-tricks.com/almanac/selectors/p/placeholder/
+* Sorry, Thad has yet to tell me where he got most of the code for "lineTestage.js", once the source has been found, we will implement moving lines dashed lines in the constellation editor.
+
+## Frameworks in use:
+
+Using node.js to run backend
+Using  Express for backend
+Using Passport for authentication
+Using mongoose to connect to a mongoDB database
+Considering using angular for frontend
+Using Jquery for frontend manipulation
+
 ## DEVELOPMENT TASK LIST
- * figure out how authentication will interact with database
- * Decide on and or impliment Handlebars templating or Angular templating
- * Decide on a search algorithm
- * Decide on constellation viewing
- * finish constellation
- * implement parallax scrolling (if using angular)
- * finish pages/templates for stars and constellations
- * html tooltips?
+
+TODO: (CURRENT) call update to update the reference to the bookmark
+TODO: Clean up code and comments
+TODO: Cleanup console.log() statements and add them where appropriate (severside events and errors)
+TODO: make use of middleware (next) and error handling
+TODO: populate mesage area on error
+TODO: (THAD) make the description input element a textbox (Don't worry about this until later)
+TODO: Implement Authentication for all subsequent pages
+TODO: Implement search algorithm
+TODO: create form filter function which prevents XSS
+TODO: filter user input for bad stuff, or really long things for username/title
+TODO: create constellation editor
+TODO: make post request which sends a graph structure
+TODO: MAKE THIS SCHEMA HAVE A GRAPHSTRUCTURE BY REFERING TO THE OBJECT IDS OF starSchema
+TODO: look into the passport secret in the app.js (should it be somethiing else?)
+TODO: create background gradient either with CSS or in the canvas
+TODO: make canvas more interactive
+TODO: Update the Readme
+TODO: handle invalid bookmark AJAX requests, check to make sure that there is actually a star or constellation by that ID
+TODO: handle errors involving saving properly
+TODO: make sure to use handlebars to and routing to make bookmarking a togglable thing
+TODO: implement bookmarking for constellations
+TODO: figure out why the telescope on the nebula editor doesn't WORK
+TODO: implement save functionality for Constellation
+TODO: make search and view work for constellations
+TODO: Fix background image on Mozarella Firefox
