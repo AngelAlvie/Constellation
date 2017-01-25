@@ -205,7 +205,22 @@ router.get('/constellations/:ID', function(req, res, next) {
       res.redirect('back');
       console.log("could not find constellation by ID: " + ID);
     } else {
-      res.render('constellation', {title: 'Constellation - Browsing', Title: constellation.Title , Description: constellation.Description, Url: constellation.Url });
+      res.render('constellation', {title: 'Constellation - Browsing', Title: constellation.Title , Description: constellation.Description });
+    }
+  });
+});
+
+/* Route to respond to AJAX request to retrieve the constellation data including star links and the graph */
+router.get('/constellationData/:ID', function() {
+  var ID = req.params.ID;
+  Constellation.findById(ID, function(err, constellation) {
+    if (err) {
+      console.log('database error finding constellation');
+    }
+    if (!constellation) {
+      console.log("could not find constellation by ID: " + ID);
+    } else {
+      res.send({graph: constellation.Graph, stars: constellation.Stars});
     }
   });
 });
