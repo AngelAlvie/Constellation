@@ -6,6 +6,10 @@ var Constellation = require('../models/constellation.js');
 var passport = require('passport');
 
 // CENTRALIZED TASKLIST
+// IMPORTANT : NEVER EVER have a console.log AFTER a response statement, will mess up the response header
+// IMPORTANT : DON'T EVER ALLOW THE LOGIC TO  MAKE IT POSSIBLE TO SEND TWO responses at the same time
+  // use else if statements
+// TODO fix asychronous function calls
 // TODO: [FIXED] (CURRENT) call update to update the reference to the bookmark
 // TODO: Clean up code and comments
 // TODO: Cleanup console.log() statements and add them where appropriate (severside events and errors)
@@ -64,6 +68,10 @@ var signedInHtml = '<div class="formContainer"><button class="button" onclick="p
 var signedOutHtml ='<div class="formContainer"><button class="button" onclick="signInClicked()">Sign In</button><button class="button" onclick="signUpClicked()">Sign Up</button></div>';
 var testResult = {Title:"Test Result Please Ignore", Description:"Test description please ignore. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", Url:"/star/100"};
 
+// define functons which will be used up here
+
+
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   if (req.isAuthenticated()) {
@@ -79,20 +87,25 @@ router.post('/search/:type', function(req, res, next) {
   if (type === 'star') {
     //this is where you would check the star model in the search algorithm
     Star.find({}, function(err, stars) {
-      allResults = [];
-      for (var i = 0; i < stars.length; i++) {
-        var tmp = {};
-        tmp.Title = stars[i].Title;
-        tmp.Description = stars[i].Description;
-        tmp.Url = '/stars/' + stars[i].id;
-        allResults.push(tmp);
-      }
-      if (req.isAuthenticated()) {
-        res.render('search', {title: 'Constellation - Search', query: req.body.search, extra: signedInHtml, results : allResults});
+      if (err) {
+        console.log("error occured while searching for stars " + err);
+        res.redirect('/');
       } else {
-        res.render('search', { title: 'Constellation - Search', query: req.body.search, extra: signedOutHtml, results : allResults});
+        var allResults = [];
+        for (var i = 0; i < stars.length; i++) {
+          var tmp = {};
+          tmp.Title = stars[i].Title;
+          tmp.Description = stars[i].Description;
+          tmp.Url = '/stars/' + stars[i].id;
+          allResults.push(tmp);
+        }
+        if (req.isAuthenticated()) {
+          res.render('search', {title: 'Constellation - Search', query: req.body.search, extra: signedInHtml, results : allResults});
+        } else {
+          res.render('search', { title: 'Constellation - Search', query: req.body.search, extra: signedOutHtml, results : allResults});
+        }
       }
-      });
+    });
   } else if (type === "constellation"){
       //this is where you would check the constellation model in the search algorithm
       if (req.isAuthenticated()) {
@@ -101,25 +114,29 @@ router.post('/search/:type', function(req, res, next) {
         res.render('search', { title: 'Constellation - Search',query: req.body.search, extra: signedOutHtml, results : []});
       }
   } else if (type === 'stars') {
+    // the search 'stars' post is supposed to send data back as a response to an AJAX request
     //this is where you would check the star model in the search algorithm
+
     Star.find({}, function(err, stars) {
-      allResults = [];
-      for (var i = 0; i < stars.length; i++) {
-        var tmp = {};
-        tmp.Title = stars[i].Title;
-        tmp.Description = stars[i].Description;
-        tmp.Url = '/stars/' + stars[i].id;
-        allResults.push(tmp);
-      }
-      if (req.isAuthenticated()) {
-        res.send(allResults);
+      if (err) {
+        console.log("could not find any stars with the given search parameters");
+        res.send([]);
       } else {
+        var allResults = [];
+        for (var i = 0; i < stars.length; i++) {
+          var tmp = {};
+          tmp.Title = stars[i].Title;
+          tmp.Description = stars[i].Description;
+          tmp.Url = '/stars/' + stars[i].id;
+          allResults.push(tmp);
+        }
         res.send(allResults);
       }
-      });
+    });
   }
 });
 
+// the GET search method should only return a limited selection of pages, because it does not implement a search query
 router.get('/search/:type', function(req, res, next) {
   var type = req.params.type;
   if (type === 'star') {
@@ -148,64 +165,18 @@ router.get('/search/:type', function(req, res, next) {
       }
     }
 });
-/* sign in using passport */
-
-//redirect will use the GET method
-
-router.post('/signIn', passport.authenticate('signin', {
-    successRedirect: '/',
-    failureRedirect: '/signIn',
-}));
-
-/* GET the signin page */
-router.get('/signIn',function(req, res, next) {
-  if (req.isAuthenticated()) {
-    res.redirect('/');
-  } else {
-    res.render('signIn', {title: 'Constellation - Sign Up'});
-  }
-});
-
-/* sign up form */
-router.post('/signUp', passport.authenticate('signup', {
-    successRedirect: '/signUp2',
-    failureRedirect: '/signUp'
-  }));
-/* GET sign up page */
-router.get('/signUp', function(req, res, next) {
-  if (req.isAuthenticated()) {
-    res.redirect('/');
-  } else {
-    res.render('signUp', { title: 'Constellation - Sign Up' });
-  }
-});
-/* GET sign up page 2*/
-router.get('/signUp2', function(req, res, next) {
-  if (req.isAuthenticated()) {
-    res.render('signUp2', { title: 'Constellation - Sign Up' });
-  } else {
-    res.redirect('signUp');
-  }
-});
-
-/* implement sign out*/
-router.get('/signOut', function(req, res) {
-  req.logout();
-  res.redirect('back');
-});
-
 
 //authentication doesn't matter here b/c anyone can view the individual star/ constellation pages
 router.get('/constellations/:ID', function(req, res, next) {
   var ID = req.params.ID;
   Constellation.findById(ID, function(err, constellation) {
     if (err) {
-      res.redirect('back');
       console.log('database error finding constellation');
+      res.redirect('back');
     }
     if (!constellation) {
-      res.redirect('back');
       console.log("could not find constellation by ID: " + ID);
+      res.redirect('back');
     } else {
       res.render('constellation', {title: 'Constellation - Browsing', Title: constellation.Title , Description: constellation.Description });
     }
@@ -231,12 +202,11 @@ router.get('/stars/:ID', function(req, res, next) {
   var ID = req.params.ID;
   Star.findById(ID, function(err, star) {
     if (err) {
-      res.redirect('back');
       console.log('database error finding star');
-    }
-    if (!star) {
       res.redirect('back');
+    } else if (!star) {
       console.log('could not find star by ID: ' + ID);
+      res.redirect('back');
     } else {
       res.render('star', {title: 'Constellation - Browsing', Title: star.Title , Description: star.Description, Url: star.Url });
     }
@@ -292,7 +262,11 @@ router.post('/nebula/:type', function(req, res, next){
       {$push: {StarCreated: newStar.id}},
       {safe: true, upsert: true},
       function(err, model) {
-        console.log(err);
+        if (err) {
+        console.log("Error saving constellation to user " + req.user.Username + "'s list of stars:'" + err);
+      } else {
+        console.log("star saved!");
+      }
       });
       res.redirect('/profile');
 
@@ -348,20 +322,43 @@ router.get('/myConstellations', function(req, res, next){
 });
 
 /* Render the stars a user has created */
-router.get('/myStars', function(req, res, next){
-  if (req.isAuthenticated()) {
-    var created = req.user.StarCreated;
-    var allResults = [];
-    for (var i = 0; i < created.length; i++) {
-      Star.findById(created[i], function(err, star) {
-        var tmp = {};
-        tmp.Title = star.Title;
-        tmp.Description = star.Description;
-        tmp.Url = "/stars/" + star.id;
-        allResults.push(tmp);
+
+
+
+var getUserStars = function(user) {
+  var allResults = [];
+  var test = 1;
+  var created = user.StarCreated;
+  for (var i = 0; i < created.length; i++) {
+    console.log(new Date().getTime());
+    (function(idArray, index) {
+      Star.findById(idArray[index], function(err, star) {
+        if (err) {
+          console.log("there was an error finding the star by the id:" + idArray[index]);
+          return;
+        } else if (! star) {
+          console.log("star by the ID " + idArray[index] +" not found");
+          return;
+        } else {
+          var tmp = {};
+          tmp.Title = star.Title;
+          tmp.Description = star.Description;
+          tmp.Url = "/stars/" + star.id;
+          console.log(tmp);
+          console.log(new Date().getTime());
+          allResults.push(tmp);
+        }
       });
-    }
-    res.render('myStars',{title:'Constellation - Stars', results: allResults});
+    })(created, i);
+  }
+  //console.log(allResults);
+  return allResults;
+};
+
+router.get('/myStars', function(req, res, next) {
+  if (req.isAuthenticated()) {
+    stars = getUserStars(req.user);
+    res.render('myStars',{title:'Constellation - Stars', results: stars});
   } else {
     res.redirect('/');
   }
@@ -372,7 +369,7 @@ router.get('/savedConstellations', function(req, res, next){
   if (req.isAuthenticated()) {
     var bookmarks = req.user.ConstellationFavorites;
     var allResults = [];
-    for (var i = 0; i < created.length; i++) {
+    for (var i = 0; i < bookmarks.length; i++) {
       Star.findById(bookmarks[i], function(err, constellation) {
         var tmp = {};
         tmp.Title = constellation.Title;
@@ -392,7 +389,7 @@ router.get('/savedStars', function(req, res, next){
   if (req.isAuthenticated()) {
     var bookmarks = req.user.StarFavorites;
     var allResults = [];
-    for (var i = 0; i < created.length; i++) {
+    for (var i = 0; i < bookmarks.length; i++) {
       Star.findById(bookmarks[i], function(err, star) {
         var tmp = {};
         tmp.Title = star.Title;
@@ -481,4 +478,53 @@ router.post('/bookmarkConstellation', function(req,res, next) {
   }
 });
 
+
+
+/* AUTHENTICATION USING PASSPORT, ALL THE CODE BELOW SHOULD BE LARGELY UNTOUCHED */
+
+//redirect will use the GET method
+
+router.post('/signIn', passport.authenticate('signin', {
+    successRedirect: '/',
+    failureRedirect: '/signIn',
+}));
+
+/* GET the signin page */
+router.get('/signIn',function(req, res, next) {
+  if (req.isAuthenticated()) {
+    res.redirect('/');
+  } else {
+    res.render('signIn', {title: 'Constellation - Sign Up'});
+  }
+});
+
+/* sign up form */
+router.post('/signUp', passport.authenticate('signup', {
+    successRedirect: '/signUp2',
+    failureRedirect: '/signUp'
+  }));
+/* GET sign up page */
+router.get('/signUp', function(req, res, next) {
+  if (req.isAuthenticated()) {
+    res.redirect('/');
+  } else {
+    res.render('signUp', { title: 'Constellation - Sign Up' });
+  }
+});
+/* GET sign up page 2*/
+router.get('/signUp2', function(req, res, next) {
+  if (req.isAuthenticated()) {
+    res.render('signUp2', { title: 'Constellation - Sign Up' });
+  } else {
+    res.redirect('signUp');
+  }
+});
+
+/* implement sign out*/
+router.get('/signOut', function(req, res) {
+  req.logout();
+  res.redirect('back');
+});
+
+// THIS MUST BE THE LAST LINE IN THIS CODE
 module.exports = router;
