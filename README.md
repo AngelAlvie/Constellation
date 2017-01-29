@@ -57,7 +57,7 @@ Here is a list of steps if you want to use our code to create a local implementa
 * Fixing form apperance: https://css-tricks.com/almanac/properties/a/appearance/
 * Fixing outline: http://stackoverflow.com/questions/20340138/remove-blue-border-from-css-custom-styled-button-in-chrome
 * Changing Placeholder text properties: https://css-tricks.com/almanac/selectors/p/placeholder/
-* Sorry, Thad has yet to tell me where he got most of the code for "lineTestage.js", once the source has been found, we will implement moving lines dashed lines in the constellation editor.
+* Dashed lines system found at http://stackoverflow.com/questions/6012940/html5-animating-a-dashed-line
 
 ## Frameworks in use:
 
