@@ -28,6 +28,7 @@ $(document).ready(function() {
   $(".hidden").css("width",  tmp[0]);
   $(".hidden").css("height", 0);
   $(".hidden").animate({height: tmp[1]}, 600);
+  checkBookmark();
 });
 
 $( window ).resize(function() {
@@ -41,6 +42,28 @@ var back = function() {
   window.location.href = '/search/star';
 };
 
+function checkBookmark() {
+  var currentUrl = window.location.href;
+  console.log(currentUrl);
+  var ID = currentUrl.slice(-24);
+  console.log(ID);
+  $.ajax({
+    method: "POST",
+    url: "/isStarBookmarked",
+    data: { id:  ID},
+    success: function(data) {
+      if (data === "bookmarked") {
+        $("#bookmark").css("background-color", '#78909c');
+      } else {
+        $("#bookmark").css("background-color", '#263238');
+      }
+    },
+    error: function(err) {
+      $("#bookmark").css("background-color", '#263238');
+    }
+  });
+}
+
 var bookmarkStar = function() {
   var currentUrl = window.location.href;
   console.log(currentUrl);
@@ -49,7 +72,15 @@ var bookmarkStar = function() {
   $.ajax({
     method: "POST",
     url: "/bookmarkStar",
-    data: { id:  ID}
+    data: { id:  ID},
+    success: function(data) {
+      console.log("Success! Bookmark saved" + data);
+      checkBookmark();
+    },
+    error: function(err) {
+      console.log("Error on retrieving data from the server: " + err);
+      checkBookmark();
+    }
   });
 };
 
