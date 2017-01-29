@@ -1,12 +1,10 @@
 <div class="hidden">
 <div class="formContainer">
   <button class="leftCircle" id="back" onclick="backClicked()"><img src="../images/Back1.svg" class="leftCircle"></button>
-  <h2 class ="fill">My Stars</h2>
+  {{{top}}}
   <div class="rightCircle profileFill"></div>
 </div>
-<div class="formContainer">
-  <button class="bigAssButton" onClick="nebulaStarClicked()">New Star</button>
-</div>
+{{{extra}}}
 <div class="results">
   {{#each results}}
     <a href={{this.Url}}>
@@ -21,7 +19,6 @@
       <p>Perhaps try a less specific or search for something else.</p>
     </div>
   {{/each}}
-</div>
-</div>
+</div></div>
 <!-- INCLUDE SCRIPTS BELOW  -->
 <script src="../javascripts/profileStuffs.js"></script>
