@@ -233,7 +233,7 @@ margin-top: -7%;
 
 .contentBox {
   width: 99%;
-  height: 100%;
+  height: 80%;
 }
 
 .formContainer {
@@ -350,6 +350,7 @@ margin-top: -7%;
   color: #F5F5F5;
 }
 
+/*
 ::-moz-scrollbars-vertical{
   width: 20px;
 }
@@ -358,3 +359,4 @@ margin-top: -7%;
   background-color: #263238;
   border-radius: 0px 20px 20px 0px;
 }
+*/

@@ -46,7 +46,7 @@ Here is a list of steps if you want to use our code to create a local implementa
   * If you are on mac, simply run `mongod --dbpath PATHTO\data`.
   * If you are on windows run `cd C:\"Program Files"\mongoDB\Server\3.4\bin` then run `mongod --dbpath PATHTO\data`.
  5. If you want the code on this repo is being used for a Microsoft Azure web Server, if you want to run it locally, make sure to change the server port in the bin/www:
-  * change ` if (process.env.NODE_ENV == "production") {server.listen(process.env.PORT);} else {server.listen(80);}` to `server.listen(port);` to run the code locally 
+  * change ` if (process.env.NODE_ENV == "production") {server.listen(process.env.PORT);} else {server.listen(80);}` to `server.listen(port);` to run the code locally
  6. now run `npm start`. connecting to localhost:3000 should now let you view the website
 
 
@@ -97,4 +97,4 @@ TODO: implement bookmarking for constellations
 TODO: figure out why the telescope on the nebula editor doesn't WORK
 TODO: implement save functionality for Constellation
 TODO: make search and view work for constellations
-TODO: Fix background image on Mozarella Firefox
+FIXED: Fix background image on Mozarella Firefox
