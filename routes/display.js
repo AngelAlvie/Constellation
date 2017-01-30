@@ -8,7 +8,9 @@ var myStarExtraHtml = '<div class="formContainer"><button class="bigAssButton" o
 var myConstellationTopHtml = '<h2 class ="fill">My Constellations</h2>';
 var savedConstellationTopHtml = '<h2 class ="fill">Saved Constellations</h2>';
 var myConstellationExtraHtml = '<div class="formContainer"><button class="bigAssButton" onClick="nebulaConstellationClicked()">New Constellation</button></div>';
-
+var starFromProfileHtml = '<button class="leftCircle wide" id="constellation" onclick="back()"><img src="../images/Back1.svg"></button><button class="rightCircle wide" id="bookmark" onclick="bookmarkStar()"><img src="../images/Bookmark.svg"></button>';
+var starHtml = '<button class="fullcircle wide" id="constellation" onclick="back()"><img src="../images/Back1.svg">';
+var starInEditor = '<button class="leftCircle wide" id="constellation" onclick="backToSearch()"><img src="../images/Back1.svg"></button><button class="rightCircle wide" id="bookmark" onclick="addToConstellation()"><img src="../images/plusSign.svg"></button>';;
 /* THIS FUNCTION CREATES BRANCHING LOGIC BY DECIDING WHETEHER OR NOT THE USER IS AUTHENTICATED */
 exports.authenticate = function(req, res, AuthCallback, UnauthCallback, data) {
   if (req.isAuthenticated()) {
@@ -20,7 +22,14 @@ exports.authenticate = function(req, res, AuthCallback, UnauthCallback, data) {
 
 /* EXTRA REQUEST HANDLER WHICH RESPONDS TO AJAX REQUEST AFTER PAGE LOADS */
 exports.sendConstellation = function(req, res, data) {
-    res.send({graph: data.Graph, stars: data.Stars});
+  console.log(data);
+  res.send({graph: data.Graph, stars: data.Stars});
+}
+
+/* EXTERA REQUEST TO SEND STAR DATA TO RENDER IN PLACE OF SEARCH PAGE*/
+exports.sendStar = function(req, res, star) {
+  var starInnerHtml ='<h2 id="title">' + star.Title + '</h2><p>' + star.Description + '</p><iframe src ="'+ star.Url +'" class ="contentBox"></iframe><div class="formContainer">' + starInEditor + '<p id="id" hidden>' + star.id + '</p>' + '</div>';
+  res.send(starInnerHtml);
 }
 
 /* THESE ARE THE ROUTINES WHICH RENDER THE VARIOUS PAGES*/
@@ -39,8 +48,11 @@ exports.SearchUnauth = function(req, res, data) {
 exports.Constellation = function(req, res, constellation) {
   res.render('constellation', {title: 'Constellation - Browsing', Title: constellation.Title , Description: constellation.Description });
 }
-exports.Star = function(req, res, star) {
-  res.render('star', {title: 'Constellation - Browsing', Title: star.Title , Description: star.Description, Url: star.Url });
+exports.StarAuth = function(req, res, star) {
+  res.render('star', {title: 'Constellation - Browsing', Title: star.Title , Description: star.Description, Url: star.Url, Extra: starFromProfileHtml});
+}
+exports.StarUnauth = function(req, res, star) {
+  res.render('star', {title: 'Constellation - Browsing', Title: star.Title , Description: star.Description, Url: star.Url, Extra: starHtml});
 }
 exports.Profile = function(req, res, data) {
   res.render('profile', {title:'Constellation - ' + req.user.Username, username : req.user.Username});

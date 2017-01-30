@@ -40,8 +40,8 @@ function Star(ID, Title) {
 }
 
 function Constellation() {
-  this.stars = [new Star(12124,"Star 1"), new Star(13532,"Star 2"),new Star(12124,"Star 3"), new Star(132431,"Star 4")];
-  this.links = [[],[],[],[]];
+  this.stars = [];
+  this.links = [];
   this.bufferStar = null;
   this.bufferStar2 = null;
   this.addStar = function(ID,Title) {
@@ -51,12 +51,12 @@ function Constellation() {
 
   this.exportStarArray = function() {
     var tmpArray = [];
-    for (star in this.stars) {
+    for (var i = 0; i < this.stars.length; i++) {
       var tmp = {};
-      tmp.Title = star.Title;
-      tmp.x = star.s;
-      tmp.y = star.y;
-      tmp.ID = ID;
+      tmp.Title = this.stars[i].Title;
+      tmp.x = this.stars[i].x;
+      tmp.y = this.stars[i].y;
+      tmp.ID = this.stars[i].ID;
       tmpArray.push(tmp);
     }
     return tmpArray;
@@ -310,11 +310,38 @@ var run = function() {
 
 var runTime = setInterval(run,30);
 
+function renderPage(pageurl) {
+  console.log("Ajax request being patched");
+  $.ajax({
+    url: pageurl,
+    method: "GET",
+    success: function (data) {
+      console.log('changing html');
+      $("#search").html(data);
+    },
+    error: function(err) {
+      console.log(err);
+    }
+  });
+}
+
+function backToSearch() {
+  var innerHTML = '<button class="searchStyle goto-search"  onClick="searchClicked()">Search</button><div class="searchBody"><div class="formContainer"><div class="leftCircle profileFill"><img src="../images/StarNew.svg" class="leftCircle"></div><form method="post"  action="/search" id="search"><input type="text" name="search"/></form><button class="rightCircle" id="telescope" type="submit" form="search"><img src="../images/TelescopeNew.svg" class="rightCircle" ></button></div><div class="results"><div class="searchResult"><h3>Sorry, no results found.</h3><p>Perhaps try a less specific or search for something else.</p></div></div></div><div class="editorStyle"></div>';
+  $("#search").html(innerHTML);
+}
+
+function addToConstellation() {
+  var Title = $('#title').html();
+  var ID = $('#id').html();
+  c.addStar(ID, Title);
+  var innerHTML = '<button class="searchStyle goto-search"  onClick="searchClicked()">Search</button><div class="searchBody"><div class="formContainer"><div class="leftCircle profileFill"><img src="../images/StarNew.svg" class="leftCircle"></div><form method="post"  action="/search" id="search"><input type="text" name="search"/></form><button class="rightCircle" id="telescope" type="submit" form="search"><img src="../images/TelescopeNew.svg" class="rightCircle" ></button></div><div class="results"><div class="searchResult"><h3>Sorry, no results found.</h3><p>Perhaps try a less specific or search for something else.</p></div></div></div><div class="editorStyle"></div>';
+  $("#search").html(innerHTML);
+}
 
 var fromDataHtml = function(data) {
   var htmlString = "";
   for (var i = 0; i < data.length; i++) {
-    htmlString = htmlString + "<a href ="+ data[i].Url+ "><div class = 'searchResult'><h3>" + data[i].Title + "</h3><p>" + data[i].Description + "</p></div></a>";
+    htmlString = htmlString + "<div class = 'searchResult' onclick='renderPage(\"" + data[i].Url + "/send\");'><h3>" + data[i].Title + "</h3><p>" + data[i].Description + "</p></div>";
   }
   return htmlString;
 };
@@ -339,7 +366,10 @@ $("#constellation").on('submit', function(event) {
     url : "/nebula/constellation",
     data : {Graph: c.exportGraphStructure(), Stars: c.exportStarArray(), Title: $("#titleField").val(), Description:$("#descriptionField").val()},
     method: "POST",
-    success : function( data ) {},
+    success : function( data ) {
+      console.log(c.exportStarArray());
+      console.log(c.exportGraphStructure())
+    },
     error : function() {}
   });
 });

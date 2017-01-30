@@ -47,7 +47,12 @@ router.get('/constellationData/:ID', function(req, res, next) {
 
 /* GET METHOD FOR VIEWING STAR PAGES */
 router.get('/stars/:ID', function(req, res, next) {
-  search.retrieveById(req, res, Star, req.params.ID, display.Star);
+  search.starRetrieveById(req, res, Star, req.params.ID);
+});
+
+/* GET METHOD FOR VIEWING STAR PAGES */
+router.get('/stars/:ID/send', function(req, res, next) {
+  search.retrieveById(req, res, Star, req.params.ID, display.sendStar);
 });
 
 /* GET METHOD FOR VIEWING PROFILE PAGES */

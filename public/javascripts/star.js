@@ -1,4 +1,3 @@
-//THIS IS ALSO USED FOR THE CONSTELLATION PAGES
 
 //Page Resizing
 var resize = function() {

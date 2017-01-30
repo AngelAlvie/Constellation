@@ -35,13 +35,17 @@ function requests(req, res, callback, total) {
 }
 
 /* THIS FUNCTION COMPILES THE RESULTS INTO SOMETHING WHICH CAN BE PARSED BY HANDLEBARS */
-function compileResults(req, res, results, method) {
+function compileResults(req, res, results, method, collection) {
   var allResults = [];
   for (var i = 0; i < results.length; i++) {
     var tmp = {};
     tmp.Title = results[i].Title;
     tmp.Description = results[i].Description;
-    tmp.Url = '/stars/' + results[i].id;
+    if (collection === Star) {
+      tmp.Url = '/stars/' + results[i].id;
+    } else if (collection === Constellation) {
+      tmp.Url = '/constellations/' + results[i].id;
+    }
     allResults.push(tmp);
   }
   if (method === 'render') {
@@ -58,32 +62,47 @@ exports.findAllByParameters = function(req, res, collection, query, method) {
       console.log("error occured while searching for stars " + err);
       res.redirect('/');
     } else {
-      compileResults(req, res, results, method);
+      compileResults(req, res, results, method, collection);
     }
   });
 }
 
 /* GIVEN A COLLECTION AND AN ID, THIS METHOD WILL FIND ANY DOCUMENTS MATCHING THE ID AND PASS THAT DATA TO THE GIVEN CALLBACK */
+exports.starRetrieveById = function(req, res, collection, id) {
+  collection.findById(id, function(err, result) {
+    if (err) {
+      console.log('database error finding by ID ' + err);
+      res.redirect('back');
+    } else if (!result) {
+      console.log("could not find by ID: " + id);
+      res.redirect('back');
+    } else {
+      display.authenticate(req, res, display.StarAuth, display.StarUnauth, result);
+    }
+  });
+}
 exports.retrieveById = function(req, res, collection, id, callback) {
   collection.findById(id, function(err, result) {
     if (err) {
       console.log('database error finding by ID ' + err);
       res.redirect('back');
     } else if (!result) {
-      console.log("could not find by ID: " + ID);
+      console.log("could not find by ID: " + id);
       res.redirect('back');
     } else {
       callback(req, res, result);
+
     }
   });
 }
+
 
 exports.saveStar = function(req, res, data) {
   var newStar = new Star();
   newStar.Title = req.body.Title;
   newStar.Description = req.body.Description;
   newStar.Url = req.body.Url;
-  newStar.bookmarks = 0;
+  newStar.Bookmarks = 0;
   newStar.save(function(err) {
     if (err) {
       console.log('error saving star');
@@ -101,6 +120,10 @@ exports.saveConstellation = function(req, res, data) {
   newConstellation.Description = req.body.Description;
   newConstellation.Bookmarks = 0;
   newConstellation.Stars = req.body.Stars;
+  console.log("Current req.body.Stars" );
+  console.log(req.body.Stars);
+  console.log("Current new constellation Stars");
+  console.log(req.body.Stars);
   newConstellation.Graph = req.body.Graph;
   newConstellation.save(function(err) {
   if (err) {
@@ -108,6 +131,7 @@ exports.saveConstellation = function(req, res, data) {
     throw err;
   } else {
     console.log('New constellation created');
+    console.log(" New constellation that was saved:" + newConstellation);
     saveToUser(req, res, {ConstellationCreated: newConstellation.id});
   }
   });
