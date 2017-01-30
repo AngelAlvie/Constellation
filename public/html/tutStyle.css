@@ -1,0 +1,39 @@
+/*Here are some theme colors:
+* Writing: #F5F5F5 (White)
+* Background: #263238 (midnight blue)
+*Currently experimenting with different fonts
+*Importing Fonts from Google Fonts.
+  * Fancy Title Font: Dosis
+  * Readable Font: Roboto]
+*Current feature size: 40px
+*/
+@import url('https://fonts.googleapis.com/css?family=Dosis');
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+/* Default styling for specific html elements*/
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  color:#F5F5F5;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #263238;
+}
+
+p{
+  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-size: 18pt;
+  text-align: center;
+  margin: 10px;
+}
+
+h1 {
+  font-size: 36pt;
+  text-align: center;
+  font-family: "Dosis", Helvetica, Arial, sans-serif;
+  margin: 10px;
+}
