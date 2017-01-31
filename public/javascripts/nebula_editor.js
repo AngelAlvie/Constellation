@@ -381,6 +381,40 @@ $(document).ready(function() {
       c.draggedHandler(event)
     }
   });
+
+  $(".searchBody").on('submit', "#searchField", function(event) {
+    event.preventDefault();
+    $.ajax({
+      url : "/search/stars",
+      data : {search: $("#searchInput").val()},
+      method: "POST",
+      success : function( data ) {
+        inner = fromDataHtml(data);
+        $(".results").html(inner);
+      },
+      error : function() {}
+    });
+  });
+  }
+
+
+  $("#constellation").on('submit', function(event) {
+    event.preventDefault();
+    $.ajax({
+      url : "/nebula/constellation",
+      data : {Graph: c.exportGraphStructure(), Stars: c.exportStarArray(), Title: $("#titleField").val(), Description:$("#descriptionField").val()},
+      method: "POST",
+      success : function( data ) {
+        console.log(c.exportStarArray());
+        console.log(c.exportGraphStructure());
+        window.location.href = '/myConstellations';
+      },
+      error : function() {
+        console.log('there was an error');
+      }
+    });
+  });
+
 });
 /* run each time window resized*/
 
@@ -427,58 +461,10 @@ function addToConstellation() {
   bind();
 }
 
-var fromDataHtml = function(data) {
+function fromDataHtml(data) {
   var htmlString = "";
   for (var i = 0; i < data.length; i++) {
     htmlString = htmlString + "<div class = 'searchResult' onclick='renderPage(\"" + data[i].Url + "/send\");'><h3>" + data[i].Title + "</h3><p>" + data[i].Description + "</p></div>";
   }
   return htmlString;
 };
-
-function bind() {
-$('#telescope').on('click', function(event) {
-  $.ajax({
-    url : "/search/stars",
-    data : $("input").val(),
-    method: "POST",
-    success : function( data ) {
-      inner = fromDataHtml(data);
-      $(".results").html(inner);
-    },
-    error : function() {}
-  });
-});
-
-$("#searchField").on('submit', function(event) {
-  event.preventDefault();
-  $.ajax({
-    url : "/search/stars",
-    data : {search: $("#searchInput").val()},
-    method: "POST",
-    success : function( data ) {
-      inner = fromDataHtml(data);
-      $(".results").html(inner);
-    },
-    error : function() {}
-  });
-});
-}
-
-bind();
-
-$("#constellation").on('submit', function(event) {
-  event.preventDefault();
-  $.ajax({
-    url : "/nebula/constellation",
-    data : {Graph: c.exportGraphStructure(), Stars: c.exportStarArray(), Title: $("#titleField").val(), Description:$("#descriptionField").val()},
-    method: "POST",
-    success : function( data ) {
-      console.log(c.exportStarArray());
-      console.log(c.exportGraphStructure());
-      window.location.href = '/myConstellations';
-    },
-    error : function() {
-      console.log('there was an error');
-    }
-  });
-});
