@@ -41,7 +41,7 @@ var back = function() {window.location.href = window.history.back(1);
 }
 
 var yesPlease = function() {
-  window.location.assign('/constellation');
+  window.location.assign('/constellations/589094e76ae775647cbaba44');
 }
 
 var noThanks = function() {
