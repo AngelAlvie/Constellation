@@ -413,7 +413,7 @@ function renderPage(pageurl) {
 }
 
 function backToSearch() {
-  var tmp =  '<button class="searchStyle goto-search"  onClick="searchClicked()">Add stars to your constellation</button><div class="searchBody"><div class="formContainer"><div class="leftCircle profileFill"><img src="../images/StarNew.svg" class="leftCircle"></div><form method="post"  action="/search" id="search"><input type="text" name="search" /></form><button class="rightCircle" id="telescope" type="submit" form="search"><img src="../images/TelescopeNew.svg" class="rightCircle" ></button></div><div class="results">' + inner + '</div></div><div class="editorStyle"></div>';
+  var tmp =  '<button class="searchStyle goto-search"  onClick="searchClicked()">Add stars to your constellation</button><div class="searchBody"><div class="formContainer"><div class="leftCircle profileFill"><img src="../images/StarNew.svg" class="leftCircle"></div><form method="post"  action="/search/stars" id="search"><input type="text" name="search" /></form><button class="rightCircle" id="telescope" type="submit" form="search"><img src="../images/TelescopeNew.svg" class="rightCircle" ></button></div><div class="results">' + inner + '</div></div><div class="editorStyle"></div>';
   $("#search").html(tmp);
   bind();
 }
@@ -422,7 +422,7 @@ function addToConstellation() {
   var Title = $('#title').html();
   var ID = $('#id').html();
   c.addStar(ID, Title);
-  var tmp =  '<button class="searchStyle goto-search"  onClick="searchClicked()">Add stars to your constellation</button><div class="searchBody"><div class="formContainer"><div class="leftCircle profileFill"><img src="../images/StarNew.svg" class="leftCircle"></div><form method="post"  action="/search" id="search"><input type="text" name="search" /></form><button class="rightCircle" id="telescope" type="submit" form="search"><img src="../images/TelescopeNew.svg" class="rightCircle" ></button></div><div class="results">' + inner + '</div></div><div class="editorStyle"></div>';
+  var tmp =  '<button class="searchStyle goto-search"  onClick="searchClicked()">Add stars to your constellation</button><div class="searchBody"><div class="formContainer"><div class="leftCircle profileFill"><img src="../images/StarNew.svg" class="leftCircle"></div><form method="post"  action="/search/stars" id="search"><input type="text" name="search" /></form><button class="rightCircle" id="telescope" type="submit" form="search"><img src="../images/TelescopeNew.svg" class="rightCircle" ></button></div><div class="results">' + inner + '</div></div><div class="editorStyle"></div>';
   $("#search").html(tmp);
   bind();
 }
@@ -435,6 +435,7 @@ var fromDataHtml = function(data) {
   return htmlString;
 };
 
+function bind() {
 $('#telescope').on('click', function(event) {
   $.ajax({
     url : "/search/stars",
@@ -447,12 +448,12 @@ $('#telescope').on('click', function(event) {
     error : function() {}
   });
 });
-function bind() {
-$("#search").on('submit', function(event) {
+
+$("#searchField").on('submit', function(event) {
   event.preventDefault();
   $.ajax({
     url : "/search/stars",
-    data : $("input").val(),
+    data : {search: $("#searchInput").val()},
     method: "POST",
     success : function( data ) {
       inner = fromDataHtml(data);

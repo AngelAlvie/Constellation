@@ -65,6 +65,45 @@ var telescopeClicked= function() {
   $( "form" ).submit();
 };
 
+
+var fromDataHtml = function(data) {
+  var htmlString = "";
+  for (var i = 0; i < data.length; i++) {
+    htmlString = htmlString + "<div class = 'searchResult' onclick='renderPage(\"" + data[i].Url + "/send\");'><h3>" + data[i].Title + "</h3><p>" + data[i].Description + "</p></div>";
+  }
+  if (htmlString === '' ) {
+    htmlString = '<div class="searchResult"><h3>Sorry, no results found.</h3><p>Perhaps try a less specific or search for something else.</p></div>';
+  }
+  return htmlString;
+};
+
+$("#search").on('submit', function(event) {
+  event.preventDefault();
+  if (starIsClicked){
+    $.ajax({
+      url : "/search/stars",
+      data : {search: $("input").val()},
+      method: "POST",
+      success : function( data ) {
+        inner = fromDataHtml(data);
+        $(".results").html(inner);
+      },
+      error : function() {}
+    });
+  } else {
+    $.ajax({
+      url : "/search/constellations",
+      data : {search: $("input").val()},
+      method: "POST",
+      success : function( data ) {
+        inner = fromDataHtml(data);
+        $(".results").html(inner);
+      },
+      error : function() {}
+    });
+  }
+});
+
 var constellationClicked = function() {
   if (starIsClicked) {
     starIsClicked = false;

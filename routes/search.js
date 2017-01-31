@@ -40,6 +40,7 @@ function requests(req, res, callback, total) {
 function compileResults(req, res, results, method, query, collection) {
   if (query === undefined) {
     query = " ";
+    console.log("Undefined parameters");
   }
   var queryArray = query.split(" ");
   var allResults = [];
@@ -59,6 +60,7 @@ function compileResults(req, res, results, method, query, collection) {
         }
       }
     }
+    console.log(allResults);
   if (method === 'render') {
     display.authenticate(req, res, display.SearchAuth, display.SearchUnauth, allResults);
   } else if (method === 'send') {
@@ -73,7 +75,6 @@ exports.findAllByParameters = function(req, res, collection, query, method) {
       console.log("error occured while searching for stars " + err);
       res.redirect('/');
     } else {
-      console.log(output);
       compileResults(req, res, output, method, query, collection);
     }
   });
