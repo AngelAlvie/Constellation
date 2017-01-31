@@ -35,7 +35,7 @@ for (var i = 0; i < stars.length; i++) {
   stars[i].render(ctx);
 }
 
-var findRadius = 2500;
+var findRadius = 3000;
 var pushRight = screenWidth * .85;
 var pushLeft = screenWidth * .15;
 var pushTop = screenHeight * .15;
@@ -44,7 +44,7 @@ var pushBot = screenHeight * .40;
 for (var j = 0; j < stars.length; j++){
   for (var k = 0; k < stars.length; k++){
     if((stars[j].x - stars[k].x)*(stars[j].x - stars[k].x)+(stars[j].y - stars[k].y)*(stars[j].y - stars[k].y)<findRadius &&
-    stars[j].z> 1 && stars[k].z > 1 &&
+    stars[j].z> .9 && stars[k].z > .9 &&
     !(pushRight > stars[j].x && pushLeft < stars[j].x && pushTop < stars[j].y && pushBot > stars[j].y) &&
     !(pushRight > stars[k].x && pushLeft < stars[k].x && pushTop < stars[k].y && pushBot > stars[k].y)){
       ctx.strokeStyle="#F5F5F5";
