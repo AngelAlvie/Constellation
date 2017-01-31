@@ -10,6 +10,8 @@
     <a href={{this.Url}}>
       <div class="searchResult">
           <h3>{{this.Title}}</h3>
+          {{{edit}}}
+          <button class="fullcircle bump" onclick="editClicked()"><img src="../images/editIcon.svg"></button>
           <button class="fullcircle bump" onclick="canClicked()"><img src="../images/canClosed.svg"></button>
         <p>{{this.Description}}</p>
 
