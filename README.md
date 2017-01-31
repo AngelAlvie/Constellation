@@ -53,16 +53,14 @@ Here is a list of steps if you want to use our code to create a local implementa
 ## Sources for various snippets of code
 
 * configure passport taken from https://code.tutsplus.com/tutorials/authenticating-nodejs-applications-with-passport--cms-21619
-* this was also taken from https://code.tutsplus.com/tutorials/authenticating-nodejs-applications-with-passport--cms-21619
 * using update routing found in http://blog.ocliw.com/2012/11/25/mongoose-add-to-an-existing-array/
-* Some Citations for some of the css:
-* Flexbox: https://css-tricks.com/snippets/css/a-guide-to-flexbox/
-* Fixing form apperance: https://css-tricks.com/almanac/properties/a/appearance/
 * Fixing outline: http://stackoverflow.com/questions/20340138/remove-blue-border-from-css-custom-styled-button-in-chrome
 * Changing Placeholder text properties: https://css-tricks.com/almanac/selectors/p/placeholder/
 * Dashed lines system found at http://stackoverflow.com/questions/6012940/html5-animating-a-dashed-line
 * Recursive array cloning technique found here: http://stackoverflow.com/questions/2294703/multidimensional-array-cloning-using-javascript
-
+* Some Citations for some of the css:
+* Flexbox: https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+* Fixing form apperance: https://css-tricks.com/almanac/properties/a/appearance/
 
 ## Frameworks in use:
 
@@ -82,7 +80,6 @@ TODO: populate mesage area on error
 TODO: create form filter function which prevents XSS
 TODO: filter user input for bad stuff, or really long things for username/title
 TODO: look into the passport secret in the app.js (should it be something else?)
-TODO: [THAD] make canvas more interactive
 TODO: [LOW] handle invalid bookmark AJAX requests, check to make sure that there is actually a star or constellation by that ID
 TODO: [LOW] handle errors involving saving properly
 TODO: (Maybe Thad??) figure out why the telescope on the nebula editor doesn't WORK

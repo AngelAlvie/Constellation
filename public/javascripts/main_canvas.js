@@ -35,7 +35,7 @@ for (var i = 0; i < stars.length; i++) {
   stars[i].render(ctx);
 }
 
-var findRadius = 3000;
+var findRadius = 2700;
 var pushRight = screenWidth * .85;
 var pushLeft = screenWidth * .15;
 var pushTop = screenHeight * .10;
