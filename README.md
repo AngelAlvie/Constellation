@@ -82,5 +82,4 @@ TODO: filter user input for bad stuff, or really long things for username/title
 TODO: look into the passport secret in the app.js (should it be something else?)
 TODO: [LOW] handle invalid bookmark AJAX requests, check to make sure that there is actually a star or constellation by that ID
 TODO: [LOW] handle errors involving saving properly
-TODO: (Maybe Thad??) figure out why the telescope on the nebula editor doesn't WORK
 TODO: Make sure that constellations and stars actually have things.
