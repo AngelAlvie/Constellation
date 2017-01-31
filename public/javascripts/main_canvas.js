@@ -38,7 +38,7 @@ for (var i = 0; i < stars.length; i++) {
 var findRadius = 3000;
 var pushRight = screenWidth * .85;
 var pushLeft = screenWidth * .15;
-var pushTop = screenHeight * .15;
+var pushTop = screenHeight * .10;
 var pushBot = screenHeight * .40;
 
 for (var j = 0; j < stars.length; j++){
