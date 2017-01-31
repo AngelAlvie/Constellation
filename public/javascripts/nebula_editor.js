@@ -381,7 +381,27 @@ $(document).ready(function() {
       c.draggedHandler(event)
     }
   });
+
 });
+
+
+  $("#constellation").on('submit', function(event) {
+    event.preventDefault();
+    $.ajax({
+      url : "/nebula/constellation",
+      data : {Graph: c.exportGraphStructure(), Stars: c.exportStarArray(), Title: $("#titleField").val(), Description:$("#descriptionField").val()},
+      method: "POST",
+      success : function( data ) {
+        console.log(c.exportStarArray());
+        console.log(c.exportGraphStructure());
+        window.location.href = '/myConstellations';
+      },
+      error : function() {
+        console.log('there was an error');
+      }
+    });
+  });
+
 /* run each time window resized*/
 
 $( window ).resize(function() {
@@ -404,7 +424,7 @@ function renderPage(pageurl) {
     method: "GET",
     success: function (data) {
       console.log('changing html');
-      $("#search").html(data);
+      $(".searchBody").html(data);
     },
     error: function(err) {
       console.log(err);
@@ -413,43 +433,13 @@ function renderPage(pageurl) {
 }
 
 function backToSearch() {
-  var tmp =  '<button class="searchStyle goto-search"  onClick="searchClicked()">Add stars to your constellation</button><div class="searchBody"><div class="formContainer"><div class="leftCircle profileFill"><img src="../images/StarNew.svg" class="leftCircle"></div><form method="post"  action="/search/stars" id="search"><input type="text" name="search" /></form><button class="rightCircle" id="telescope" type="submit" form="search"><img src="../images/TelescopeNew.svg" class="rightCircle" ></button></div><div class="results">' + inner + '</div></div><div class="editorStyle"></div>';
-  $("#search").html(tmp);
-  bind();
+  var tmp =  '<div class="formContainer"><div class="leftCircle profileFill"><img src="../images/StarNew.svg" class="leftCircle"></div><form method="post"  onsubmit="submitHandle(event);" id="search"><input type="text" id= "searchText" name="search" /></form><button class="rightCircle" id="telescope" type="submit" form="search"><img src="../images/TelescopeNew.svg" class="rightCircle" ></button></div><div class="results">' + inner + '</div></div><div class="editorStyle">';
+  $(".searchBody").html(tmp);
 }
-
-function addToConstellation() {
-  var Title = $('#title').html();
-  var ID = $('#id').html();
-  c.addStar(ID, Title);
-  var tmp =  '<button class="searchStyle goto-search"  onClick="searchClicked()">Add stars to your constellation</button><div class="searchBody"><div class="formContainer"><div class="leftCircle profileFill"><img src="../images/StarNew.svg" class="leftCircle"></div><form method="post"  action="/search/stars" id="search"><input type="text" name="search" /></form><button class="rightCircle" id="telescope" type="submit" form="search"><img src="../images/TelescopeNew.svg" class="rightCircle" ></button></div><div class="results">' + inner + '</div></div><div class="editorStyle"></div>';
-  $("#search").html(tmp);
-  bind();
-}
-
-var fromDataHtml = function(data) {
-  var htmlString = "";
-  for (var i = 0; i < data.length; i++) {
-    htmlString = htmlString + "<div class = 'searchResult' onclick='renderPage(\"" + data[i].Url + "/send\");'><h3>" + data[i].Title + "</h3><p>" + data[i].Description + "</p></div>";
-  }
-  return htmlString;
-};
-
-function bind() {
-$('#telescope').on('click', function(event) {
-  $.ajax({
-    url : "/search/stars",
-    data : $("input").val(),
-    method: "POST",
-    success : function( data ) {
-      inner = fromDataHtml(data);
-      $(".results").html(inner);
-    },
-    error : function() {}
-  });
-});
 
 $("#searchField").on('submit', function(event) {
+  console.log('running');
+  console.log($("#searchInput").val());
   event.preventDefault();
   $.ajax({
     url : "/search/stars",
@@ -462,23 +452,36 @@ $("#searchField").on('submit', function(event) {
     error : function() {}
   });
 });
-}
 
-bind();
-
-$("#constellation").on('submit', function(event) {
+function submitHandle(event) {
+  console.log("running");
+  console.log(document.getElementById('searchText').value);
   event.preventDefault();
   $.ajax({
-    url : "/nebula/constellation",
-    data : {Graph: c.exportGraphStructure(), Stars: c.exportStarArray(), Title: $("#titleField").val(), Description:$("#descriptionField").val()},
+    url : "/search/stars",
+    data : {search: document.getElementById('searchText').value},
     method: "POST",
     success : function( data ) {
-      console.log(c.exportStarArray());
-      console.log(c.exportGraphStructure());
-      window.location.href = '/myConstellations';
+      inner = fromDataHtml(data);
+      $(".results").html(inner);
     },
-    error : function() {
-      console.log('there was an error');
-    }
+    error : function() {}
   });
-});
+}
+
+function addToConstellation() {
+  var Title = $('#title').html();
+  var ID = $('#id').html();
+  c.addStar(ID, Title);
+  var tmp =  '<div class="formContainer"><div class="leftCircle profileFill"><img src="../images/StarNew.svg" class="leftCircle"></div><form method="post"  onsubmit="submitHandle(event);"  id="search"><input type="text" id= "searchText" name="search" /></form><button class="rightCircle" id="telescope" type="submit" form="search"><img src="../images/TelescopeNew.svg" class="rightCircle" ></button></div><div class="results">' + inner + '</div></div><div class="editorStyle">';
+  $(".searchBody").html(tmp);
+
+}
+
+function fromDataHtml(data) {
+  var htmlString = "";
+  for (var i = 0; i < data.length; i++) {
+    htmlString = htmlString + "<div class = 'searchResult' onclick='renderPage(\"" + data[i].Url + "/send\");'><h3>" + data[i].Title + "</h3><p>" + data[i].Description + "</p></div>";
+  }
+  return htmlString;
+};

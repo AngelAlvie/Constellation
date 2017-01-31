@@ -243,13 +243,10 @@ function Constellation() {
   };
 
   this.clickHandler = function(event) {
-    switch (event.which) {
-      case 1:
-        var currentStar = this.findFirstStars();
-        if (currentStar !== null) {
-          
-        }
-        break;
+    var currentStar = this.findFirstStars();
+    if (currentStar) {
+      var toUrl = "/stars/" + currentStar.ID;
+      window.location.href = toUrl;
     }
   };
 
@@ -337,11 +334,6 @@ $(document).ready(function() {
     if (Math.abs(prevMouseX - mouseX) > mouseDragRadius || Math.abs(prevMouseY - mouseY) > mouseDragRadius) {
       var wasDragging = isDragging;
       isDragging = true;
-      if (!wasDragging) {
-        c.beginDragHandler(event);
-      } else {
-        c.draggingHandler(event);
-      }
     }
  })
  .mouseup(function(event) {
@@ -349,8 +341,6 @@ $(document).ready(function() {
     isDragging = false;
     if (!wasDragging) {
        c.clickHandler(event);
-    } else {
-      c.draggedHandler(event)
     }
   });
 });

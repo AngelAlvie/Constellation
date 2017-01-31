@@ -38,8 +38,7 @@ $( window ).resize(function() {
 
 /* Button Handlers */
 
-var backClicked = function() {
-  window.location.assign('/profile');
+var backClicked = function() {window.location.href = window.history.back(1);
 };
 
 var nebulaStarClicked = function() {

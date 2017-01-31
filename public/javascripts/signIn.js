@@ -36,6 +36,5 @@ $( window ).resize(function() {
 
 /* Button Handlers */
 
-var back = function() {
-  window.location.href = '/';
+var back = function() {window.location.href = window.history.back(1);
 }
