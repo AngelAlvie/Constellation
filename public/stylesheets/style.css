@@ -114,8 +114,6 @@ button:hover {
   flex-direction: column;
 }
 
-
-
 #Title {
 width: 70%;
 height: 16%;
@@ -125,6 +123,10 @@ margin-top: -7%;
 }
 
 /* Styling for classes*/
+.bump{
+  float: right;
+  margin-top: 20px;
+}
 
 .profileFill{
   background-color: #263238;
@@ -265,6 +267,10 @@ margin-top: -7%;
 .searchResult {
   width: 90%;
   margin: 5%;
+}
+
+.searchResult > h3{
+  display: inline-block;
 }
 
 .hidden {
