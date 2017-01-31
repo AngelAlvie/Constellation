@@ -145,9 +145,11 @@ margin-top: -7%;
   -moz-appearance:    none;
   appearance:         none;
   margin:0px;
-  padding-left: 10px;
-  border-radius: 0px;
+  padding-top: 20px;
+  padding-left: 20px;
+  border-radius: 20px;
 
+  resize: none;
 }
 
 .bump{
