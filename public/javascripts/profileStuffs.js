@@ -26,7 +26,7 @@ $(document).ready(function() {
   $(".hidden").css("width",  tmp[0]);
   $(".hidden").css("height", 0);
   $(".hidden").animate({height: tmp[1]}, 600);
-  
+
 });
 
 $( window ).resize(function() {
@@ -48,4 +48,8 @@ var nebulaStarClicked = function() {
 
 var nebulaConstellationClicked = function(){
   window.location.assign('/nebula/constellation');
+};
+
+var canClicked = function() {
+
 };

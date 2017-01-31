@@ -11,7 +11,7 @@ var myConstellationExtraHtml = '<div class="formContainer"><button class="bigAss
 var starFromProfileHtml = '<button class="leftCircle wide" id="constellation" onclick="back()"><img src="../images/Back1.svg"></button><button class="rightCircle wide" id="bookmark" onclick="bookmarkStar()"><img src="../images/Bookmark.svg"></button>';
 var starHtml = '<button class="fullcircle wide" id="constellation" onclick="back()"><img src="../images/Back1.svg">';
 var starInEditor = '<button class="leftCircle wide" id="constellation" onclick="backToSearch()"><img src="../images/Back1.svg"></button><button class="rightCircle wide" id="bookmark" onclick="addToConstellation()"><img src="../images/plusSign.svg"></button>';;
-var bookmarkImage = '<img src="../images/Bookmark.svg">';
+
 
 
 /* THIS FUNCTION CREATES BRANCHING LOGIC BY DECIDING WHETEHER OR NOT THE USER IS AUTHENTICATED */
@@ -70,16 +70,16 @@ exports.back = function(req, res, data) {
   res.redirect('/');
 }
 exports.MyStars = function(req, res, data) {
-  res.render('userStuff', {title:'Constellation - My Stars', top: myStarTopHtml, extra: myStarExtraHtml, results: data, image: bookmarkImage});
+  res.render('userStuff', {title:'Constellation - My Stars', top: myStarTopHtml, extra: myStarExtraHtml, results: data});
 }
 exports.MyConstellations = function(req, res, data) {
-  res.render('userStuff', {title:'Constellation - My Constellations', top: myConstellationTopHtml, extra: myConstellationExtraHtml, results: data, image: bookmarkImage});
+  res.render('userStuff', {title:'Constellation - My Constellations', top: myConstellationTopHtml, extra: myConstellationExtraHtml, results: data});
 }
 exports.SavedStars = function(req, res, data) {
-  res.render('userStuff', {title:'Constellation - Saved Stars', top: savedStarTopHtml, results: data, image: bookmarkImage});
+  res.render('userStuff', {title:'Constellation - Saved Stars', top: savedStarTopHtml, results: data});
 }
 exports.SavedConstellations = function(req, res, data) {
-  res.render('userStuff', {title:'Constellation - Saved Constellations', top: savedConstellationTopHtml, results: data, image: bookmarkImage});
+  res.render('userStuff', {title:'Constellation - Saved Constellations', top: savedConstellationTopHtml, results: data});
 }
 exports.signIn = function(req, res, data) {
   res.render('signIn', {title: 'Constellation - Sign Up'});
