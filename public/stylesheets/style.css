@@ -108,6 +108,12 @@ button:hover {
     left: 0px;
 }
 
+#star {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
 #verticalForm {
   display: flex;
   align-items: center;
