@@ -26,7 +26,6 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(#000, #263238);
 }
 
 a {
@@ -50,6 +49,7 @@ canvas {
   height: 100%;
   top: 0px;
   left: 0px;
+  background: linear-gradient(#000, #263238);
 }
 
 input {
@@ -117,7 +117,7 @@ button:hover {
 #Title {
 width: 70%;
 height: 16%;
-z-index: -2;
+z-index: -1;
 margin-bottom: 7;
 margin-top: -7%;
 }
