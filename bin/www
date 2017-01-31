@@ -30,14 +30,14 @@ var server = http.createServer(app);
 
 // change this code to run locally, before commiting, please change back:
 
-server.listen(port);
-/*
+//server.listen(port);
+
 if (process.env.NODE_ENV == "production") {
   server.listen(process.env.PORT);
 } else {
   server.listen(80);
 }
-*/
+
 
 server.on('error', onError);
 server.on('listening', onListening);
