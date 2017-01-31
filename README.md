@@ -99,3 +99,4 @@ TODO: implement bookmarking for constellations
 TODO: figure out why the telescope on the nebula editor doesn't WORK
 TODO: implement save functionality for Constellation
 TODO: make search and view work for constellations
+FIXED: Fix background image on Mozarella Firefox
