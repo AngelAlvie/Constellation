@@ -415,6 +415,7 @@ function renderPage(pageurl) {
 function backToSearch() {
   var tmp =  '<button class="searchStyle goto-search"  onClick="searchClicked()">Add stars to your constellation</button><div class="searchBody"><div class="formContainer"><div class="leftCircle profileFill"><img src="../images/StarNew.svg" class="leftCircle"></div><form method="post"  action="/search" id="search"><input type="text" name="search" /></form><button class="rightCircle" id="telescope" type="submit" form="search"><img src="../images/TelescopeNew.svg" class="rightCircle" ></button></div><div class="results">' + inner + '</div></div><div class="editorStyle"></div>';
   $("#search").html(tmp);
+  bind();
 }
 
 function addToConstellation() {
@@ -423,6 +424,7 @@ function addToConstellation() {
   c.addStar(ID, Title);
   var tmp =  '<button class="searchStyle goto-search"  onClick="searchClicked()">Add stars to your constellation</button><div class="searchBody"><div class="formContainer"><div class="leftCircle profileFill"><img src="../images/StarNew.svg" class="leftCircle"></div><form method="post"  action="/search" id="search"><input type="text" name="search" /></form><button class="rightCircle" id="telescope" type="submit" form="search"><img src="../images/TelescopeNew.svg" class="rightCircle" ></button></div><div class="results">' + inner + '</div></div><div class="editorStyle"></div>';
   $("#search").html(tmp);
+  bind();
 }
 
 var fromDataHtml = function(data) {
@@ -433,6 +435,19 @@ var fromDataHtml = function(data) {
   return htmlString;
 };
 
+$('#telescope').on('click', function(event) {
+  $.ajax({
+    url : "/search/stars",
+    data : $("input").val(),
+    method: "POST",
+    success : function( data ) {
+      inner = fromDataHtml(data);
+      $(".results").html(inner);
+    },
+    error : function() {}
+  });
+});
+function bind() {
 $("#search").on('submit', function(event) {
   event.preventDefault();
   $.ajax({
@@ -446,6 +461,9 @@ $("#search").on('submit', function(event) {
     error : function() {}
   });
 });
+}
+
+bind();
 
 $("#constellation").on('submit', function(event) {
   event.preventDefault();
