@@ -11,6 +11,9 @@ var myConstellationExtraHtml = '<div class="formContainer"><button class="bigAss
 var starFromProfileHtml = '<button class="leftCircle wide" id="constellation" onclick="back()"><img src="../images/Back1.svg"></button><button class="rightCircle wide" id="bookmark" onclick="bookmarkStar()"><img src="../images/Bookmark.svg"></button>';
 var starHtml = '<button class="fullcircle wide" id="constellation" onclick="back()"><img src="../images/Back1.svg">';
 var starInEditor = '<button class="leftCircle wide" id="constellation" onclick="backToSearch()"><img src="../images/Back1.svg"></button><button class="rightCircle wide" id="bookmark" onclick="addToConstellation()"><img src="../images/plusSign.svg"></button>';;
+
+
+
 /* THIS FUNCTION CREATES BRANCHING LOGIC BY DECIDING WHETEHER OR NOT THE USER IS AUTHENTICATED */
 exports.authenticate = function(req, res, AuthCallback, UnauthCallback, data) {
   if (req.isAuthenticated()) {

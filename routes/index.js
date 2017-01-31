@@ -144,7 +144,7 @@ router.get('/signUp', function(req, res, next) {
 
 /* GET REQUEST TO RETRIEVE */
 router.get('/signUp2', function(req, res, next) {
-  display.authenticate(req, res, display.back, display.signUp2);
+  display.authenticate(req, res, display.signUp2, display.back);
 });
 
 /* GET SIGN OUT REQUEST */

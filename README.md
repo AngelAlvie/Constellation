@@ -88,7 +88,7 @@ TODO: filter user input for bad stuff, or really long things for username/title
 TODO: create constellation editor
 TODO: make post request which sends a graph structure
 TODO: MAKE THIS SCHEMA HAVE A GRAPHSTRUCTURE BY REFERING TO THE OBJECT IDS OF starSchema
-TODO: look into the passport secret in the app.js (should it be somethiing else?)
+TODO: look into the passport secret in the app.js (should it be something else?)
 TODO: create background gradient either with CSS or in the canvas
 TODO: make canvas more interactive
 TODO: Update the Readme
