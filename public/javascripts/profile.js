@@ -37,8 +37,7 @@ $( window ).resize(function() {
 
 /* Button Handlers */
 
-var backClicked = function() {
-  window.location.assign('/search/star');
+var backClicked = function() {window.location.href = window.history.back(1);
 };
 
 var nebulaClicked = function() {

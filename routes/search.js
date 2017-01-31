@@ -40,8 +40,13 @@ function requests(req, res, callback, total) {
 function compileResults(req, res, results, method, query, collection) {
   if (query === undefined) {
     query = " ";
-    console.log("Undefined parameters");
   }
+  for (var i = results.length -1; i >= 0; i--) {
+    if (results[i].Title === undefined || results[i].Description === undefined || results[i].Title === null || results[i].Description === null) {
+      results.splice(i, 1);
+    }
+  }
+  console.log(results);
   var queryArray = query.split(" ");
   var allResults = [];
     for (var j = 0; j < results.length; j++) {
@@ -60,7 +65,6 @@ function compileResults(req, res, results, method, query, collection) {
         }
       }
     }
-    console.log(allResults);
   if (method === 'render') {
     display.authenticate(req, res, display.SearchAuth, display.SearchUnauth, allResults);
   } else if (method === 'send') {

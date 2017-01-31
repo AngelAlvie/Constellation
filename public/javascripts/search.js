@@ -66,10 +66,14 @@ var telescopeClicked= function() {
 };
 
 
+function renderPage(pageurl) {
+  window.location.href = pageurl;
+}
+
 var fromDataHtml = function(data) {
   var htmlString = "";
   for (var i = 0; i < data.length; i++) {
-    htmlString = htmlString + "<div class = 'searchResult' onclick='renderPage(\"" + data[i].Url + "/send\");'><h3>" + data[i].Title + "</h3><p>" + data[i].Description + "</p></div>";
+    htmlString = htmlString + "<div class = 'searchResult' onclick='renderPage(\"/stars/" + data[i].Url + "\");'><h3>" + data[i].Title + "</h3><p>" + data[i].Description + "</p></div>";
   }
   if (htmlString === '' ) {
     htmlString = '<div class="searchResult"><h3>Sorry, no results found.</h3><p>Perhaps try a less specific or search for something else.</p></div>';

@@ -382,20 +382,7 @@ $(document).ready(function() {
     }
   });
 
-  $(".searchBody").on('submit', "#searchField", function(event) {
-    event.preventDefault();
-    $.ajax({
-      url : "/search/stars",
-      data : {search: $("#searchInput").val()},
-      method: "POST",
-      success : function( data ) {
-        inner = fromDataHtml(data);
-        $(".results").html(inner);
-      },
-      error : function() {}
-    });
-  });
-  }
+});
 
 
   $("#constellation").on('submit', function(event) {
@@ -415,7 +402,6 @@ $(document).ready(function() {
     });
   });
 
-});
 /* run each time window resized*/
 
 $( window ).resize(function() {
@@ -438,7 +424,7 @@ function renderPage(pageurl) {
     method: "GET",
     success: function (data) {
       console.log('changing html');
-      $("#search").html(data);
+      $(".searchBody").html(data);
     },
     error: function(err) {
       console.log(err);
@@ -447,18 +433,49 @@ function renderPage(pageurl) {
 }
 
 function backToSearch() {
-  var tmp =  '<button class="searchStyle goto-search"  onClick="searchClicked()">Add stars to your constellation</button><div class="searchBody"><div class="formContainer"><div class="leftCircle profileFill"><img src="../images/StarNew.svg" class="leftCircle"></div><form method="post"  action="/search/stars" id="search"><input type="text" name="search" /></form><button class="rightCircle" id="telescope" type="submit" form="search"><img src="../images/TelescopeNew.svg" class="rightCircle" ></button></div><div class="results">' + inner + '</div></div><div class="editorStyle"></div>';
-  $("#search").html(tmp);
-  bind();
+  var tmp =  '<div class="formContainer"><div class="leftCircle profileFill"><img src="../images/StarNew.svg" class="leftCircle"></div><form method="post"  onsubmit="submitHandle(event);" id="search"><input type="text" id= "searchText" name="search" /></form><button class="rightCircle" id="telescope" type="submit" form="search"><img src="../images/TelescopeNew.svg" class="rightCircle" ></button></div><div class="results">' + inner + '</div></div><div class="editorStyle">';
+  $(".searchBody").html(tmp);
+}
+
+$("#searchField").on('submit', function(event) {
+  console.log('running');
+  console.log($("#searchInput").val());
+  event.preventDefault();
+  $.ajax({
+    url : "/search/stars",
+    data : {search: $("#searchInput").val()},
+    method: "POST",
+    success : function( data ) {
+      inner = fromDataHtml(data);
+      $(".results").html(inner);
+    },
+    error : function() {}
+  });
+});
+
+function submitHandle(event) {
+  console.log("running");
+  console.log(document.getElementById('searchText').value);
+  event.preventDefault();
+  $.ajax({
+    url : "/search/stars",
+    data : {search: document.getElementById('searchText').value},
+    method: "POST",
+    success : function( data ) {
+      inner = fromDataHtml(data);
+      $(".results").html(inner);
+    },
+    error : function() {}
+  });
 }
 
 function addToConstellation() {
   var Title = $('#title').html();
   var ID = $('#id').html();
   c.addStar(ID, Title);
-  var tmp =  '<button class="searchStyle goto-search"  onClick="searchClicked()">Add stars to your constellation</button><div class="searchBody"><div class="formContainer"><div class="leftCircle profileFill"><img src="../images/StarNew.svg" class="leftCircle"></div><form method="post"  action="/search/stars" id="search"><input type="text" name="search" /></form><button class="rightCircle" id="telescope" type="submit" form="search"><img src="../images/TelescopeNew.svg" class="rightCircle" ></button></div><div class="results">' + inner + '</div></div><div class="editorStyle"></div>';
-  $("#search").html(tmp);
-  bind();
+  var tmp =  '<div class="formContainer"><div class="leftCircle profileFill"><img src="../images/StarNew.svg" class="leftCircle"></div><form method="post"  onsubmit="submitHandle(event);"  id="search"><input type="text" id= "searchText" name="search" /></form><button class="rightCircle" id="telescope" type="submit" form="search"><img src="../images/TelescopeNew.svg" class="rightCircle" ></button></div><div class="results">' + inner + '</div></div><div class="editorStyle">';
+  $(".searchBody").html(tmp);
+
 }
 
 function fromDataHtml(data) {

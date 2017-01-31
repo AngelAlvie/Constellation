@@ -87,9 +87,7 @@ var searchClicked = function() {
 
 /* Button Handlers */
 
-var backStar = function() {
-  window.location.href = '/myStars';
+var backStar = function() {window.location.href = window.history.back(1);
 }
-var backConstellation = function() {
-  window.location.href = '/myConstellations';
+var backConstellation = function() {window.location.href = window.history.back(1);
 }
