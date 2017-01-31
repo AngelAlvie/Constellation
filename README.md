@@ -75,28 +75,16 @@ Using Jquery for frontend manipulation
 
 ## DEVELOPMENT TASK LIST
 
-TODO: (CURRENT) call update to update the reference to the bookmark
+
 TODO: Clean up code and comments
 TODO: Cleanup console.log() statements and add them where appropriate (severside events and errors)
-TODO: make use of middleware (next) and error handling
 TODO: populate mesage area on error
-TODO: (THAD) make the description input element a textbox (Don't worry about this until later)
-TODO: Implement Authentication for all subsequent pages
-TODO: Implement search algorithm
 TODO: create form filter function which prevents XSS
 TODO: filter user input for bad stuff, or really long things for username/title
-TODO: create constellation editor
-TODO: make post request which sends a graph structure
-TODO: MAKE THIS SCHEMA HAVE A GRAPHSTRUCTURE BY REFERING TO THE OBJECT IDS OF starSchema
 TODO: look into the passport secret in the app.js (should it be something else?)
-TODO: create background gradient either with CSS or in the canvas
-TODO: make canvas more interactive
-TODO: Update the Readme
-TODO: handle invalid bookmark AJAX requests, check to make sure that there is actually a star or constellation by that ID
-TODO: handle errors involving saving properly
-TODO: make sure to use handlebars to and routing to make bookmarking a togglable thing
-TODO: implement bookmarking for constellations
-TODO: figure out why the telescope on the nebula editor doesn't WORK
-TODO: implement save functionality for Constellation
-TODO: make search and view work for constellations
-FIXED: Fix background image on Mozarella Firefox
+TODO: [THAD] create background gradient either with CSS or in the canvas
+TODO: [THAD] make canvas more interactive
+TODO: [LOW] handle invalid bookmark AJAX requests, check to make sure that there is actually a star or constellation by that ID
+TODO: [LOW] handle errors involving saving properly
+TODO: (thAD) figure out why the telescope on the nebula editor doesn't WORK
+TODO: Make sure that constellations and stars actually have things.
