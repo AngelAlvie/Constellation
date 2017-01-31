@@ -24,9 +24,72 @@ var resize = function() {
 $(document).ready(function() {
   var tmp = resize();
   $(".hidden").css("width",  tmp[0]);
-  $(".hidden").css("height", 0);
+  $(".hidden").css("height", tmp[1] - 50);
   $(".hidden").animate({height: tmp[1]}, 600);
 
+  $(".bump").click(function(e){
+      e.preventDefault()
+        if (window.location.href.includes("/myConstellations")) {
+          console.log($(this));
+          console.log($(this).parent());
+          console.log($(this).parent().parent().attr("href"));
+          console.log($(this).parent().parent().attr("href").slice(-24));
+          if (confirm("Are you sure you want to delete this constellation forever?")) {
+            $.ajax({
+              url : "/deleteConstellation/" + $(this).parent().parent().attr("href").slice(-24),
+              method: "GET",
+              success : function( data ) {
+                location.reload();
+              },
+              error : function() {
+                console.log("failure to delete constellation");
+              }
+            });
+          }
+        } else if (window.location.href.includes("/myStars")) {
+          console.log($(this));
+          console.log($(this).parent());
+          console.log($(this).parent().parent().attr("href"));
+          console.log($(this).parent().parent().attr("href").slice(-24));
+          if (confirm("Are you sure you want to delete this star forever?")) {
+            $.ajax({
+              url : "/deleteStar/" + $(this).parent().parent().attr("href").slice(-24),
+              method: "GET",
+              success : function( data ) {
+                location.reload();
+              },
+              error : function() {
+                console.log("failure to delete star");}
+            });
+          }
+        } else if (window.location.href.includes("/savedStars")){
+          $.ajax({
+            method: "POST",
+            url: "/bookmarkStar",
+            data: { id:  $(this).parent().parent().attr("href").slice(-24)},
+            success: function(data) {
+              console.log("Success! Bookmark saved" + data);
+                location.reload();
+            },
+            error: function(err) {
+              console.log("Error on retrieving data from the server: " + err);
+            }
+          });
+        } else {
+          $.ajax({
+            method: "POST",
+            url: "/bookmarkConstellation",
+            data: { id:  $(this).parent().parent().attr("href").slice(-24)},
+            success: function(data) {
+              console.log("Success! Bookmark saved" + data);
+                location.reload();
+            },
+            error: function(err) {
+              console.log("Error on retrieving data from the server: " + err);
+            }
+          });
+        }
+  });
 });
 
 $( window ).resize(function() {
@@ -47,8 +110,4 @@ var nebulaStarClicked = function() {
 
 var nebulaConstellationClicked = function(){
   window.location.assign('/nebula/constellation');
-};
-
-var canClicked = function() {
-
 };

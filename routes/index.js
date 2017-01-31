@@ -7,7 +7,7 @@ var passport = require('passport');
 var display = require('./display.js');
 var search = require('./search.js');
 var bookmark = require('./bookmark.js');
-
+var path = require('path');
 /* GET INDEX PAGE */
 router.get('/', function(req, res, next) {
   display.authenticate(req, res, display.IndexAuth, display.IndexUnauth, null);
@@ -125,11 +125,79 @@ router.post('/bookmarkConstellation', function(req, res, next) {
   display.authenticate(req, res, bookmark.constellation, bookmark.failed, null);
 });
 
+router.get('/deleteStar/:ID', function(req, res, next) {
+  console.log("Begining process");
+  display.authenticate(req, res, search.removeStar, bookmark.failed, req.params.ID);
+});
+
+router.get('/deleteConstellation/:ID', function(req, res, next) {
+  display.authenticate(req, res, search.removeConstellation, bookmark.failed, req.params.ID);
+});
+
 /* POST SIGN IN REQUEST */
 router.post('/signIn', passport.authenticate('signin', {
     successRedirect: '/',
     failureRedirect: '/signIn',
 }));
+
+//routing for the tutorial pages
+router.get('/tutorial/constellation', function(req, res, next) {
+  res.sendFile(path.resolve('public/html/constellation.html'));
+});
+router.get('/tutorial/nebulaConstellation', function(req, res, next) {
+  res.sendFile(path.resolve('public/html/nebulaConstellation.html'));
+});
+router.get('/tutorial/nebulaStar', function(req, res, next) {
+  res.sendFile(path.resolve('public/html/nebulaStar.html'));
+});
+router.get('/tutorial/search', function(req, res, next) {
+  res.sendFile(path.resolve('public/html/search.html'));
+});
+router.get('/tutorial/star', function(req, res, next) {
+  res.sendFile(path.resolve('public/html/star.html'));
+});
+router.get('/tutorial/tutStyle.css', function(req, res, next) {
+  res.sendFile(path.resolve('public/html/tutStyle.css'));
+});
+router.get('/tutorial/NebStar1.PNG', function(req, res, next) {
+  res.sendFile(path.resolve('public/html/NebStar1.PNG'));
+});
+router.get('/tutorial/NebStar2.PNG', function(req, res, next) {
+  res.sendFile(path.resolve('public/html/NebStar2.PNG'));
+});
+router.get('/tutorial/NebStar3.PNG', function(req, res, next) {
+  res.sendFile(path.resolve('public/html/NebStar3.PNG'));
+});
+router.get('/tutorial/Const1.PNG', function(req, res, next) {
+  res.sendFile(path.resolve('public/html/Const1.PNG'));
+});
+router.get('/tutorial/Const2.PNG', function(req, res, next) {
+  res.sendFile(path.resolve('public/html/Const2.PNG'));
+});
+router.get('/tutorial/NebConst1.PNG', function(req, res, next) {
+  res.sendFile(path.resolve('public/html/NebConst1.PNG'));
+});
+router.get('/tutorial/NebConst2.PNG', function(req, res, next) {
+  res.sendFile(path.resolve('public/html/NebConst2.PNG'));
+});
+router.get('/tutorial/NebConst3.PNG', function(req, res, next) {
+  res.sendFile(path.resolve('public/html/NebConst3.PNG'));
+});
+router.get('/tutorial/NebConst4.PNG', function(req, res, next) {
+  res.sendFile(path.resolve('public/html/NebConst4.PNG'));
+});
+router.get('/tutorial/NebConst5.PNG', function(req, res, next) {
+  res.sendFile(path.resolve('public/html/NebConst5.PNG'));
+});
+router.get('/tutorial/NebConst6.PNG', function(req, res, next) {
+  res.sendFile(path.resolve('public/html/NebConst6.PNG'));
+});
+router.get('/tutorial/Scope1.PNG', function(req, res, next) {
+  res.sendFile(path.resolve('public/html/Scope1.PNG'));
+});
+router.get('/tutorial/Star2.PNG', function(req, res, next) {
+  res.sendFile(path.resolve('public/html/Star2.PNG'));
+});
 
 /* GET METHOD TO RETRIEVE SIGN IN PAGE */
 router.get('/signIn',function(req, res, next) {

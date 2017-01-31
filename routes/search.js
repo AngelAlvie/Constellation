@@ -7,7 +7,7 @@ function saveToUser(req, res, data) {
   User.findByIdAndUpdate(
     req.user.id,
     {$push: data},
-    {safe: true, upsert: true},
+    {safe: true},
     function(err, model) {
       if (err) {
         console.log('Error saving to user ' + req.user.Username + ': ' + err);
@@ -113,6 +113,66 @@ exports.retrieveById = function(req, res, collection, id, callback) {
   });
 }
 
+exports.removeStar = function(req, res, data) {
+  console.log("second Begining process");
+  User.findByIdAndUpdate(
+    req.user.id,
+    {$pull: {StarCreated: data}},
+    function(err, model) {
+      if (err) {
+        console.log('Error saving to user ' + req.user.Username + ': ' + err);
+        res.send('failed');
+      } else if (!model){
+        res.send('failed');
+      } else {
+
+          console.log("third Begining process");
+        Star.findByIdAndRemove(
+          data,
+          function (err, model) {
+            if (err) {
+              console.log(err);
+                res.send('failed');
+            } else if (!model) {
+              console.log("could not find model");
+                res.send('failed');
+            } else {
+              console.log("star removed");
+                res.send('success');
+            }
+          }
+        )}
+      });
+}
+
+exports.removeConstellation = function(req, res, data) {
+  User.findByIdAndUpdate(
+    req.user.id,
+    {$pull: {ConstellationCreated: data}},
+    function(err, model) {
+      if (err) {
+        console.log('Error saving to user ' + req.user.Username + ': ' + err);
+        res.send('failed');
+      } else if (!model){
+        res.send('failed');
+      } else {
+        Constellation.findByIdAndRemove(
+          data,
+          function (err, model) {
+            if (err) {
+              console.log(err);
+                res.send('failed');
+            } else if (!model) {
+              console.log("could not find model");
+                res.send('failed');
+            } else {
+              console.log("star removed");
+                res.send('success');
+            }
+          }
+        )}
+      });
+}
 
 exports.saveStar = function(req, res, data) {
   var newStar = new Star();

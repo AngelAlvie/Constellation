@@ -10,9 +10,7 @@ var savedConstellationTopHtml = '<h2 class ="fill">Saved Constellations</h2>';
 var myConstellationExtraHtml = '<div class="formContainer"><button class="bigAssButton" onClick="nebulaConstellationClicked()">New Constellation</button></div>';
 var starFromProfileHtml = '<button class="leftCircle wide" id="constellation" onclick="back()"><img src="../images/Back1.svg"></button><button class="rightCircle wide" id="bookmark" onclick="bookmarkStar()"><img src="../images/Bookmark.svg"></button>';
 var starHtml = '<button class="fullcircle wide" id="constellation" onclick="back()"><img src="../images/Back1.svg">';
-var starInEditor = '<button class="leftCircle wide" id="constellation" onclick="backToSearch()"><img src="../images/Back1.svg"></button><button class="rightCircle wide" id="bookmark" onclick="addToConstellation()"><img src="../images/plusSign.svg"></button>';;
-var editButton = '<button class="fullcircle bump" onclick="editClicked()"><img src="../images/editIcon.svg"></button>';
-
+var starInEditor = '<button class="leftCircle wide" id="constellation" onclick="backToSearch()"><img src="../images/Back1.svg"></button><button class="rightCircle wide" id="bookmark" onclick="addToConstellation()"><img src="../images/plusSign.svg"></button>';
 
 /* THIS FUNCTION CREATES BRANCHING LOGIC BY DECIDING WHETEHER OR NOT THE USER IS AUTHENTICATED */
 exports.authenticate = function(req, res, AuthCallback, UnauthCallback, data) {
@@ -70,10 +68,10 @@ exports.back = function(req, res, data) {
   res.redirect('/');
 }
 exports.MyStars = function(req, res, data) {
-  res.render('userStuff', {title:'Constellation - My Stars', top: myStarTopHtml, edit: editButton, extra: myStarExtraHtml, results: data});
+  res.render('userStuff', {title:'Constellation - My Stars', top: myStarTopHtml, extra: myStarExtraHtml, results: data});
 }
 exports.MyConstellations = function(req, res, data) {
-  res.render('userStuff', {title:'Constellation - My Constellations', top: myConstellationTopHtml, edit: editButton, extra: myConstellationExtraHtml, results: data});
+  res.render('userStuff', {title:'Constellation - My Constellations', top: myConstellationTopHtml, extra: myConstellationExtraHtml, results: data});
 }
 exports.SavedStars = function(req, res, data) {
   res.render('userStuff', {title:'Constellation - Saved Stars', top: savedStarTopHtml, results: data});
