@@ -385,11 +385,11 @@ $(document).ready(function() {
 });
 
 
-  $("#constellation").on('submit', function(event) {
+  $("#textareacont").on('submit', function(event) {
     event.preventDefault();
     $.ajax({
       url : "/nebula/constellation",
-      data : {Graph: c.exportGraphStructure(), Stars: c.exportStarArray(), Title: $("#titleField").val(), Description:$("#textareacont").val()},
+      data : {Graph: c.exportGraphStructure(), Stars: c.exportStarArray(), Title: $("#titleField").val(), Description:$("#descriptionField").val()},
       method: "POST",
       success : function( data ) {
         console.log(c.exportStarArray());
