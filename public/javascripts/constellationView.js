@@ -247,60 +247,8 @@ function Constellation() {
       case 1:
         var currentStar = this.findFirstStars();
         if (currentStar !== null) {
-          this.setRootStar(currentStar);
+          
         }
-        break;
-      case 3:
-        var currentStar = this.findFirstStars();
-        if (currentStar !== null) {
-          this.deleteStar(currentStar);
-        }
-        break;
-    }
-  };
-  this.beginDragHandler = function(event) {
-    switch (event.which) {
-      case 1:
-        this.bufferStar = this.findFirstStars();
-        break;
-      case 3:
-        this.bufferStar = this.findFirstStars();
-        this.bufferStar2 = new Star(10);
-        this.bufferStar2.x = mouseX;
-        this.bufferStar2.y = mouseY;
-        break;
-    }
-  };
-  this.draggingHandler = function(event) {
-    switch (event.which) {
-      case 1:
-        if ((this.bufferStar !== null)) {
-          this.bufferStar.x = mouseX;
-          this.bufferStar.y = mouseY;
-        }
-        break;
-      case 3:
-        if ((this.bufferStar !== null)) {
-          this.bufferStar2.x = mouseX;
-          this.bufferStar2.y = mouseY;
-        }
-        break;
-    }
-  };
-  this.draggedHandler = function(event) {
-    switch (event.which) {
-      case 1:
-        this.bufferStar = null;
-        break;
-      case 3:
-        this.bufferStar2 = this.findFirstStars();
-        if ((this.bufferStar2 !== null) && (this.bufferStar !== null)) {
-          var fromIndex = this.stars.indexOf(this.bufferStar);
-          var toIndex = this.stars.indexOf(this.bufferStar2);
-          this.links[fromIndex].push(toIndex);
-        }
-        this.bufferStar = null;
-        this.bufferStar2 = null;
         break;
     }
   };
