@@ -23,9 +23,14 @@ router.post('/search/constellation', function(req, res, next) {
 });
 /* POST SEARCH FOR STARS WITHIN ANOTHER PAGE */
 router.post('/search/stars', function(req,res,next) {
+  console.log(req.body);
   search.findAllByParameters(req, res, Star, req.body.search, 'send');
 });
 
+/* POST SEARCH FOR CONSTELLATIONS WITHIN ANOTHER PAGE */
+router.post('/search/constellations', function(req,res,next) {
+  search.findAllByParameters(req, res, Constellation, req.body.search, 'send');
+});
 /* GET SEARCH METHOD FOR SEARCH REDIRECT */
 router.get('/search/star', function(req, res, next) {
   search.findAllByParameters(req, res, Star, '', 'render');
