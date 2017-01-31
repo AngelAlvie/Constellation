@@ -73,14 +73,23 @@ function renderPage(pageurl) {
 var fromDataHtml = function(data) {
   var htmlString = "";
   for (var i = 0; i < data.length; i++) {
-    htmlString = htmlString + "<div class = 'searchResult' onclick='renderPage(\"/stars/" + data[i].Url + "\");'><h3>" + data[i].Title + "</h3><p>" + data[i].Description + "</p></div>";
+    htmlString = htmlString + "<div class = 'searchResult' onclick='renderPage(\"" + data[i].Url + "\");'><h3>" + data[i].Title + "</h3><p>" + data[i].Description + "</p></div>";
   }
   if (htmlString === '' ) {
     htmlString = '<div class="searchResult"><h3>Sorry, no results found.</h3><p>Perhaps try a less specific or search for something else.</p></div>';
   }
   return htmlString;
 };
-
+var fromDataHtmlConstellation = function(data) {
+  var htmlString = "";
+  for (var i = 0; i < data.length; i++) {
+    htmlString = htmlString + "<div class = 'searchResult' onclick='renderPage(\"" + data[i].Url + "\");'><h3>" + data[i].Title + "</h3><p>" + data[i].Description + "</p></div>";
+  }
+  if (htmlString === '' ) {
+    htmlString = '<div class="searchResult"><h3>Sorry, no results found.</h3><p>Perhaps try a less specific or search for something else.</p></div>';
+  }
+  return htmlString;
+};
 $("#search").on('submit', function(event) {
   event.preventDefault();
   if (starIsClicked){
@@ -100,7 +109,7 @@ $("#search").on('submit', function(event) {
       data : {search: $("input").val()},
       method: "POST",
       success : function( data ) {
-        inner = fromDataHtml(data);
+        inner = fromDataHtmlConstellation(data);
         $(".results").html(inner);
       },
       error : function() {}

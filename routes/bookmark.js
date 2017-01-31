@@ -4,10 +4,23 @@ var Constellation = require('../models/constellation.js');
 
 /* MAKE SURE THE USER EXISTS, THEN TEST IF THE THE REQUESTED ID IS IN THE USER'S LIST ALREADY */
 function removeStar(req, res, user) {
+  Star.findByIdAndUpdate(
+    req.body.id,
+    {$inc: {Bookmarks: -1}},
+    {safe: true},
+    function(err, model) {
+      if (err) {
+        console.log('Error removing bookmarks for ' + model.Username + ': ' + err);
+      } else if (!model) {
+        console.log('fail model DNE');
+      }
+      console.log("running");
+      console.log(model.Bookmarks);
+  });
   User.findByIdAndUpdate(
     user.id,
     {$pull: {StarFavorites: req.body.id}},
-    {safe: true, upsert: true},
+    {safe: true},
     function(err, model) {
       if (err) {
         console.log('Error removing bookmarks for ' + model.Username + ': ' + err);
@@ -23,10 +36,23 @@ function removeStar(req, res, user) {
 }
 
 function addStar(req, res, user) {
+  Star.findByIdAndUpdate(
+    req.body.id,
+    {$inc: {Bookmarks: 1}},
+    {safe: true},
+    function(err, model) {
+      if (err) {
+        console.log('Error removing bookmarks for ' + model.Username + ': ' + err);
+      } else if (!model) {
+        console.log('fail model DNE');
+      }
+      console.log("running");
+      console.log(model.Bookmarks);
+  });
   User.findByIdAndUpdate(
     user.id,
     {$push: {StarFavorites: req.body.id}},
-    {safe: true, upsert: true},
+    {safe: true},
     function(err, model) {
       if (err) {
         console.log('Error removing bookmarks for ' + model.Username + ': ' + err);
@@ -42,6 +68,19 @@ function addStar(req, res, user) {
 }
 
 function removeConstellation(req, res, user) {
+  Constellation.findByIdAndUpdate(
+    req.body.id,
+    {$inc: {Bookmarks: -1}},
+    {safe: true},
+    function(err, model) {
+      if (err) {
+        console.log('Error removing bookmarks for ' + model.Username + ': ' + err);
+      } else if (!model) {
+        console.log('fail model DNE');
+      }
+      console.log("running");
+      console.log(model.Bookmarks);
+  });
   User.findByIdAndUpdate(
     user.id,
     {$pull: {ConstellationFavorites: req.body.id}},
@@ -60,6 +99,19 @@ function removeConstellation(req, res, user) {
 }
 
 function addConstellation(req, res, user) {
+  Constellation.findByIdAndUpdate(
+    req.body.id,
+    {$inc: {Bookmarks: 1}},
+    {safe: true},
+    function(err, model) {
+      if (err) {
+        console.log('Error removing bookmarks for ' + model.Username + ': ' + err);
+      } else if (!model) {
+        console.log('fail model DNE');
+      }
+      console.log("running");
+      console.log(model.Bookmarks);
+  });
   User.findByIdAndUpdate(
     user.id,
     {$push: {ConstellationFavorites: req.body.id}},
@@ -107,6 +159,7 @@ function toggleStar(req, res, addCallback, removeCallback) {
       if (item.StarFavorites.includes(req.body.id)) {
         removeCallback(req, res, item);
       } else {
+
         addCallback(req, res, item);
       }
     }
