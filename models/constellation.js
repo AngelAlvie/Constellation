@@ -7,5 +7,6 @@ var constellationSchema = mongoose.Schema({
   Stars: [{Title : String, x: Number, y : Number, ID : String}],
   Graph: [[Number]]
 });
+
 var Constellation = mongoose.model('Constellation', constellationSchema);
 module.exports = Constellation;

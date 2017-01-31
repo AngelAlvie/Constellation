@@ -37,19 +37,28 @@ function requests(req, res, callback, total) {
 }
 
 /* THIS FUNCTION COMPILES THE RESULTS INTO SOMETHING WHICH CAN BE PARSED BY HANDLEBARS */
-function compileResults(req, res, results, method, collection) {
-  var allResults = [];
-  for (var i = 0; i < results.length; i++) {
-    var tmp = {};
-    tmp.Title = results[i].Title;
-    tmp.Description = results[i].Description;
-    if (collection === Star) {
-      tmp.Url = '/stars/' + results[i].id;
-    } else if (collection === Constellation) {
-      tmp.Url = '/constellations/' + results[i].id;
-    }
-    allResults.push(tmp);
+function compileResults(req, res, results, method, query, collection) {
+  if (query === undefined) {
+    query = " ";
   }
+  var queryArray = query.split(" ");
+  var allResults = [];
+    for (var j = 0; j < results.length; j++) {
+      for (var i = 0; i < queryArray.length; i++) {
+        if (results[j].Title.toLowerCase().includes(queryArray[i].toLowerCase()) || results[j].Description.toLowerCase().includes(queryArray[i].toLowerCase())) {
+          var tmp = {};
+          tmp.Title = results[j].Title;
+          tmp.Description = results[j].Description;
+          if (collection === Star) {
+            tmp.Url = '/stars/' + results[j].id;
+          } else if (collection === Constellation) {
+            tmp.Url = '/constellations/' + results[j].id;
+          }
+          allResults.push(tmp);
+          break;
+        }
+      }
+    }
   if (method === 'render') {
     display.authenticate(req, res, display.SearchAuth, display.SearchUnauth, allResults);
   } else if (method === 'send') {
@@ -59,14 +68,13 @@ function compileResults(req, res, results, method, collection) {
 
 /* THIS FUNCTION WILL PERFORM A SEARCH GIVEN A COLLECTION AND PARAMETERS */
 exports.findAllByParameters = function(req, res, collection, query, method) {
-  
-
-  collection.find(query, function (err, results) {
+  collection.find({}).sort({Bookmarks : 'descending'}).exec( function (err, output) {
     if (err) {
       console.log("error occured while searching for stars " + err);
       res.redirect('/');
     } else {
-      compileResults(req, res, results, method, collection);
+      console.log(output);
+      compileResults(req, res, output, method, query, collection);
     }
   });
 }
