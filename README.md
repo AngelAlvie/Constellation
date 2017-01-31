@@ -27,14 +27,6 @@ Constellation is an crowd sourced knowledge hub that allows users to easily lear
   * Constellations may have *linear* or *branched* structures, which could allow the user to find their own path through the tutorial/learn what they want to learn.
 * Each user will have a *my constellations* tab to view their constellations, and a *discovered constellations* tab which
 
-## What is *content discovery*?
-Recently, users of various websites will be shown content which complements their previous searches and other metadata which leads to users seeing the same type of content everytime they enter the website.
-This *Echo Chamber Effect* has become a serious problem with major websites which build either separate communities within their websites which don't engage with content outside of their chamber, or the website forces unity within their userbase, causing the entire community of the website to become one larger echo chamber.
-We believe that this problem is one which needs to be addressed through website design, so we came up with the idea of *Content Discovery*.
-Content discovery is the combination of our search and reward system.
-We want to promote users to explore the website and discover new stuff.
-Both the discoverer and the creator will be rewarded when their content gets used a lot.
-
 #### We hope to push your know how and appreciation for the world *beyond the horizon*!
 
 ## How to use our code
