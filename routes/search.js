@@ -11,12 +11,14 @@ function saveToUser(req, res, data) {
     function(err, model) {
       if (err) {
         console.log('Error saving to user ' + req.user.Username + ': ' + err);
+        res.redirect('/profile');
       } else {
         res.redirect('/profile');
       }
     }
   );
 }
+
 function requests(req, res, callback, total) {
   this.req = req;
   this.res = res;
@@ -57,6 +59,8 @@ function compileResults(req, res, results, method, collection) {
 
 /* THIS FUNCTION WILL PERFORM A SEARCH GIVEN A COLLECTION AND PARAMETERS */
 exports.findAllByParameters = function(req, res, collection, query, method) {
+  
+
   collection.find(query, function (err, results) {
     if (err) {
       console.log("error occured while searching for stars " + err);

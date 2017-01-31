@@ -15,15 +15,15 @@ router.get('/', function(req, res, next) {
 
 /* POST SEARCH FOR STARS */
 router.post('/search/star', function(req, res, next) {
-  search.findAllByParameters(req, res, Star, {}, 'render');
+  search.findAllByParameters(req, res, Star, {query : req.body.search}, 'render');
 });
 /* POST SEARCH FOR CONSTELLATIONS */
 router.post('/search/constellation', function(req, res, next) {
-  search.findAllByParameters(req, res, Constellation, {}, 'render');
+  search.findAllByParameters(req, res, Constellation, {query : req.body.search}, 'render');
 });
 /* POST SEARCH FOR STARS WITHIN ANOTHER PAGE */
 router.post('/search/stars', function(req,res,next) {
-  search.findAllByParameters(req, res, Star, {}, 'send');
+  search.findAllByParameters(req, res, Star, {query : req.body.search}, 'send');
 });
 
 /* GET SEARCH METHOD FOR SEARCH REDIRECT */

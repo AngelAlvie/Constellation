@@ -1,5 +1,6 @@
 // submit AJAX request to /constellationdata/:ID , then take that data and turn it into a viewable canvas object
 
+var c = new Constellation();
 var canvasGraph;
 var canvasStars;
 var canvas = document.getElementById('viewCanvas');
@@ -12,7 +13,76 @@ var mouseDragRadius = 0.1;
 var screenWidth = $('.hidden').width();
 var screenHeight = $('.hidden').height()*.7;
 var isDragging = false;
+var currentOffset = 0;
 //will import font later
+
+function dashedLine(x, y, x2, y2, start, graphics) {
+        var dashArray = [10, 5];
+        var dashCount = dashArray.length;
+        var dashSize = 0;
+        for (i = 0; i < dashCount; i++) dashSize += parseInt(dashArray[i]);
+        var dx = (x2 - x),
+            dy = (y2 - y);
+        var slopex = (dy < dx);
+        var slope = (slopex) ? dy / dx : dx / dy;
+        var dashOffSet = dashSize * (1 - (start / 100))
+        if (slopex) {
+          if (dx < 0) {
+          var xOffsetStep = -Math.sqrt(dashOffSet * dashOffSet / (1 + slope * slope));
+          } else {
+          var xOffsetStep = Math.sqrt(dashOffSet * dashOffSet / (1 + slope * slope));
+          }
+            x -= xOffsetStep;
+            dx += xOffsetStep;
+            y -= slope * xOffsetStep;
+            dy += slope * xOffsetStep;
+        } else {
+          if (dy < 0) {
+          var yOffsetStep = -Math.sqrt(dashOffSet * dashOffSet / (1 + slope * slope));
+          } else {
+          var yOffsetStep = Math.sqrt(dashOffSet * dashOffSet / (1 + slope * slope));
+          }
+            y -= yOffsetStep;
+            dy += yOffsetStep;
+            x -= slope * yOffsetStep;
+            dx += slope * yOffsetStep;
+        }
+        graphics.moveTo(x, y);
+        var distRemaining = Math.sqrt(dx * dx + dy * dy);
+        var dashIndex = 0, draw = true;
+        while (distRemaining >= 0.1 && dashIndex < 10000) {
+            var dashLength = dashArray[dashIndex++ % dashCount];
+            if (dashLength > distRemaining) dashLength = distRemaining;
+            if (slopex) {
+              if (dx <= 0) {
+                  var xStep = -Math.sqrt(dashLength * dashLength / (1 + slope * slope));
+              } else {
+                  var xStep = Math.sqrt(dashLength * dashLength / (1 + slope * slope));
+              }
+                x += xStep
+                y += slope * xStep;
+            } else {
+              if (dy <= 0) {
+                var yStep = -Math.sqrt(dashLength * dashLength / (1 + slope * slope));
+              } else {
+                var yStep = Math.sqrt(dashLength * dashLength / (1 + slope * slope));
+              }
+                y += yStep
+                x += slope * yStep;
+            }
+            if (dashOffSet > 0) {
+                dashOffSet -= dashLength;
+                graphics.moveTo(x, y);
+            } else {
+                graphics[draw ? 'lineTo' : 'moveTo'](x, y);
+            }
+            distRemaining -= dashLength;
+            draw = !draw;
+        }
+        // Ensure that the last segment is closed for proper stroking
+        graphics.moveTo(0, 0);
+    }
+
 
 $(document).ready(function() {
   getData();
@@ -26,11 +96,24 @@ function getData() {
     method: "GET",
     success : function( data ) {
       canvasGraph = data.graph;
+      for (var i = 0; i < canvasGraph.length; i++) {
+        if (canvasGraph[i][0] === -1) {
+          canvasGraph[i] = [];
+        }
+      }
       canvasStars = data.stars;
-      console.log("Data successfully retirved from the server:");
-      console.log(canvasGraph);
       console.log(canvasStars);
-      console.log(data);
+      console.log(canvasGraph);
+      for (var i = 0; i < canvasStars.length; i++) {
+        c.addStar(canvasStars[i].ID, canvasStars[i].Title, canvasStars[i].x, canvasStars[i].y);
+          console.log("added a star");
+          console.log(c.stars[i]);
+      }
+      c.links = canvasGraph;
+      console.log("links:");
+      console.log(c.links);
+      console.log("stars:")
+      console.log(c.stars);
     },
     error : function(err) {
       console.log("Error retrieving from the server: " + err);
@@ -74,7 +157,7 @@ function Constellation() {
   this.bufferStar2 = null;
 
   this.addStar = function(ID,Title, x, y) {
-    this.stars.push(new Star(ID,Title));
+    this.stars.push(new Star(ID,Title, x, y));
     this.links.push([]);
   };
 
@@ -221,10 +304,6 @@ function Constellation() {
         break;
     }
   };
-  this.dashedTo = function(fromStar, toStar) {
-    var speed = 1;
-
-  };
 
   this.display = function(graphics) {
     //render stars
@@ -255,22 +334,21 @@ function Constellation() {
     graphics.lineWidth=5;
     for (var i = 0; i < this.links.length; i++) {
       for (var j = 0; j < this.links[i].length; j++) {
-        graphics.moveTo(this.stars[i].x, this.stars[i].y);
-        graphics.lineTo(this.stars[this.links[i][j]].x,this.stars[this.links[i][j]].y);
+        graphics.beginPath();
+        dashedLine(this.stars[i].x, this.stars[i].y, this.stars[this.links[i][j]].x , this.stars[this.links[i][j]].y, currentOffset, graphics);
+        graphics.closePath();
         graphics.stroke();
       }
     }
     // if a connection is being drawn, the render that.
     if (this.bufferStar2 !== null && this.bufferStar !== null ) {
-      graphics.moveTo(this.bufferStar.x, this.bufferStar.y);
-      graphics.lineTo(this.bufferStar2.x,this.bufferStar2.y);
+      dashedLine(this.bufferStar.x, this.bufferStar.y, this.bufferStar2.x,this.bufferStar2.y, currentOffset, graphics);
       graphics.stroke();
     }
   };
 }
 //create constellation instance
 
-var c = new Constellation();
 
 //rendering
 function fitToContainer(canvas){
@@ -337,6 +415,8 @@ $( window ).resize(function() {
 var run = function() {
     fitToContainer(canvas);
     draw(canvas);
+    currentOffset += 4;
+    if (currentOffset >= 100) currentOffset = 0;
 };
 
 var runTime = setInterval(run,30);

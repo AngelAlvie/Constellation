@@ -8,7 +8,77 @@ var mouseDragRadius = 0.1;
 var screenWidth = $('.hidden').width();
 var screenHeight = $('.hidden').height()*.7;
 var isDragging = false;
+var inner = '';
+var currentOffset = 0;
 //will import font later
+
+function dashedLine(x, y, x2, y2, start, graphics) {
+        var dashArray = [10, 5];
+        var dashCount = dashArray.length;
+        var dashSize = 0;
+        for (i = 0; i < dashCount; i++) dashSize += parseInt(dashArray[i]);
+        var dx = (x2 - x),
+            dy = (y2 - y);
+        var slopex = (dy < dx);
+        var slope = (slopex) ? dy / dx : dx / dy;
+        var dashOffSet = dashSize * (1 - (start / 100))
+        if (slopex) {
+          if (dx < 0) {
+          var xOffsetStep = -Math.sqrt(dashOffSet * dashOffSet / (1 + slope * slope));
+          } else {
+          var xOffsetStep = Math.sqrt(dashOffSet * dashOffSet / (1 + slope * slope));
+          }
+            x -= xOffsetStep;
+            dx += xOffsetStep;
+            y -= slope * xOffsetStep;
+            dy += slope * xOffsetStep;
+        } else {
+          if (dy < 0) {
+          var yOffsetStep = -Math.sqrt(dashOffSet * dashOffSet / (1 + slope * slope));
+          } else {
+          var yOffsetStep = Math.sqrt(dashOffSet * dashOffSet / (1 + slope * slope));
+          }
+            y -= yOffsetStep;
+            dy += yOffsetStep;
+            x -= slope * yOffsetStep;
+            dx += slope * yOffsetStep;
+        }
+        graphics.moveTo(x, y);
+        var distRemaining = Math.sqrt(dx * dx + dy * dy);
+        var dashIndex = 0, draw = true;
+        while (distRemaining >= 0.1 && dashIndex < 10000) {
+            var dashLength = dashArray[dashIndex++ % dashCount];
+            if (dashLength > distRemaining) dashLength = distRemaining;
+            if (slopex) {
+              if (dx <= 0) {
+                  var xStep = -Math.sqrt(dashLength * dashLength / (1 + slope * slope));
+              } else {
+                  var xStep = Math.sqrt(dashLength * dashLength / (1 + slope * slope));
+              }
+                x += xStep
+                y += slope * xStep;
+            } else {
+              if (dy <= 0) {
+                var yStep = -Math.sqrt(dashLength * dashLength / (1 + slope * slope));
+              } else {
+                var yStep = Math.sqrt(dashLength * dashLength / (1 + slope * slope));
+              }
+                y += yStep
+                x += slope * yStep;
+            }
+            if (dashOffSet > 0) {
+                dashOffSet -= dashLength;
+                graphics.moveTo(x, y);
+            } else {
+                graphics[draw ? 'lineTo' : 'moveTo'](x, y);
+            }
+            distRemaining -= dashLength;
+            draw = !draw;
+        }
+        // Ensure that the last segment is closed for proper stroking
+        graphics.moveTo(0, 0);
+    }
+
 
 var getMouse = function(event) {
   var parentOffset = $('#editorCanvas').offset();
@@ -44,6 +114,7 @@ function Constellation() {
   this.links = [];
   this.bufferStar = null;
   this.bufferStar2 = null;
+
   this.addStar = function(ID,Title) {
     this.stars.push(new Star(ID,Title));
     this.links.push([]);
@@ -61,8 +132,26 @@ function Constellation() {
     }
     return tmpArray;
   };
+
+  Array.prototype.clone = function() {
+      var arr = this.slice(0);
+      for( var i = 0; i < this.length; i++ ) {
+          if( this[i].clone ) {
+              //recursion
+              arr[i] = this[i].clone();
+          }
+      }
+      return arr;
+  }
+
   this.exportGraphStructure = function() {
-    return this.links;
+    var tmp = this.links.clone();
+    for (var i = 0; i < tmp.length; i++) {
+        if (tmp[i].length === 0) {
+          tmp[i].push(-1);
+        }
+    }
+    return tmp;
   };
   this.deleteStar = function(star) {
     var index = this.stars.indexOf(star);
@@ -190,10 +279,6 @@ function Constellation() {
         break;
     }
   };
-  this.dashedTo = function(fromStar, toStar) {
-    var speed = 1;
-
-  };
 
   this.display = function(graphics) {
     //render stars
@@ -224,15 +309,15 @@ function Constellation() {
     graphics.lineWidth=5;
     for (var i = 0; i < this.links.length; i++) {
       for (var j = 0; j < this.links[i].length; j++) {
-        graphics.moveTo(this.stars[i].x, this.stars[i].y);
-        graphics.lineTo(this.stars[this.links[i][j]].x,this.stars[this.links[i][j]].y);
+        graphics.beginPath();
+        dashedLine(this.stars[i].x, this.stars[i].y, this.stars[this.links[i][j]].x , this.stars[this.links[i][j]].y, currentOffset, graphics);
+        graphics.closePath();
         graphics.stroke();
       }
     }
     // if a connection is being drawn, the render that.
     if (this.bufferStar2 !== null && this.bufferStar !== null ) {
-      graphics.moveTo(this.bufferStar.x, this.bufferStar.y);
-      graphics.lineTo(this.bufferStar2.x,this.bufferStar2.y);
+      dashedLine(this.bufferStar.x, this.bufferStar.y, this.bufferStar2.x,this.bufferStar2.y, currentOffset, graphics);
       graphics.stroke();
     }
   };
@@ -306,6 +391,8 @@ $( window ).resize(function() {
 var run = function() {
     fitToContainer(canvas);
     draw(canvas);
+    currentOffset += 4;
+    if (currentOffset >= 100) currentOffset = 0;
 };
 
 var runTime = setInterval(run,30);
@@ -326,16 +413,16 @@ function renderPage(pageurl) {
 }
 
 function backToSearch() {
-  var innerHTML = '<button class="searchStyle goto-search"  onClick="searchClicked()">Search</button><div class="searchBody"><div class="formContainer"><div class="leftCircle profileFill"><img src="../images/StarNew.svg" class="leftCircle"></div><form method="post"  action="/search" id="search"><input type="text" name="search"/></form><button class="rightCircle" id="telescope" type="submit" form="search"><img src="../images/TelescopeNew.svg" class="rightCircle" ></button></div><div class="results"><div class="searchResult"><h3>Sorry, no results found.</h3><p>Perhaps try a less specific or search for something else.</p></div></div></div><div class="editorStyle"></div>';
-  $("#search").html(innerHTML);
+  var tmp =  '<button class="searchStyle goto-search"  onClick="searchClicked()">Add stars to your constellation</button><div class="searchBody"><div class="formContainer"><div class="leftCircle profileFill"><img src="../images/StarNew.svg" class="leftCircle"></div><form method="post"  action="/search" id="search"><input type="text" name="search" /></form><button class="rightCircle" id="telescope" type="submit" form="search"><img src="../images/TelescopeNew.svg" class="rightCircle" ></button></div><div class="results">' + inner + '</div></div><div class="editorStyle"></div>';
+  $("#search").html(tmp);
 }
 
 function addToConstellation() {
   var Title = $('#title').html();
   var ID = $('#id').html();
   c.addStar(ID, Title);
-  var innerHTML = '<button class="searchStyle goto-search"  onClick="searchClicked()">Search</button><div class="searchBody"><div class="formContainer"><div class="leftCircle profileFill"><img src="../images/StarNew.svg" class="leftCircle"></div><form method="post"  action="/search" id="search"><input type="text" name="search"/></form><button class="rightCircle" id="telescope" type="submit" form="search"><img src="../images/TelescopeNew.svg" class="rightCircle" ></button></div><div class="results"><div class="searchResult"><h3>Sorry, no results found.</h3><p>Perhaps try a less specific or search for something else.</p></div></div></div><div class="editorStyle"></div>';
-  $("#search").html(innerHTML);
+  var tmp =  '<button class="searchStyle goto-search"  onClick="searchClicked()">Add stars to your constellation</button><div class="searchBody"><div class="formContainer"><div class="leftCircle profileFill"><img src="../images/StarNew.svg" class="leftCircle"></div><form method="post"  action="/search" id="search"><input type="text" name="search" /></form><button class="rightCircle" id="telescope" type="submit" form="search"><img src="../images/TelescopeNew.svg" class="rightCircle" ></button></div><div class="results">' + inner + '</div></div><div class="editorStyle"></div>';
+  $("#search").html(tmp);
 }
 
 var fromDataHtml = function(data) {
@@ -353,7 +440,7 @@ $("#search").on('submit', function(event) {
     data : $("input").val(),
     method: "POST",
     success : function( data ) {
-      var inner = fromDataHtml(data);
+      inner = fromDataHtml(data);
       $(".results").html(inner);
     },
     error : function() {}
@@ -368,8 +455,11 @@ $("#constellation").on('submit', function(event) {
     method: "POST",
     success : function( data ) {
       console.log(c.exportStarArray());
-      console.log(c.exportGraphStructure())
+      console.log(c.exportGraphStructure());
+      window.location.href = '/myConstellations';
     },
-    error : function() {}
+    error : function() {
+      console.log('there was an error');
+    }
   });
 });
