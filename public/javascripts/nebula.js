@@ -1,4 +1,4 @@
-
+var prevPage = window.history.back(1);
 var editorIsClicked = true;
 
 var searchIsClicked = false;
@@ -86,7 +86,7 @@ var searchClicked = function() {
 
 /* Button Handlers */
 
-var backStar = function() {window.location.href = window.history.back(1);
+var backStar = function() {window.location.href = prevPage;
 }
-var backConstellation = function() {window.location.href = window.history.back(1);
+var backConstellation = function() {window.location.href = prevPage;
 }
