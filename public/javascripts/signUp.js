@@ -1,4 +1,4 @@
-var prevPage = window.history.back(1);
+var prevPage =
 /* Rendering for the page */
 
 // make screen break points for width and height independent of each other
@@ -38,7 +38,7 @@ $( window ).resize(function() {
 
 /* Button Handlers */
 
-var back = function() {window.location.href = prevPage
+var back = function() {window.location.href = window.history.back(1);
 }
 
 var yesPlease = function() {
