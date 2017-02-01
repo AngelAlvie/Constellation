@@ -1,4 +1,4 @@
-var prevPage =
+var window.history.back(1) =
 /* Rendering for the page */
 
 // make screen break points for width and height independent of each other

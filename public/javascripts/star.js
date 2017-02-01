@@ -1,4 +1,4 @@
-var prevPage = window.history.back(1);
+var window.history.back(1) = window.history.back(1);
 
 //Page Resizing
 var resize = function() {
@@ -38,7 +38,7 @@ $( window ).resize(function() {
 /* Button Handlers */
 
 var back = function() {
-  window.location.href = prevPage;
+  window.location.href = window.history.back(1);
 };
 
 function checkBookmark() {

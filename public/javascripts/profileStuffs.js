@@ -1,4 +1,4 @@
-var prevPage = window.history.back(1);
+
 var resize = function() {
   var screenWidth = $(window).width();
   var screenHeight = $(window).height();
@@ -101,7 +101,7 @@ $( window ).resize(function() {
 
 /* Button Handlers */
 
-var backClicked = function() {window.location.href = prevPage;
+var backClicked = function() {window.location.href =  window.history.back(1);;
 };
 
 var nebulaStarClicked = function() {

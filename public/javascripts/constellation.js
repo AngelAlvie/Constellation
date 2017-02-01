@@ -1,4 +1,3 @@
-var prevPage = window.history.back(1);
 //Page Resizing
 var resize = function() {
   var screenWidth = $(window).width();
@@ -37,7 +36,7 @@ $( window ).resize(function() {
 /* Button Handlers */
 
 var back = function() {
-  window.location.href = prevPage;
+  window.location.href = window.history.back(1);
 };
 
 function checkBookmark() {
