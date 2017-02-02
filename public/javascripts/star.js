@@ -1,4 +1,3 @@
-var window.history.back(1) = window.history.back(1);
 
 //Page Resizing
 var resize = function() {
