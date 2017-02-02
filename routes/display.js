@@ -9,7 +9,7 @@ var myConstellationTopHtml = '<h2 class ="fill">My Constellations</h2>';
 var savedConstellationTopHtml = '<h2 class ="fill">Saved Constellations</h2>';
 var myConstellationExtraHtml = '<div class="formContainer"><button class="bigAssButton" onClick="nebulaConstellationClicked()">New Constellation</button></div>';
 var starFromProfileHtml = '<button class="leftCircle wide" id="constellation" onclick="back()"><img src="../images/Back1.svg"></button><button class="rightCircle wide" id="bookmark" onclick="bookmarkStar()"><img src="../images/Bookmark.svg"></button>';
-var starHtml = '<button class="fullcircle wide" id="constellation" onclick="back()"><img src="../images/Back1.svg">';
+var starHtml = '<button class="fullcircle wide" id="constellation" onclick="back()"><img src="../images/Back1.svg"></button>';
 var starInEditor = '<button class="leftCircle wide" id="constellation" onclick="backToSearch()"><img src="../images/Back1.svg"></button><button class="rightCircle wide" id="bookmark" onclick="addToConstellation()"><img src="../images/plusSign.svg"></button>';
 
 /* THIS FUNCTION CREATES BRANCHING LOGIC BY DECIDING WHETEHER OR NOT THE USER IS AUTHENTICATED */
